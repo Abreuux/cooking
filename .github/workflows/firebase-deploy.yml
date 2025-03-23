@@ -50,6 +50,8 @@ jobs:
           echo "Building frontend..."
           npm run build
           echo "Frontend build completed"
+          echo "Build output contents:"
+          ls -la dist/
 
       - name: Install Dependencies Functions
         working-directory: ./functions
@@ -62,12 +64,23 @@ jobs:
         run: |
           echo "Installing Firebase CLI..."
           npm install -g firebase-tools
+          firebase --version
           echo "Firebase CLI installed successfully"
+
+      - name: Debug Firebase Config
+        run: |
+          echo "Checking Firebase configuration..."
+          cat firebase.json
+          echo "Checking Firebase project..."
+          cat .firebaserc
+          echo "Checking build output..."
+          ls -la frontend/dist
 
       - name: Deploy to Firebase
         run: |
           echo "Starting Firebase deployment..."
-          firebase deploy --token "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" --non-interactive
+          firebase deploy --token "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" --debug --non-interactive
           echo "Firebase deployment completed"
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }} 
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          CI: true 
