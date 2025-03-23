@@ -239,7 +239,8 @@ const Navbar = () => {
       <Button
         component={RouterLink}
         to={item.path}
-        onClick={(e) => handleMenuOpen(e, item)}
+        onMouseEnter={(e) => handleMenuOpen(e, item)}
+        onMouseLeave={handleMenuClose}
         sx={{
           px: 2,
           py: 3,
@@ -350,6 +351,9 @@ const Navbar = () => {
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
         TransitionComponent={Fade}
+        MenuListProps={{
+          onMouseLeave: handleMenuClose,
+        }}
         sx={{
           '& .MuiPaper-root': {
             width: '90%',
