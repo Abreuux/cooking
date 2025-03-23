@@ -131,9 +131,14 @@ const Navbar = () => {
             '&:hover': {
               backgroundColor: HOVER_BG,
             },
+            transition: 'all 0.2s ease-in-out',
           }}
         >
-          <ListItemIcon sx={{ color: isActive ? ACTIVE_COLOR : 'inherit' }}>
+          <ListItemIcon sx={{ 
+            color: isActive ? ACTIVE_COLOR : 'inherit',
+            minWidth: 40,
+            transition: 'color 0.2s ease-in-out',
+          }}>
             {item.icon}
           </ListItemIcon>
           <ListItemText 
@@ -142,57 +147,85 @@ const Navbar = () => {
               '& .MuiTypography-root': {
                 color: isActive ? ACTIVE_COLOR : 'inherit',
                 fontWeight: isActive ? 600 : 400,
+                transition: 'all 0.2s ease-in-out',
               },
             }}
           />
+          {item.submenu && (
+            <Box
+              component="span"
+              sx={{
+                transform: isSubmenuOpen ? 'rotate(180deg)' : 'none',
+                transition: 'transform 0.2s ease-in-out',
+              }}
+            >
+              ▼
+            </Box>
+          )}
         </ListItem>
-        {item.submenu && isSubmenuOpen && (
-          <List sx={{ pl: 4, bgcolor: 'background.paper' }}>
-            {item.submenu.map((submenu, subIndex) => (
-              <Box key={subIndex}>
-                <Typography
-                  variant="subtitle2"
-                  sx={{ 
-                    px: 2,
-                    py: 1,
-                    color: 'text.secondary',
-                    fontWeight: 600
-                  }}
-                >
-                  {submenu.text}
-                </Typography>
-                {submenu.items.map((subItem, itemIndex) => (
-                  <ListItem
-                    key={itemIndex}
-                    button
-                    component={RouterLink}
-                    to={subItem.path}
-                    onClick={handleDrawerToggle}
-                    sx={{
+        {item.submenu && (
+          <Box
+            sx={{
+              maxHeight: isSubmenuOpen ? '1000px' : 0,
+              overflow: 'hidden',
+              transition: 'max-height 0.3s ease-in-out',
+            }}
+          >
+            <List sx={{ pl: 4, bgcolor: 'background.paper' }}>
+              {item.submenu.map((submenu, subIndex) => (
+                <Box key={subIndex}>
+                  <Typography
+                    variant="subtitle2"
+                    sx={{ 
+                      px: 2,
                       py: 1,
-                      pl: 2,
-                      '&:hover': {
-                        backgroundColor: HOVER_BG,
-                      },
+                      color: 'text.secondary',
+                      fontWeight: 600,
+                      fontSize: '0.875rem',
                     }}
                   >
-                    <ListItemText 
-                      primary={subItem.text}
-                      secondary={subItem.description}
-                      primaryTypographyProps={{
-                        variant: 'body2',
-                        fontWeight: 500,
+                    {submenu.text}
+                  </Typography>
+                  {submenu.items.map((subItem, itemIndex) => (
+                    <ListItem
+                      key={itemIndex}
+                      button
+                      component={RouterLink}
+                      to={subItem.path}
+                      onClick={handleDrawerToggle}
+                      sx={{
+                        py: 1.5,
+                        pl: 2,
+                        '&:hover': {
+                          backgroundColor: HOVER_BG,
+                        },
+                        transition: 'all 0.2s ease-in-out',
                       }}
-                      secondaryTypographyProps={{
-                        variant: 'caption',
-                        sx: { color: 'text.secondary' }
-                      }}
-                    />
-                  </ListItem>
-                ))}
-              </Box>
-            ))}
-          </List>
+                    >
+                      <ListItemText 
+                        primary={subItem.text}
+                        secondary={subItem.description}
+                        primaryTypographyProps={{
+                          variant: 'body2',
+                          fontWeight: 500,
+                        }}
+                        secondaryTypographyProps={{
+                          variant: 'caption',
+                          sx: { 
+                            color: 'text.secondary',
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                            overflow: 'hidden',
+                          }
+                        }}
+                      />
+                    </ListItem>
+                  ))}
+                </Box>
+              ))}
+            </List>
+          </Box>
         )}
       </>
     );
@@ -386,23 +419,61 @@ const Navbar = () => {
         onOpen={handleDrawerToggle}
         onClose={handleDrawerToggle}
         ModalProps={{
-          keepMounted: true, // Better open performance on mobile.
+          keepMounted: true,
         }}
         sx={{
           display: { xs: 'block', md: 'none' },
           '& .MuiDrawer-paper': { 
             boxSizing: 'border-box', 
-            width: 300,
+            width: '100%',
+            maxWidth: 360,
             bgcolor: 'background.paper',
+            transition: 'transform 0.3s ease-in-out',
           },
         }}
       >
-        <Box sx={{ p: 2, display: 'flex', justifyContent: 'flex-end' }}>
-          <IconButton onClick={handleDrawerToggle}>
+        <Box 
+          sx={{ 
+            p: 2, 
+            display: 'flex', 
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            borderBottom: '1px solid',
+            borderColor: 'divider',
+            bgcolor: '#2B3990',
+            color: 'white'
+          }}
+        >
+          <Typography
+            variant="h6"
+            component={RouterLink}
+            to="/"
+            onClick={handleDrawerToggle}
+            sx={{
+              fontWeight: 700,
+              color: 'white',
+              textDecoration: 'none',
+              '&:hover': {
+                color: HOVER_COLOR,
+              },
+            }}
+          >
+            NECOTIUM
+          </Typography>
+          <IconButton 
+            onClick={handleDrawerToggle}
+            sx={{ 
+              color: 'white',
+              '&:hover': {
+                color: HOVER_COLOR,
+              }
+            }}
+          >
             <CloseIcon />
           </IconButton>
         </Box>
-        <List>
+
+        <List sx={{ p: 0 }}>
           {menuItems.map((item) => (
             <MobileMenuItem key={item.text} item={item} />
           ))}
