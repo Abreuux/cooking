@@ -77,12 +77,14 @@ jobs:
           channelId: live
           projectId: necotium-96d02
           target: necotium
-          expires: 30d
 
-      - name: Configure Custom Domains
-        uses: w9jds/firebase-action@master
-        with:
-          args: hosting:sites:list
-        env:
-          FIREBASE_TOKEN: '${{ secrets.FIREBASE_TOKEN }}'
-          PROJECT_ID: necotium-96d02 
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Add Custom Domains
+        run: |
+          firebase use necotium-96d02 --token "${{ secrets.FIREBASE_TOKEN }}"
+          firebase hosting:sites:list --token "${{ secrets.FIREBASE_TOKEN }}"
+          firebase hosting:sites:create necotium-com-br --token "${{ secrets.FIREBASE_TOKEN }}"
+          firebase hosting:sites:create www-necotium-com-br --token "${{ secrets.FIREBASE_TOKEN }}"
+          firebase hosting:channel:deploy production --token "${{ secrets.FIREBASE_TOKEN }}" 
