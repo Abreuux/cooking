@@ -5,7 +5,6 @@ import {
   Box,
   Button,
   Container,
-  Drawer,
   IconButton,
   List,
   ListItem,
@@ -15,32 +14,19 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
-  Collapse,
-  Paper,
-  Grid,
+  SwipeableDrawer,
   Menu,
   MenuItem,
-  useScrollTrigger,
   Fade,
-  SwipeableDrawer,
-  BottomNavigation,
-  BottomNavigationAction,
+  Grid,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import BusinessIcon from '@mui/icons-material/Business';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import DataUsageIcon from '@mui/icons-material/DataUsage';
-import SmartToyIcon from '@mui/icons-material/SmartToy';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import StorageIcon from '@mui/icons-material/Storage';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
-import AutomationIcon from '@mui/icons-material/AutoFixHigh';
-import SecurityIcon from '@mui/icons-material/Security';
-import CloudIcon from '@mui/icons-material/Cloud';
-import InfoIcon from '@mui/icons-material/Info';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
-import HomeIcon from '@mui/icons-material/Home';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Style constants
@@ -54,226 +40,36 @@ const menuItems = [
     text: 'Empresas',
     path: '/empresas',
     icon: <BusinessIcon />,
-    sections: [
-      {
-        title: 'Soluções',
-        items: [
-          {
-            name: 'Analytics Suite',
-            description: 'Conjunto completo de análise de dados empresariais',
-            path: '/solucoes/analytics-suite'
-          },
-          {
-            name: 'Business Automation',
-            description: 'Automação inteligente de processos empresariais',
-            path: '/solucoes/business-automation'
-          },
-          {
-            name: 'Data Intelligence',
-            description: 'Inteligência de dados para tomada de decisão',
-            path: '/solucoes/data-intelligence'
-          }
-        ]
-      },
-      {
-        title: 'Produtos',
-        items: [
-          {
-            name: 'DataInsights',
-            description: 'Análise preditiva e insights estratégicos',
-            path: '/produtos/datainsights'
-          },
-          {
-            name: 'ProcessAutomation',
-            description: 'Automação inteligente de processos',
-            path: '/produtos/processautomation'
-          },
-          {
-            name: 'SmartWorkflow',
-            description: 'Fluxos de trabalho automatizados',
-            path: '/produtos/smartworkflow'
-          },
-          {
-            name: 'DataProtect',
-            description: 'Proteção e governança de dados',
-            path: '/produtos/dataprotect'
-          }
-        ]
-      }
-    ]
   },
   {
     text: 'Governo',
     path: '/governo',
     icon: <AccountBalanceIcon />,
-    sections: [
-      {
-        title: 'Soluções',
-        items: [
-          {
-            name: 'Smart City Suite',
-            description: 'Gestão integrada para cidades inteligentes',
-            path: '/solucoes/smart-city'
-          },
-          {
-            name: 'Public Intelligence',
-            description: 'Inteligência de dados para gestão pública',
-            path: '/solucoes/public-intelligence'
-          },
-          {
-            name: 'Gov Security',
-            description: 'Segurança e conformidade governamental',
-            path: '/solucoes/gov-security'
-          }
-        ]
-      },
-      {
-        title: 'Produtos',
-        items: [
-          {
-            name: 'CityDataHub',
-            description: 'Plataforma centralizada para análise de dados municipais',
-            path: '/produtos/citydatahub'
-          },
-          {
-            name: 'GovInsights',
-            description: 'Gestão pública baseada em dados',
-            path: '/produtos/govinsights'
-          },
-          {
-            name: 'CityServices',
-            description: 'Plataforma de serviços municipais',
-            path: '/produtos/cityservices'
-          },
-          {
-            name: 'CityPredict',
-            description: 'Análise preditiva para serviços públicos',
-            path: '/produtos/citypredict'
-          },
-          {
-            name: 'SecureGov',
-            description: 'Segurança e conformidade para governo',
-            path: '/produtos/securegov'
-          }
-        ]
-      }
-    ]
   },
   {
     text: 'Produtos',
     path: '/produtos',
     icon: <StorageIcon />,
-    sections: [
-      {
-        title: 'Análise de Dados',
-        items: [
-          {
-            name: 'DataInsights',
-            description: 'Análise avançada de dados empresariais',
-            path: '/produtos/datainsights'
-          },
-          {
-            name: 'CityDataHub',
-            description: 'Plataforma integrada de dados urbanos',
-            path: '/produtos/citydatahub'
-          }
-        ]
-      },
-      {
-        title: 'Automação',
-        items: [
-          {
-            name: 'ProcessAutomation',
-            description: 'Automação de processos empresariais',
-            path: '/produtos/processautomation'
-          },
-          {
-            name: 'SmartWorkflow',
-            description: 'Gestão inteligente de workflows',
-            path: '/produtos/smartworkflow'
-          }
-        ]
-      },
-      {
-        title: 'Domínio Público',
-        items: [
-          {
-            name: 'GovInsights',
-            description: 'Análise de dados governamentais',
-            path: '/produtos/govinsights'
-          },
-          {
-            name: 'CityServices',
-            description: 'Gestão de serviços municipais',
-            path: '/produtos/cityservices'
-          },
-          {
-            name: 'CityPredict',
-            description: 'Previsão de demandas urbanas',
-            path: '/produtos/citypredict'
-          }
-        ]
-      },
-      {
-        title: 'Segurança',
-        items: [
-          {
-            name: 'SecureGov',
-            description: 'Segurança para instituições governamentais',
-            path: '/produtos/securegov'
-          },
-          {
-            name: 'DataProtect',
-            description: 'Proteção e governança de dados',
-            path: '/produtos/dataprotect'
-          }
-        ]
-      }
-    ]
   },
   {
     text: 'Soluções',
     path: '/solucoes',
     icon: <AnalyticsIcon />,
-    sections: [
+    submenu: [
       {
-        title: 'Soluções Empresariais',
+        text: 'Soluções Empresariais',
         items: [
-          {
-            name: 'Analytics Suite',
-            description: 'Análise avançada de dados empresariais',
-            path: '/solucoes/analytics-suite'
-          },
-          {
-            name: 'Business Automation',
-            description: 'Automação inteligente de processos',
-            path: '/solucoes/business-automation'
-          },
-          {
-            name: 'Data Intelligence',
-            description: 'Inteligência de dados para decisões estratégicas',
-            path: '/solucoes/data-intelligence'
-          }
+          { text: 'Analytics Suite', path: '/solucoes/analytics-suite', description: 'Análise avançada de dados empresariais' },
+          { text: 'Business Automation', path: '/solucoes/business-automation', description: 'Automação inteligente de processos' },
+          { text: 'Data Intelligence', path: '/solucoes/data-intelligence', description: 'Inteligência de dados para decisões estratégicas' },
         ]
       },
       {
-        title: 'Soluções Governamentais',
+        text: 'Soluções Governamentais',
         items: [
-          {
-            name: 'Smart City Suite',
-            description: 'Gestão integrada de cidades inteligentes',
-            path: '/solucoes/smart-city'
-          },
-          {
-            name: 'Public Intelligence',
-            description: 'Inteligência para gestão pública',
-            path: '/solucoes/public-intelligence'
-          },
-          {
-            name: 'Gov Security',
-            description: 'Segurança e conformidade governamental',
-            path: '/solucoes/gov-security'
-          }
+          { text: 'Smart City Suite', path: '/solucoes/smart-city', description: 'Gestão integrada de cidades inteligentes' },
+          { text: 'Public Intelligence', path: '/solucoes/public-intelligence', description: 'Inteligência para gestão pública' },
+          { text: 'Gov Security', path: '/solucoes/gov-security', description: 'Segurança e conformidade governamental' },
         ]
       }
     ]
@@ -285,42 +81,38 @@ const Navbar = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [bottomNavValue, setBottomNavValue] = useState(0);
+  const [selectedSubmenu, setSelectedSubmenu] = useState(null);
   const location = useLocation();
 
-  // Fechar o menu mobile quando mudar de rota
   useEffect(() => {
     setMobileOpen(false);
+    setAnchorEl(null);
+    setSelectedSubmenu(null);
   }, [location.pathname]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const handleBottomNavChange = (event, newValue) => {
-    setBottomNavValue(newValue);
+  const handleMenuOpen = (event, item) => {
+    if (item.submenu) {
+      setAnchorEl(event.currentTarget);
+    }
   };
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
+  const handleMenuClose = () => {
     setAnchorEl(null);
+    setSelectedSubmenu(null);
   };
 
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0,
-  });
-
+  // Mobile menu item component
   const MobileMenuItem = ({ item }) => {
-    const [open, setOpen] = useState(false);
     const isActive = location.pathname === item.path;
+    const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
 
     const handleClick = () => {
-      if (item.sections) {
-        setOpen(!open);
+      if (item.submenu) {
+        setIsSubmenuOpen(!isSubmenuOpen);
       } else {
         handleDrawerToggle();
       }
@@ -331,100 +123,76 @@ const Navbar = () => {
         <ListItem
           button
           onClick={handleClick}
-          component={item.sections ? 'div' : RouterLink}
-          to={item.sections ? undefined : item.path}
           sx={{
-            py: 1.5,
-            color: isActive ? ACTIVE_COLOR : 'text.primary',
+            py: 2,
+            borderBottom: '1px solid',
+            borderColor: 'divider',
+            backgroundColor: isActive ? ACTIVE_BG : 'transparent',
             '&:hover': {
               backgroundColor: HOVER_BG,
-              '& .MuiListItemIcon-root': {
-                color: HOVER_COLOR,
-              },
-              '& .MuiListItemText-primary': {
-                color: HOVER_COLOR,
-              },
             },
           }}
         >
-          <ListItemIcon 
-            sx={{ 
-              color: isActive ? ACTIVE_COLOR : 'text.primary',
-              minWidth: 40,
-            }}
-          >
+          <ListItemIcon sx={{ color: isActive ? ACTIVE_COLOR : 'inherit' }}>
             {item.icon}
           </ListItemIcon>
           <ListItemText 
             primary={item.text}
-            primaryTypographyProps={{
-              fontWeight: 500,
-              fontSize: '1rem',
+            sx={{
+              '& .MuiTypography-root': {
+                color: isActive ? ACTIVE_COLOR : 'inherit',
+                fontWeight: isActive ? 600 : 400,
+              },
             }}
           />
-          {item.sections && (
-            <KeyboardArrowDownIcon
-              sx={{
-                transform: open ? 'rotate(180deg)' : 'rotate(0)',
-                transition: 'transform 0.3s ease',
-                color: open ? ACTIVE_COLOR : 'text.primary',
-              }}
-            />
-          )}
         </ListItem>
-        {item.sections && (
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              {item.sections.map((section, sectionIndex) => (
-                <Box key={sectionIndex} sx={{ pl: 2, pr: 2, pb: 2 }}>
-                  <Typography
-                    variant="subtitle2"
+        {item.submenu && isSubmenuOpen && (
+          <List sx={{ pl: 4, bgcolor: 'background.paper' }}>
+            {item.submenu.map((submenu, subIndex) => (
+              <Box key={subIndex}>
+                <Typography
+                  variant="subtitle2"
+                  sx={{ 
+                    px: 2,
+                    py: 1,
+                    color: 'text.secondary',
+                    fontWeight: 600
+                  }}
+                >
+                  {submenu.text}
+                </Typography>
+                {submenu.items.map((subItem, itemIndex) => (
+                  <ListItem
+                    key={itemIndex}
+                    button
+                    component={RouterLink}
+                    to={subItem.path}
+                    onClick={handleDrawerToggle}
                     sx={{
-                      fontWeight: 600,
-                      color: 'text.secondary',
                       py: 1,
                       pl: 2,
+                      '&:hover': {
+                        backgroundColor: HOVER_BG,
+                      },
                     }}
                   >
-                    {section.title}
-                  </Typography>
-                  {section.items.map((subItem, subItemIndex) => (
-                    <ListItem
-                      key={subItemIndex}
-                      button
-                      component={RouterLink}
-                      to={subItem.path}
-                      onClick={handleDrawerToggle}
-                      sx={{
-                        borderRadius: 1,
-                        mb: 0.5,
-                        '&:hover': {
-                          backgroundColor: HOVER_BG,
-                          '& .MuiTypography-root': {
-                            color: HOVER_COLOR,
-                          },
-                        },
+                    <ListItemText 
+                      primary={subItem.text}
+                      secondary={subItem.description}
+                      primaryTypographyProps={{
+                        variant: 'body2',
+                        fontWeight: 500,
                       }}
-                    >
-                      <ListItemText 
-                        primary={subItem.name}
-                        secondary={subItem.description}
-                        primaryTypographyProps={{
-                          fontSize: '0.9rem',
-                          fontWeight: 500,
-                          color: 'text.primary',
-                        }}
-                        secondaryTypographyProps={{
-                          fontSize: '0.75rem',
-                          color: 'text.secondary',
-                        }}
-                      />
-                    </ListItem>
-                  ))}
-                </Box>
-              ))}
-            </List>
-          </Collapse>
+                      secondaryTypographyProps={{
+                        variant: 'caption',
+                        sx: { color: 'text.secondary' }
+                      }}
+                    />
+                  </ListItem>
+                ))}
+              </Box>
+            ))}
+          </List>
         )}
       </>
     );
@@ -433,128 +201,44 @@ const Navbar = () => {
   // Desktop menu item component
   const DesktopMenuItem = ({ item }) => {
     const isActive = location.pathname === item.path;
-    const [isHovered, setIsHovered] = useState(false);
     
     return (
-      <Box
-        onMouseEnter={() => {
-          setIsHovered(true);
+      <Button
+        component={RouterLink}
+        to={item.path}
+        onClick={(e) => handleMenuOpen(e, item)}
+        sx={{
+          px: 2,
+          py: 3,
+          color: isActive ? ACTIVE_COLOR : 'white',
+          fontSize: '0.95rem',
+          fontWeight: 500,
+          textTransform: 'none',
+          borderRadius: 0,
+          height: 72,
+          position: 'relative',
+          '&:hover': {
+            backgroundColor: 'transparent',
+            color: HOVER_COLOR,
+          },
+          '&::after': {
+            content: '""',
+            position: 'absolute',
+            bottom: 0,
+            left: '50%',
+            width: isActive ? '100%' : '0%',
+            height: '3px',
+            backgroundColor: ACTIVE_COLOR,
+            transition: 'all 0.3s ease',
+            transform: 'translateX(-50%)',
+          },
+          '&:hover::after': {
+            width: '100%'
+          }
         }}
-        onMouseLeave={() => {
-          setIsHovered(false);
-        }}
-        sx={{ position: 'relative' }}
       >
-        <Button
-          component={RouterLink}
-          to={item.path}
-          sx={{
-            px: 2,
-            py: 3,
-            color: isActive ? ACTIVE_COLOR : 'white',
-            fontSize: '0.95rem',
-            fontFamily: 'Inter, sans-serif',
-            fontWeight: 500,
-            textTransform: 'none',
-            borderRadius: 0,
-            height: 72,
-            position: 'relative',
-            '&:hover': {
-              backgroundColor: 'transparent',
-              color: HOVER_COLOR,
-            },
-            '&::after': {
-              content: '""',
-              position: 'absolute',
-              bottom: 0,
-              left: '50%',
-              width: isActive || isHovered ? '100%' : '0%',
-              height: '3px',
-              backgroundColor: ACTIVE_COLOR,
-              transition: 'all 0.3s ease',
-              transform: 'translateX(-50%)',
-            }
-          }}
-        >
-          {item.text}
-        </Button>
-
-        <AnimatePresence>
-          {item.sections && isHovered && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: '100%',
-                  left: -400,
-                  width: '1000px',
-                  bgcolor: 'white',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
-                  p: 4,
-                  zIndex: 1000,
-                  borderRadius: 2,
-                }}
-              >
-                <Grid container spacing={4}>
-                  {item.sections.map((section) => (
-                    <Grid item xs={item.sections.length > 2 ? 3 : 6} key={section.title}>
-                      <Typography
-                        variant="subtitle1"
-                        sx={{
-                          color: theme.palette.primary.main,
-                          fontWeight: 600,
-                          mb: 2,
-                        }}
-                      >
-                        {section.title}
-                      </Typography>
-                      {section.items.map((subItem) => (
-                        <Box
-                          key={subItem.name}
-                          component={RouterLink}
-                          to={subItem.path}
-                          sx={{
-                            display: 'block',
-                            textDecoration: 'none',
-                            mb: 2,
-                            '&:hover': {
-                              '& .product-name': {
-                                color: theme.palette.primary.main,
-                              },
-                            },
-                          }}
-                        >
-                          <Typography
-                            className="product-name"
-                            sx={{
-                              color: 'text.primary',
-                              fontWeight: 500,
-                              mb: 0.5,
-                            }}
-                          >
-                            {subItem.name}
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{ color: 'text.secondary' }}
-                          >
-                            {subItem.description}
-                          </Typography>
-                        </Box>
-                      ))}
-                    </Grid>
-                  ))}
-                </Grid>
-              </Box>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </Box>
+        {item.text}
+      </Button>
     );
   };
 
@@ -562,10 +246,10 @@ const Navbar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar 
         position="fixed"
-        sx={{
-          backgroundColor: trigger ? 'background.paper' : 'transparent',
-          boxShadow: trigger ? 1 : 'none',
-          transition: 'all 0.3s ease',
+        sx={{ 
+          bgcolor: '#2B3990',
+          boxShadow: 'none',
+          borderBottom: '1px solid rgba(255,255,255,0.1)'
         }}
       >
         <Container maxWidth="xl">
@@ -590,10 +274,7 @@ const Navbar = () => {
                 aria-label="open drawer"
                 edge="end"
                 onClick={handleDrawerToggle}
-                sx={{ 
-                  ml: 'auto',
-                  color: trigger ? 'text.primary' : 'white',
-                }}
+                sx={{ ml: 'auto' }}
               >
                 <MenuIcon />
               </IconButton>
@@ -625,28 +306,78 @@ const Navbar = () => {
         </Container>
       </AppBar>
 
+      {/* Solutions Dropdown Menu */}
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+        TransitionComponent={Fade}
+        sx={{
+          '& .MuiPaper-root': {
+            width: '90%',
+            maxWidth: '800px',
+            mt: 1,
+            boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+            borderRadius: 2,
+            border: '1px solid',
+            borderColor: 'divider',
+          }
+        }}
+      >
+        <Grid container spacing={2} sx={{ p: 2 }}>
+          {menuItems.find(item => item.text === 'Soluções')?.submenu.map((submenu, index) => (
+            <Grid item xs={12} md={6} key={index}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  fontWeight: 600,
+                  color: 'primary.main',
+                  mb: 1,
+                  pl: 2
+                }}
+              >
+                {submenu.text}
+              </Typography>
+              {submenu.items.map((item, itemIndex) => (
+                <MenuItem
+                  key={itemIndex}
+                  component={RouterLink}
+                  to={item.path}
+                  onClick={handleMenuClose}
+                  sx={{
+                    py: 1,
+                    px: 2,
+                    borderRadius: 1,
+                    '&:hover': {
+                      backgroundColor: HOVER_BG,
+                    }
+                  }}
+                >
+                  <Box>
+                    <Typography variant="body1" fontWeight={500}>
+                      {item.text}
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      {item.description}
+                    </Typography>
+                  </Box>
+                </MenuItem>
+              ))}
+            </Grid>
+          ))}
+        </Grid>
+      </Menu>
+
       {/* Mobile Drawer */}
       <SwipeableDrawer
         anchor="right"
         open={mobileOpen}
         onClose={handleDrawerToggle}
         onOpen={() => setMobileOpen(true)}
-        disableBackdropTransition
-        disableDiscovery
-        ModalProps={{
-          keepMounted: true,
-        }}
         PaperProps={{
           sx: {
             width: '85%',
             maxWidth: 360,
-            backgroundColor: 'background.paper',
-            backgroundImage: 'none',
-          },
-        }}
-        sx={{
-          '& .MuiDrawer-paper': {
-            boxSizing: 'border-box',
           },
         }}
       >
@@ -705,69 +436,8 @@ const Navbar = () => {
         </Box>
       </SwipeableDrawer>
 
-      {/* Mobile Bottom Navigation */}
-      {isMobile && (
-        <Paper
-          sx={{
-            position: 'fixed',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            zIndex: 1100,
-            borderTop: 1,
-            borderColor: 'divider',
-          }}
-          elevation={3}
-        >
-          <BottomNavigation
-            value={bottomNavValue}
-            onChange={handleBottomNavChange}
-            showLabels
-            sx={{
-              height: 64,
-              '& .MuiBottomNavigationAction-root': {
-                color: 'text.secondary',
-                '&.Mui-selected': {
-                  color: ACTIVE_COLOR,
-                },
-              },
-            }}
-          >
-            <BottomNavigationAction
-              label="Home"
-              icon={<HomeIcon />}
-              component={RouterLink}
-              to="/"
-              onClick={() => setBottomNavValue(0)}
-            />
-            <BottomNavigationAction
-              label="Produtos"
-              icon={<StorageIcon />}
-              component={RouterLink}
-              to="/produtos"
-              onClick={() => setBottomNavValue(1)}
-            />
-            <BottomNavigationAction
-              label="Soluções"
-              icon={<AnalyticsIcon />}
-              component={RouterLink}
-              to="/solucoes"
-              onClick={() => setBottomNavValue(2)}
-            />
-            <BottomNavigationAction
-              label="Contato"
-              icon={<ContactMailIcon />}
-              component={RouterLink}
-              to="/contato"
-              onClick={() => setBottomNavValue(3)}
-            />
-          </BottomNavigation>
-        </Paper>
-      )}
-
       {/* Spacer for content */}
       <Toolbar />
-      {isMobile && <Box sx={{ height: 64 }} />}
     </Box>
   );
 };
