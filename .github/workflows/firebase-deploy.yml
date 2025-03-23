@@ -20,6 +20,9 @@ jobs:
           node-version: '18'
           cache: 'npm'
 
+      - name: Install Dependencies Root
+        run: npm ci
+
       - name: Install Dependencies Frontend
         working-directory: ./frontend
         run: npm ci
