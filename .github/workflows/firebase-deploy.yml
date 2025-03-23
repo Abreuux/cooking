@@ -20,25 +20,52 @@ jobs:
           node-version: '18'
           cache: 'npm'
 
+      - name: Debug - List Directory Contents
+        run: |
+          echo "Current directory contents:"
+          ls -la
+          echo "Frontend directory contents:"
+          ls -la frontend
+          echo "Functions directory contents:"
+          ls -la functions
+
       - name: Install Dependencies Root
-        run: npm ci
+        run: |
+          echo "Installing root dependencies..."
+          npm ci
+          echo "Root dependencies installed successfully"
 
       - name: Install Dependencies Frontend
         working-directory: ./frontend
-        run: npm ci
+        run: |
+          echo "Installing frontend dependencies..."
+          npm ci
+          echo "Frontend dependencies installed successfully"
 
       - name: Build Frontend
         working-directory: ./frontend
-        run: npm run build
+        run: |
+          echo "Building frontend..."
+          npm run build
+          echo "Frontend build completed"
 
       - name: Install Dependencies Functions
         working-directory: ./functions
-        run: npm ci
+        run: |
+          echo "Installing functions dependencies..."
+          npm ci
+          echo "Functions dependencies installed successfully"
 
       - name: Install Firebase CLI
-        run: npm install -g firebase-tools
+        run: |
+          echo "Installing Firebase CLI..."
+          npm install -g firebase-tools
+          echo "Firebase CLI installed successfully"
 
       - name: Deploy to Firebase
-        run: firebase deploy --token "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" --non-interactive
+        run: |
+          echo "Starting Firebase deployment..."
+          firebase deploy --token "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" --non-interactive
+          echo "Firebase deployment completed"
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }} 
