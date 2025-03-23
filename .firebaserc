@@ -6,7 +6,9 @@
     "necotium-96d02": {
       "hosting": {
         "necotium": [
-          "necotium-96d02"
+          "necotium-96d02",
+          "necotium.com.br",
+          "www.necotium.com.br"
         ]
       }
     }
