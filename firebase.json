@@ -1,5 +1,5 @@
 {
-  "hosting": {
+  "hosting": [{
     "target": "necotium",
     "public": "frontend/dist",
     "ignore": [
@@ -57,12 +57,8 @@
           }
         ]
       }
-    ],
-    "domains": [
-      "necotium.com.br",
-      "www.necotium.com.br"
     ]
-  },
+  }],
   "functions": {
     "source": "functions",
     "runtime": "nodejs18"
