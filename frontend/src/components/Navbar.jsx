@@ -282,121 +282,111 @@ const menuItems = [
 
 const Navbar = () => {
   const theme = useTheme();
-  const location = useLocation();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [hoveredItem, setHoveredItem] = useState(null);
-  const [anchorElNav, setAnchorElNav] = useState(null);
-  const [bottomValue, setBottomValue] = useState(0);
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 100,
-  });
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [bottomNavValue, setBottomNavValue] = useState(0);
+  const location = useLocation();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   const handleBottomNavChange = (event, newValue) => {
-    setBottomValue(newValue);
+    setBottomNavValue(newValue);
   };
 
   const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
+    setAnchorEl(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+    setAnchorEl(null);
   };
 
-  // Mobile menu item component
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+  });
+
   const MobileMenuItem = ({ item }) => {
     const [open, setOpen] = useState(false);
-    const isActive = location.pathname === item.path;
-    
+
+    const handleClick = () => {
+      if (item.sections) {
+        setOpen(!open);
+      } else {
+        handleDrawerToggle();
+      }
+    };
+
     return (
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -20 }}
-      >
+      <>
         <ListItem
           button
-          onClick={() => item.sections ? setOpen(!open) : null}
-          component={item.sections ? 'div' : RouterLink}
-          to={item.sections ? null : item.path}
+          onClick={handleClick}
           sx={{
-            py: 2,
-            borderRadius: 1,
-            mb: 1,
             '&:hover': {
-              bgcolor: HOVER_BG,
+              backgroundColor: HOVER_BG,
+              '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+                color: HOVER_COLOR,
+              },
             },
-            ...(isActive && {
-              bgcolor: ACTIVE_BG,
-            }),
           }}
         >
-          <ListItemIcon sx={{ color: isActive ? ACTIVE_COLOR : 'primary.main' }}>
+          <ListItemIcon sx={{ color: 'inherit' }}>
             {item.icon}
           </ListItemIcon>
           <ListItemText 
             primary={item.text}
-            primaryTypographyProps={{
-              fontWeight: 600,
-              color: isActive ? ACTIVE_COLOR : 'text.primary'
+            sx={{
+              '& .MuiListItemText-primary': {
+                fontWeight: 500,
+              },
             }}
           />
           {item.sections && (
-            <KeyboardArrowDownIcon 
-              sx={{ 
-                transform: open ? 'rotate(180deg)' : 'none',
-                transition: 'transform 0.3s'
+            <KeyboardArrowDownIcon
+              sx={{
+                transform: open ? 'rotate(180deg)' : 'rotate(0)',
+                transition: '0.3s',
               }}
             />
           )}
         </ListItem>
-
         {item.sections && (
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {item.sections.map((section) => (
-                <Box key={section.title} sx={{ pl: 4, mb: 2 }}>
+              {item.sections.map((section, sectionIndex) => (
+                <Box key={sectionIndex} sx={{ pl: 4 }}>
                   <Typography
                     variant="subtitle2"
                     sx={{
-                      color: theme.palette.primary.main,
                       fontWeight: 600,
-                      mb: 1,
+                      color: 'text.secondary',
+                      py: 1,
                     }}
                   >
                     {section.title}
                   </Typography>
-                  {section.items.map((subItem) => (
+                  {section.items.map((subItem, subItemIndex) => (
                     <ListItem
-                      key={subItem.name}
+                      key={subItemIndex}
                       button
                       component={RouterLink}
                       to={subItem.path}
                       onClick={handleDrawerToggle}
                       sx={{
-                        py: 1,
-                        borderRadius: 1,
+                        pl: 2,
                         '&:hover': {
-                          bgcolor: HOVER_BG,
+                          backgroundColor: HOVER_BG,
+                          color: HOVER_COLOR,
                         },
                       }}
                     >
-                      <ListItemText
+                      <ListItemText 
                         primary={subItem.name}
                         secondary={subItem.description}
-                        primaryTypographyProps={{
-                          variant: 'body2',
-                          fontWeight: 500,
-                        }}
-                        secondaryTypographyProps={{
-                          variant: 'caption',
-                        }}
                       />
                     </ListItem>
                   ))}
@@ -405,7 +395,7 @@ const Navbar = () => {
             </List>
           </Collapse>
         )}
-      </motion.div>
+      </>
     );
   };
 
@@ -418,11 +408,9 @@ const Navbar = () => {
       <Box
         onMouseEnter={() => {
           setIsHovered(true);
-          setHoveredItem(item.text);
         }}
         onMouseLeave={() => {
           setIsHovered(false);
-          setHoveredItem(null);
         }}
         sx={{ position: 'relative' }}
       >
@@ -461,7 +449,7 @@ const Navbar = () => {
         </Button>
 
         <AnimatePresence>
-          {item.sections && hoveredItem === item.text && (
+          {item.sections && isHovered && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -540,52 +528,38 @@ const Navbar = () => {
   };
 
   return (
-    <>
-      <AppBar
-        component={motion.header}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar 
         position="fixed"
         sx={{
-          background: trigger ? 'rgba(43, 57, 144, 0.98)' : 'transparent',
-          backdropFilter: trigger ? 'blur(10px)' : 'none',
-          boxShadow: trigger ? 4 : 'none',
-          borderBottom: trigger ? '1px solid rgba(255, 255, 255, 0.1)' : 'none',
+          backgroundColor: trigger ? 'background.paper' : 'transparent',
+          boxShadow: trigger ? 1 : 'none',
           transition: 'all 0.3s ease',
         }}
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* Logo */}
-            <Box
-              component={RouterLink}
-              to="/"
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                flexGrow: { xs: 1, md: 0 },
-                mr: { md: 2 },
-              }}
-            >
-              <img
-                src="/images/logo.png"
+            <RouterLink to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+              <Box
+                component="img"
+                src="/logo.png"
                 alt="Necotium"
-                style={{
-                  height: isMobile ? '40px' : '60px',
-                  width: 'auto',
-                  transition: 'height 0.3s ease'
+                sx={{
+                  height: { xs: 40, md: 50 },
+                  mr: 2,
                 }}
               />
-            </Box>
+            </RouterLink>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Icon */}
             {isMobile && (
               <IconButton
-                size="large"
-                aria-label="menu"
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
                 onClick={handleDrawerToggle}
-                sx={{ color: 'white' }}
+                sx={{ ml: 'auto' }}
               >
                 <MenuIcon />
               </IconButton>
@@ -593,49 +567,23 @@ const Navbar = () => {
 
             {/* Desktop Menu */}
             {!isMobile && (
-              <Box sx={{ flexGrow: 1, display: 'flex' }}>
-                {menuItems.map((item) => (
-                  <DesktopMenuItem key={item.text} item={item} />
+              <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}>
+                {menuItems.map((item, index) => (
+                  <DesktopMenuItem key={index} item={item} />
                 ))}
-              </Box>
-            )}
-
-            {/* Action Buttons */}
-            {!isMobile && (
-              <Box sx={{ display: 'flex', gap: 2 }}>
                 <Button
                   component={RouterLink}
-                  to="/contact"
-                  variant="outlined"
+                  to="/contato"
+                  variant="contained"
                   sx={{
-                    color: 'white',
-                    borderColor: 'rgba(196, 214, 0, 0.5)',
-                    fontFamily: 'Poppins, sans-serif',
-                    fontWeight: 600,
+                    ml: 2,
+                    backgroundColor: ACTIVE_COLOR,
                     '&:hover': {
-                      borderColor: HOVER_COLOR,
-                      color: HOVER_COLOR,
-                      background: HOVER_BG,
+                      backgroundColor: HOVER_COLOR,
                     },
                   }}
                 >
                   Contato
-                </Button>
-                <Button
-                  component={RouterLink}
-                  to="/demo"
-                  variant="contained"
-                  sx={{
-                    bgcolor: '#C4D600',
-                    color: '#313992',
-                    fontFamily: 'Poppins, sans-serif',
-                    fontWeight: 600,
-                    '&:hover': {
-                      bgcolor: 'rgba(196, 214, 0, 0.9)',
-                    },
-                  }}
-                >
-                  Demo
                 </Button>
               </Box>
             )}
@@ -645,72 +593,51 @@ const Navbar = () => {
 
       {/* Mobile Drawer */}
       <SwipeableDrawer
+        variant="temporary"
         anchor="right"
         open={mobileOpen}
         onClose={handleDrawerToggle}
         onOpen={() => setMobileOpen(true)}
+        ModalProps={{
+          keepMounted: true, // Better mobile performance
+        }}
         sx={{
+          display: { xs: 'block', md: 'none' },
           '& .MuiDrawer-paper': {
-            width: '100%',
-            maxWidth: 360,
-            background: 'rgba(43, 57, 144, 0.98)',
-            backdropFilter: 'blur(10px)',
+            boxSizing: 'border-box',
+            width: 280,
           },
         }}
       >
-        <Box sx={{ p: 2 }}>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-            <img
-              src="/images/logo.png"
-              alt="Necotium"
-              style={{ height: '40px', width: 'auto' }}
-            />
-            <IconButton onClick={handleDrawerToggle} sx={{ color: 'white' }}>
-              <CloseIcon />
-            </IconButton>
-          </Box>
-          <List>
-            {menuItems.map((item) => (
-              <MobileMenuItem key={item.text} item={item} />
-            ))}
-          </List>
-          <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <Button
-              component={RouterLink}
-              to="/contact"
-              variant="outlined"
-              fullWidth
-              sx={{
-                color: 'white',
-                borderColor: 'rgba(196, 214, 0, 0.5)',
-                fontWeight: 600,
-                '&:hover': {
-                  borderColor: HOVER_COLOR,
-                  color: HOVER_COLOR,
-                  background: HOVER_BG,
-                },
-              }}
-            >
-              Contato
-            </Button>
-            <Button
-              component={RouterLink}
-              to="/demo"
-              variant="contained"
-              fullWidth
-              sx={{
-                bgcolor: '#C4D600',
-                color: '#313992',
-                fontWeight: 600,
-                '&:hover': {
-                  bgcolor: 'rgba(196, 214, 0, 0.9)',
-                },
-              }}
-            >
-              Demo
-            </Button>
-          </Box>
+        <Box sx={{ textAlign: 'right', p: 1 }}>
+          <IconButton onClick={handleDrawerToggle}>
+            <CloseIcon />
+          </IconButton>
         </Box>
+        <List>
+          {menuItems.map((item, index) => (
+            <MobileMenuItem key={index} item={item} />
+          ))}
+          <ListItem
+            button
+            component={RouterLink}
+            to="/contato"
+            onClick={handleDrawerToggle}
+            sx={{
+              mt: 2,
+              backgroundColor: ACTIVE_COLOR,
+              color: 'white',
+              '&:hover': {
+                backgroundColor: HOVER_COLOR,
+              },
+            }}
+          >
+            <ListItemIcon sx={{ color: 'inherit' }}>
+              <ContactMailIcon />
+            </ListItemIcon>
+            <ListItemText primary="Contato" />
+          </ListItem>
+        </List>
       </SwipeableDrawer>
 
       {/* Mobile Bottom Navigation */}
@@ -721,54 +648,43 @@ const Navbar = () => {
             bottom: 0,
             left: 0,
             right: 0,
-            zIndex: 1000,
-            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+            zIndex: 1100,
           }}
           elevation={3}
         >
           <BottomNavigation
-            value={bottomValue}
+            value={bottomNavValue}
             onChange={handleBottomNavChange}
-            sx={{
-              bgcolor: 'rgba(43, 57, 144, 0.98)',
-              backdropFilter: 'blur(10px)',
-            }}
+            showLabels
           >
             <BottomNavigationAction
-              component={RouterLink}
-              to="/"
               label="Home"
               icon={<HomeIcon />}
-              sx={{ color: 'white' }}
+              component={RouterLink}
+              to="/"
             />
             <BottomNavigationAction
-              component={RouterLink}
-              to="/produtos"
               label="Produtos"
               icon={<StorageIcon />}
-              sx={{ color: 'white' }}
+              component={RouterLink}
+              to="/produtos"
             />
             <BottomNavigationAction
-              component={RouterLink}
-              to="/solucoes"
               label="Soluções"
               icon={<AnalyticsIcon />}
-              sx={{ color: 'white' }}
+              component={RouterLink}
+              to="/solucoes"
             />
             <BottomNavigationAction
-              component={RouterLink}
-              to="/contact"
               label="Contato"
               icon={<ContactMailIcon />}
-              sx={{ color: 'white' }}
+              component={RouterLink}
+              to="/contato"
             />
           </BottomNavigation>
         </Paper>
       )}
-
-      <Toolbar sx={{ minHeight: { xs: 56, md: 72 } }} />
-      {isMobile && <Box sx={{ height: 56 }} />} {/* Espaço para bottom navigation */}
-    </>
+    </Box>
   );
 };
 
