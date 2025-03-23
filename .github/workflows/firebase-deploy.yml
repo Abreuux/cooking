@@ -40,6 +40,8 @@ jobs:
         run: |
           echo "Installing frontend dependencies..."
           npm ci
+          echo "Installing Rollup Linux dependencies..."
+          npm install @rollup/rollup-linux-x64-gnu
           echo "Frontend dependencies installed successfully"
 
       - name: Build Frontend
