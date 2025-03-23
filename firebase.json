@@ -57,6 +57,10 @@
           }
         ]
       }
+    ],
+    "domains": [
+      "necotium.com.br",
+      "www.necotium.com.br"
     ]
   },
   "functions": {
