@@ -464,7 +464,7 @@ const Navbar = () => {
               sx={{
                 display: { xs: 'none', md: 'flex' },
                 mr: 2,
-                ml: '-132px',
+                ml: '-80px',
               }}
             >
               <img
