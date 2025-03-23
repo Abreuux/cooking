@@ -287,24 +287,18 @@ const Navbar = () => {
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Typography
-              variant="h6"
-              noWrap
-              component={RouterLink}
-              to="/"
-              sx={{
-                mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontWeight: 700,
-                color: 'white',
-                textDecoration: 'none',
-                '&:hover': {
-                  color: HOVER_COLOR,
-                },
-              }}
-            >
-              NECOTIUM
-            </Typography>
+            {/* Logo */}
+            <RouterLink to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+              <Box
+                component="img"
+                src="/logo.png"
+                alt="Necotium"
+                sx={{ 
+                  height: { xs: 40, md: 50 },
+                  mr: 2,
+                }}
+              />
+            </RouterLink>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {menuItems.map((item) => (
@@ -315,7 +309,7 @@ const Navbar = () => {
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <Button
                 component={RouterLink}
-                to="/contact"
+                to="/contato"
                 sx={{
                   color: 'white',
                   textTransform: 'none',
@@ -444,22 +438,14 @@ const Navbar = () => {
             color: 'white'
           }}
         >
-          <Typography
-            variant="h6"
-            component={RouterLink}
-            to="/"
-            onClick={handleDrawerToggle}
-            sx={{
-              fontWeight: 700,
-              color: 'white',
-              textDecoration: 'none',
-              '&:hover': {
-                color: HOVER_COLOR,
-              },
-            }}
-          >
-            NECOTIUM
-          </Typography>
+          <RouterLink to="/" onClick={handleDrawerToggle} style={{ textDecoration: 'none' }}>
+            <Box
+              component="img"
+              src="/logo.png"
+              alt="Necotium"
+              sx={{ height: 40 }}
+            />
+          </RouterLink>
           <IconButton 
             onClick={handleDrawerToggle}
             sx={{ 
@@ -480,7 +466,7 @@ const Navbar = () => {
           <ListItem
             button
             component={RouterLink}
-            to="/contact"
+            to="/contato"
             onClick={handleDrawerToggle}
             sx={{
               py: 2,
