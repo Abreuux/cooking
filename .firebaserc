@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "necotium-96d02"
+  },
+  "targets": {
+    "necotium-96d02": {
+      "hosting": {
+        "necotium": [
+          "necotium-96d02"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
