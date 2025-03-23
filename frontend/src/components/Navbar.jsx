@@ -288,6 +288,11 @@ const Navbar = () => {
   const [bottomNavValue, setBottomNavValue] = useState(0);
   const location = useLocation();
 
+  // Fechar o menu mobile quando mudar de rota
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -311,6 +316,7 @@ const Navbar = () => {
 
   const MobileMenuItem = ({ item }) => {
     const [open, setOpen] = useState(false);
+    const isActive = location.pathname === item.path;
 
     const handleClick = () => {
       if (item.sections) {
@@ -325,31 +331,43 @@ const Navbar = () => {
         <ListItem
           button
           onClick={handleClick}
+          component={item.sections ? 'div' : RouterLink}
+          to={item.sections ? undefined : item.path}
           sx={{
+            py: 1.5,
+            color: isActive ? ACTIVE_COLOR : 'text.primary',
             '&:hover': {
               backgroundColor: HOVER_BG,
-              '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+              '& .MuiListItemIcon-root': {
+                color: HOVER_COLOR,
+              },
+              '& .MuiListItemText-primary': {
                 color: HOVER_COLOR,
               },
             },
           }}
         >
-          <ListItemIcon sx={{ color: 'inherit' }}>
+          <ListItemIcon 
+            sx={{ 
+              color: isActive ? ACTIVE_COLOR : 'text.primary',
+              minWidth: 40,
+            }}
+          >
             {item.icon}
           </ListItemIcon>
           <ListItemText 
             primary={item.text}
-            sx={{
-              '& .MuiListItemText-primary': {
-                fontWeight: 500,
-              },
+            primaryTypographyProps={{
+              fontWeight: 500,
+              fontSize: '1rem',
             }}
           />
           {item.sections && (
             <KeyboardArrowDownIcon
               sx={{
                 transform: open ? 'rotate(180deg)' : 'rotate(0)',
-                transition: '0.3s',
+                transition: 'transform 0.3s ease',
+                color: open ? ACTIVE_COLOR : 'text.primary',
               }}
             />
           )}
@@ -358,13 +376,14 @@ const Navbar = () => {
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               {item.sections.map((section, sectionIndex) => (
-                <Box key={sectionIndex} sx={{ pl: 4 }}>
+                <Box key={sectionIndex} sx={{ pl: 2, pr: 2, pb: 2 }}>
                   <Typography
                     variant="subtitle2"
                     sx={{
                       fontWeight: 600,
                       color: 'text.secondary',
                       py: 1,
+                      pl: 2,
                     }}
                   >
                     {section.title}
@@ -377,16 +396,28 @@ const Navbar = () => {
                       to={subItem.path}
                       onClick={handleDrawerToggle}
                       sx={{
-                        pl: 2,
+                        borderRadius: 1,
+                        mb: 0.5,
                         '&:hover': {
                           backgroundColor: HOVER_BG,
-                          color: HOVER_COLOR,
+                          '& .MuiTypography-root': {
+                            color: HOVER_COLOR,
+                          },
                         },
                       }}
                     >
                       <ListItemText 
                         primary={subItem.name}
                         secondary={subItem.description}
+                        primaryTypographyProps={{
+                          fontSize: '0.9rem',
+                          fontWeight: 500,
+                          color: 'text.primary',
+                        }}
+                        secondaryTypographyProps={{
+                          fontSize: '0.75rem',
+                          color: 'text.secondary',
+                        }}
                       />
                     </ListItem>
                   ))}
@@ -557,9 +588,12 @@ const Navbar = () => {
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
-                edge="start"
+                edge="end"
                 onClick={handleDrawerToggle}
-                sx={{ ml: 'auto' }}
+                sx={{ 
+                  ml: 'auto',
+                  color: trigger ? 'text.primary' : 'white',
+                }}
               >
                 <MenuIcon />
               </IconButton>
@@ -593,51 +627,82 @@ const Navbar = () => {
 
       {/* Mobile Drawer */}
       <SwipeableDrawer
-        variant="temporary"
         anchor="right"
         open={mobileOpen}
         onClose={handleDrawerToggle}
         onOpen={() => setMobileOpen(true)}
+        disableBackdropTransition
+        disableDiscovery
         ModalProps={{
-          keepMounted: true, // Better mobile performance
+          keepMounted: true,
+        }}
+        PaperProps={{
+          sx: {
+            width: '85%',
+            maxWidth: 360,
+            backgroundColor: 'background.paper',
+            backgroundImage: 'none',
+          },
         }}
         sx={{
-          display: { xs: 'block', md: 'none' },
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
-            width: 280,
           },
         }}
       >
-        <Box sx={{ textAlign: 'right', p: 1 }}>
-          <IconButton onClick={handleDrawerToggle}>
-            <CloseIcon />
-          </IconButton>
+        <Box sx={{ 
+          display: 'flex', 
+          flexDirection: 'column',
+          height: '100%',
+        }}>
+          <Box sx={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center',
+            p: 2,
+            borderBottom: 1,
+            borderColor: 'divider',
+          }}>
+            <RouterLink to="/" onClick={handleDrawerToggle}>
+              <Box
+                component="img"
+                src="/logo.png"
+                alt="Necotium"
+                sx={{ height: 40 }}
+              />
+            </RouterLink>
+            <IconButton onClick={handleDrawerToggle}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
+
+          <List sx={{ flex: 1, overflowY: 'auto', pt: 0 }}>
+            {menuItems.map((item, index) => (
+              <MobileMenuItem key={index} item={item} />
+            ))}
+          </List>
+
+          <Box sx={{ p: 2, borderTop: 1, borderColor: 'divider' }}>
+            <Button
+              fullWidth
+              component={RouterLink}
+              to="/contato"
+              variant="contained"
+              onClick={handleDrawerToggle}
+              sx={{
+                backgroundColor: ACTIVE_COLOR,
+                color: 'white',
+                py: 1.5,
+                '&:hover': {
+                  backgroundColor: HOVER_COLOR,
+                },
+              }}
+              startIcon={<ContactMailIcon />}
+            >
+              Contato
+            </Button>
+          </Box>
         </Box>
-        <List>
-          {menuItems.map((item, index) => (
-            <MobileMenuItem key={index} item={item} />
-          ))}
-          <ListItem
-            button
-            component={RouterLink}
-            to="/contato"
-            onClick={handleDrawerToggle}
-            sx={{
-              mt: 2,
-              backgroundColor: ACTIVE_COLOR,
-              color: 'white',
-              '&:hover': {
-                backgroundColor: HOVER_COLOR,
-              },
-            }}
-          >
-            <ListItemIcon sx={{ color: 'inherit' }}>
-              <ContactMailIcon />
-            </ListItemIcon>
-            <ListItemText primary="Contato" />
-          </ListItem>
-        </List>
       </SwipeableDrawer>
 
       {/* Mobile Bottom Navigation */}
@@ -649,6 +714,8 @@ const Navbar = () => {
             left: 0,
             right: 0,
             zIndex: 1100,
+            borderTop: 1,
+            borderColor: 'divider',
           }}
           elevation={3}
         >
@@ -656,34 +723,51 @@ const Navbar = () => {
             value={bottomNavValue}
             onChange={handleBottomNavChange}
             showLabels
+            sx={{
+              height: 64,
+              '& .MuiBottomNavigationAction-root': {
+                color: 'text.secondary',
+                '&.Mui-selected': {
+                  color: ACTIVE_COLOR,
+                },
+              },
+            }}
           >
             <BottomNavigationAction
               label="Home"
               icon={<HomeIcon />}
               component={RouterLink}
               to="/"
+              onClick={() => setBottomNavValue(0)}
             />
             <BottomNavigationAction
               label="Produtos"
               icon={<StorageIcon />}
               component={RouterLink}
               to="/produtos"
+              onClick={() => setBottomNavValue(1)}
             />
             <BottomNavigationAction
               label="Soluções"
               icon={<AnalyticsIcon />}
               component={RouterLink}
               to="/solucoes"
+              onClick={() => setBottomNavValue(2)}
             />
             <BottomNavigationAction
               label="Contato"
               icon={<ContactMailIcon />}
               component={RouterLink}
               to="/contato"
+              onClick={() => setBottomNavValue(3)}
             />
           </BottomNavigation>
         </Paper>
       )}
+
+      {/* Spacer for content */}
+      <Toolbar />
+      {isMobile && <Box sx={{ height: 64 }} />}
     </Box>
   );
 };
