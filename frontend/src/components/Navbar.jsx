@@ -330,13 +330,13 @@ const Navbar = () => {
               </Button>
             </Box>
 
-            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+            <Box sx={{ display: { xs: 'flex', md: 'none' }, ml: 'auto' }}>
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
-                edge="start"
+                edge="end"
                 onClick={handleDrawerToggle}
-                sx={{ mr: 2 }}
+                sx={{ ml: 2 }}
               >
                 <MenuIcon />
               </IconButton>
@@ -465,7 +465,89 @@ const Navbar = () => {
 
         <List sx={{ p: 0 }}>
           {menuItems.map((item) => (
-            <MobileMenuItem key={item.text} item={item} />
+            <Box key={item.text}>
+              <ListItem
+                button
+                component={RouterLink}
+                to={item.path}
+                onClick={handleDrawerToggle}
+                sx={{
+                  py: 2,
+                  borderBottom: '1px solid',
+                  borderColor: 'divider',
+                  '&:hover': {
+                    backgroundColor: HOVER_BG,
+                  },
+                }}
+              >
+                <ListItemIcon>
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText 
+                  primary={item.text}
+                  sx={{
+                    '& .MuiTypography-root': {
+                      fontWeight: 500,
+                    },
+                  }}
+                />
+              </ListItem>
+              {item.submenu && (
+                <List sx={{ pl: 4, bgcolor: 'background.paper' }}>
+                  {item.submenu.map((submenu, subIndex) => (
+                    <Box key={subIndex}>
+                      <Typography
+                        variant="subtitle2"
+                        sx={{ 
+                          px: 2,
+                          py: 1,
+                          color: 'text.secondary',
+                          fontWeight: 600,
+                          fontSize: '0.875rem',
+                        }}
+                      >
+                        {submenu.text}
+                      </Typography>
+                      {submenu.items.map((subItem, itemIndex) => (
+                        <ListItem
+                          key={itemIndex}
+                          button
+                          component={RouterLink}
+                          to={subItem.path}
+                          onClick={handleDrawerToggle}
+                          sx={{
+                            py: 1.5,
+                            pl: 2,
+                            '&:hover': {
+                              backgroundColor: HOVER_BG,
+                            },
+                          }}
+                        >
+                          <ListItemText 
+                            primary={subItem.text}
+                            secondary={subItem.description}
+                            primaryTypographyProps={{
+                              variant: 'body2',
+                              fontWeight: 500,
+                            }}
+                            secondaryTypographyProps={{
+                              variant: 'caption',
+                              sx: { 
+                                color: 'text.secondary',
+                                display: '-webkit-box',
+                                WebkitLineClamp: 2,
+                                WebkitBoxOrient: 'vertical',
+                                overflow: 'hidden',
+                              }
+                            }}
+                          />
+                        </ListItem>
+                      ))}
+                    </Box>
+                  ))}
+                </List>
+              )}
+            </Box>
           ))}
           <ListItem
             button
