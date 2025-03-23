@@ -249,59 +249,70 @@ const Navbar = () => {
         sx={{ 
           bgcolor: '#2B3990',
           boxShadow: 'none',
-          borderBottom: '1px solid rgba(255,255,255,0.1)'
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
         }}
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            {/* Logo */}
-            <RouterLink to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
-              <Box
-                component="img"
-                src="/logo.png"
-                alt="Necotium"
-                sx={{
-                  height: { xs: 40, md: 50 },
-                  mr: 2,
-                }}
-              />
-            </RouterLink>
+            <Typography
+              variant="h6"
+              noWrap
+              component={RouterLink}
+              to="/"
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontWeight: 700,
+                color: 'white',
+                textDecoration: 'none',
+                '&:hover': {
+                  color: HOVER_COLOR,
+                },
+              }}
+            >
+              NECOTIUM
+            </Typography>
 
-            {/* Mobile Menu Icon */}
-            {isMobile && (
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              {menuItems.map((item) => (
+                <DesktopMenuItem key={item.text} item={item} />
+              ))}
+            </Box>
+
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <Button
+                component={RouterLink}
+                to="/contact"
+                sx={{
+                  color: 'white',
+                  textTransform: 'none',
+                  fontSize: '0.95rem',
+                  fontWeight: 500,
+                  px: 2,
+                  py: 1,
+                  borderRadius: '4px',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  '&:hover': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    borderColor: 'rgba(255, 255, 255, 0.3)',
+                  },
+                }}
+              >
+                Contato
+              </Button>
+            </Box>
+
+            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
-                edge="end"
+                edge="start"
                 onClick={handleDrawerToggle}
-                sx={{ ml: 'auto' }}
+                sx={{ mr: 2 }}
               >
                 <MenuIcon />
               </IconButton>
-            )}
-
-            {/* Desktop Menu */}
-            {!isMobile && (
-              <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}>
-                {menuItems.map((item, index) => (
-                  <DesktopMenuItem key={index} item={item} />
-                ))}
-                <Button
-                  component={RouterLink}
-                  to="/contato"
-                  variant="contained"
-                  sx={{
-                    ml: 2,
-                    backgroundColor: ACTIVE_COLOR,
-                    '&:hover': {
-                      backgroundColor: HOVER_COLOR,
-                    },
-                  }}
-                >
-                  Contato
-                </Button>
-              </Box>
-            )}
+            </Box>
           </Toolbar>
         </Container>
       </AppBar>
@@ -368,72 +379,60 @@ const Navbar = () => {
         </Grid>
       </Menu>
 
-      {/* Mobile Drawer */}
       <SwipeableDrawer
+        variant="temporary"
         anchor="right"
         open={mobileOpen}
+        onOpen={handleDrawerToggle}
         onClose={handleDrawerToggle}
-        onOpen={() => setMobileOpen(true)}
-        PaperProps={{
-          sx: {
-            width: '85%',
-            maxWidth: 360,
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+        sx={{
+          display: { xs: 'block', md: 'none' },
+          '& .MuiDrawer-paper': { 
+            boxSizing: 'border-box', 
+            width: 300,
+            bgcolor: 'background.paper',
           },
         }}
       >
-        <Box sx={{ 
-          display: 'flex', 
-          flexDirection: 'column',
-          height: '100%',
-        }}>
-          <Box sx={{ 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center',
-            p: 2,
-            borderBottom: 1,
-            borderColor: 'divider',
-          }}>
-            <RouterLink to="/" onClick={handleDrawerToggle}>
-              <Box
-                component="img"
-                src="/logo.png"
-                alt="Necotium"
-                sx={{ height: 40 }}
-              />
-            </RouterLink>
-            <IconButton onClick={handleDrawerToggle}>
-              <CloseIcon />
-            </IconButton>
-          </Box>
-
-          <List sx={{ flex: 1, overflowY: 'auto', pt: 0 }}>
-            {menuItems.map((item, index) => (
-              <MobileMenuItem key={index} item={item} />
-            ))}
-          </List>
-
-          <Box sx={{ p: 2, borderTop: 1, borderColor: 'divider' }}>
-            <Button
-              fullWidth
-              component={RouterLink}
-              to="/contato"
-              variant="contained"
-              onClick={handleDrawerToggle}
+        <Box sx={{ p: 2, display: 'flex', justifyContent: 'flex-end' }}>
+          <IconButton onClick={handleDrawerToggle}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
+        <List>
+          {menuItems.map((item) => (
+            <MobileMenuItem key={item.text} item={item} />
+          ))}
+          <ListItem
+            button
+            component={RouterLink}
+            to="/contact"
+            onClick={handleDrawerToggle}
+            sx={{
+              py: 2,
+              borderBottom: '1px solid',
+              borderColor: 'divider',
+              '&:hover': {
+                backgroundColor: HOVER_BG,
+              },
+            }}
+          >
+            <ListItemIcon>
+              <ContactMailIcon />
+            </ListItemIcon>
+            <ListItemText 
+              primary="Contato"
               sx={{
-                backgroundColor: ACTIVE_COLOR,
-                color: 'white',
-                py: 1.5,
-                '&:hover': {
-                  backgroundColor: HOVER_COLOR,
+                '& .MuiTypography-root': {
+                  fontWeight: 500,
                 },
               }}
-              startIcon={<ContactMailIcon />}
-            >
-              Contato
-            </Button>
-          </Box>
-        </Box>
+            />
+          </ListItem>
+        </List>
       </SwipeableDrawer>
 
       {/* Spacer for content */}
