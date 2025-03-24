@@ -42,102 +42,93 @@ const menuItems = [
     path: '/empresas',
     submenu: [
       {
-        title: 'Análise Preditiva',
-        description: 'Antecipe tendências e tome decisões baseadas em dados com nossa tecnologia de análise preditiva.',
+        title: 'Soluções',
+        description: 'Soluções empresariais integradas para sua empresa',
         items: [
-          { title: 'Machine Learning', path: '/empresas/machine-learning' },
-          { title: 'Forecasting', path: '/empresas/forecasting' },
-          { title: 'Análise de Tendências', path: '/empresas/analise-tendencias' }
+          { title: 'Analytics Suite', path: '/empresas/solucoes/analytics-suite', description: 'Análise avançada de dados empresariais' },
+          { title: 'Business Automation', path: '/empresas/solucoes/business-automation', description: 'Automação de processos de negócio' },
+          { title: 'Data Intelligence', path: '/empresas/solucoes/data-intelligence', description: 'Inteligência de dados corporativos' }
         ]
       },
       {
-        title: 'Business Intelligence',
-        description: 'Transforme dados em insights acionáveis com nossas soluções de BI personalizadas.',
+        title: 'Produtos',
+        description: 'Produtos especializados para o setor empresarial',
         items: [
-          { title: 'Dashboards Interativos', path: '/empresas/dashboards' },
-          { title: 'KPIs em Tempo Real', path: '/empresas/kpis' },
-          { title: 'Relatórios Automatizados', path: '/empresas/relatorios' }
-        ]
-      },
-      {
-        title: 'Automação de Processos',
-        description: 'Otimize suas operações com automação inteligente e workflows eficientes.',
-        items: [
-          { title: 'RPA', path: '/empresas/rpa' },
-          { title: 'Workflow Automation', path: '/empresas/workflow' },
-          { title: 'Integração de Sistemas', path: '/empresas/integracao' }
-        ]
-      },
-      {
-        title: 'Performance Management',
-        description: 'Monitore e melhore o desempenho de sua empresa com métricas precisas.',
-        items: [
-          { title: 'Balanced Scorecard', path: '/empresas/balanced-scorecard' },
-          { title: 'OKRs', path: '/empresas/okrs' },
-          { title: 'Performance Analytics', path: '/empresas/performance-analytics' }
+          { title: 'DataInsights', path: '/empresas/produtos/datainsights', description: 'Análise preditiva e insights de negócio' },
+          { title: 'PerformanceAnalytics', path: '/empresas/produtos/performanceanalytics', description: 'Métricas e análise de desempenho' },
+          { title: 'ProcessAutomation', path: '/empresas/produtos/processautomation', description: 'Automação de processos empresariais' }
         ]
       }
     ]
   },
   {
-    text: 'Governo',
+    title: 'Governo',
     path: '/governo',
-    icon: <AccountBalanceIcon />,
     submenu: [
       {
-        text: 'Soluções Governamentais',
+        title: 'Soluções',
+        description: 'Soluções especializadas para gestão pública',
         items: [
-          { text: 'Gestão Pública', path: '/governo/gestao', description: 'Soluções para gestão pública' },
-          { text: 'Cidades Inteligentes', path: '/governo/smart-city', description: 'Gestão de cidades inteligentes' },
-          { text: 'Segurança', path: '/governo/seguranca', description: 'Segurança e conformidade governamental' },
-          { text: 'MuniProcess', path: '/governo/muniprocess', description: 'Automação de processos municipais' },
-          { text: 'CityAutomation', path: '/governo/cityautomation', description: 'Automação de serviços públicos' },
-          { text: 'ServiceCapacity', path: '/governo/servicecapacity', description: 'Gestão de capacidade de serviços' },
-        ]
-      }
-    ]
-  },
-  {
-    text: 'Produtos',
-    path: '/produtos',
-    icon: <StorageIcon />,
-    submenu: [
-      {
-        text: 'Nossos Produtos',
-        items: [
-          { text: 'CityDataHub', path: '/produtos/citydatahub', description: 'Plataforma de dados municipais' },
-          { text: 'CityPredict', path: '/produtos/citypredict', description: 'Análise preditiva para cidades' },
-          { text: 'DataInsights', path: '/produtos/datainsights', description: 'Insights de dados empresariais' },
-          { text: 'PerformanceAnalytics', path: '/produtos/performanceanalytics', description: 'Análise de performance' },
-          { text: 'ProcessAutomation', path: '/produtos/processautomation', description: 'Automação de processos' },
-          { text: 'SmartWorkflow', path: '/produtos/smartworkflow', description: 'Workflow inteligente' },
-          { text: 'GovInsights', path: '/produtos/govinsights', description: 'Insights governamentais' },
-          { text: 'CityServices', path: '/produtos/cityservices', description: 'Serviços para cidades' },
-          { text: 'SecureGov', path: '/produtos/securegov', description: 'Segurança governamental' },
-          { text: 'DataProtect', path: '/produtos/dataprotect', description: 'Proteção de dados' },
-        ]
-      }
-    ]
-  },
-  {
-    text: 'Soluções',
-    path: '/solucoes',
-    icon: <AnalyticsIcon />,
-    submenu: [
-      {
-        text: 'Soluções Empresariais',
-        items: [
-          { text: 'Analytics Suite', path: '/solucoes/analytics-suite', description: 'Análise avançada de dados empresariais' },
-          { text: 'Business Automation', path: '/solucoes/business-automation', description: 'Automação inteligente de processos' },
-          { text: 'Data Intelligence', path: '/solucoes/data-intelligence', description: 'Inteligência de dados para decisões estratégicas' },
+          { title: 'Smart City Suite', path: '/governo/solucoes/smart-city', description: 'Soluções para cidades inteligentes' },
+          { title: 'Public Intelligence', path: '/governo/solucoes/public-intelligence', description: 'Inteligência para gestão pública' },
+          { title: 'Gov Security', path: '/governo/solucoes/gov-security', description: 'Segurança para órgãos públicos' }
         ]
       },
       {
-        text: 'Soluções Governamentais',
+        title: 'Produtos',
+        description: 'Produtos especializados para o setor público',
         items: [
-          { text: 'Smart City Suite', path: '/solucoes/smart-city', description: 'Gestão integrada de cidades inteligentes' },
-          { text: 'Public Intelligence', path: '/solucoes/public-intelligence', description: 'Inteligência para gestão pública' },
-          { text: 'Gov Security', path: '/solucoes/gov-security', description: 'Segurança e conformidade governamental' },
+          { title: 'CityDataHub', path: '/governo/produtos/citydatahub', description: 'Central de dados municipais' },
+          { title: 'CityPredict', path: '/governo/produtos/citypredict', description: 'Previsão e análise urbana' },
+          { title: 'GovInsights', path: '/governo/produtos/govinsights', description: 'Insights para gestão pública' }
+        ]
+      }
+    ]
+  },
+  {
+    title: 'Produtos',
+    path: '/produtos',
+    submenu: [
+      {
+        title: 'Empresas',
+        description: 'Produtos para o setor empresarial',
+        items: [
+          { title: 'SmartWorkflow', path: '/produtos/empresas/smartworkflow', description: 'Gestão de fluxos de trabalho' },
+          { title: 'DataProtect', path: '/produtos/empresas/dataprotect', description: 'Proteção de dados corporativos' },
+          { title: 'BusinessMetrics', path: '/produtos/empresas/businessmetrics', description: 'Métricas de negócio' }
+        ]
+      },
+      {
+        title: 'Governo',
+        description: 'Produtos para o setor público',
+        items: [
+          { title: 'CityServices', path: '/produtos/governo/cityservices', description: 'Serviços municipais integrados' },
+          { title: 'SecureGov', path: '/produtos/governo/securegov', description: 'Segurança governamental' },
+          { title: 'PublicAnalytics', path: '/produtos/governo/publicanalytics', description: 'Analytics para setor público' }
+        ]
+      }
+    ]
+  },
+  {
+    title: 'Soluções',
+    path: '/solucoes',
+    submenu: [
+      {
+        title: 'Empresas',
+        description: 'Soluções corporativas integradas',
+        items: [
+          { title: 'Enterprise Suite', path: '/solucoes/empresas/enterprise-suite', description: 'Suite completa empresarial' },
+          { title: 'Corporate Analytics', path: '/solucoes/empresas/corporate-analytics', description: 'Analytics corporativo' },
+          { title: 'Business Security', path: '/solucoes/empresas/business-security', description: 'Segurança empresarial' }
+        ]
+      },
+      {
+        title: 'Governo',
+        description: 'Soluções governamentais integradas',
+        items: [
+          { title: 'Government Suite', path: '/solucoes/governo/government-suite', description: 'Suite completa governamental' },
+          { title: 'Public Management', path: '/solucoes/governo/public-management', description: 'Gestão pública integrada' },
+          { title: 'City Intelligence', path: '/solucoes/governo/city-intelligence', description: 'Inteligência municipal' }
         ]
       }
     ]
@@ -306,25 +297,30 @@ const Navbar = () => {
   // Desktop menu item component
   const DesktopMenuItem = ({ item }) => {
     const [anchorEl, setAnchorEl] = useState(null);
-    const [activeSubmenu, setActiveSubmenu] = useState(null);
     const location = useLocation();
     const isActive = location.pathname.startsWith(item.path);
 
     const handleMouseEnter = (event) => {
+      const allMenus = document.querySelectorAll('[role="menu"]');
+      allMenus.forEach(menu => {
+        if (menu !== event.currentTarget) {
+          menu.style.display = 'none';
+        }
+      });
       setAnchorEl(event.currentTarget);
     };
 
-    const handleMouseLeave = () => {
-      setAnchorEl(null);
-      setActiveSubmenu(null);
-    };
+    const handleMouseLeave = (event) => {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const isMouseInMenu = 
+        event.clientX >= rect.left &&
+        event.clientX <= rect.right &&
+        event.clientY >= rect.top &&
+        event.clientY <= rect.bottom;
 
-    const handleSubmenuEnter = (submenuTitle) => {
-      setActiveSubmenu(submenuTitle);
-    };
-
-    const handleSubmenuLeave = () => {
-      setActiveSubmenu(null);
+      if (!isMouseInMenu) {
+        setAnchorEl(null);
+      }
     };
 
     const open = Boolean(anchorEl);
@@ -395,8 +391,8 @@ const Navbar = () => {
             {(item.submenu || []).map((submenu) => (
               <Grid item xs={6} key={submenu.title || submenu.text}>
                 <Box
-                  onMouseEnter={() => handleSubmenuEnter(submenu.title || submenu.text)}
-                  onMouseLeave={handleSubmenuLeave}
+                  onMouseEnter={() => handleMouseEnter(event)}
+                  onMouseLeave={handleMouseLeave}
                   sx={{
                     p: 3,
                     height: '100%',
@@ -515,19 +511,15 @@ const Navbar = () => {
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <Button
                 component={RouterLink}
-                to="/contato"
+                to="/contact"
+                color="inherit"
                 sx={{
-                  color: 'white',
                   textTransform: 'none',
-                  fontSize: '0.95rem',
                   fontWeight: 500,
+                  fontSize: '1rem',
                   px: 2,
-                  py: 1,
-                  borderRadius: '4px',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
                   '&:hover': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                    borderColor: 'rgba(255, 255, 255, 0.3)',
+                    color: HOVER_COLOR,
                   },
                 }}
               >
@@ -677,7 +669,7 @@ const Navbar = () => {
           <ListItem
             button
             component={RouterLink}
-            to="/contato"
+            to="/contact"
             onClick={handleDrawerToggle}
             sx={{
               py: 2,
