@@ -19,6 +19,7 @@ import {
   MenuItem,
   Fade,
   Grid,
+  Collapse,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -37,16 +38,43 @@ const ACTIVE_BG = 'rgba(196, 214, 0, 0.2)';
 
 const menuItems = [
   {
-    text: 'Empresas',
+    title: 'Empresas',
     path: '/empresas',
-    icon: <BusinessIcon />,
     submenu: [
       {
-        text: 'Soluções Empresariais',
+        title: 'Análise Preditiva',
+        description: 'Antecipe tendências e tome decisões baseadas em dados com nossa tecnologia de análise preditiva.',
         items: [
-          { text: 'Gestão Empresarial', path: '/empresas/gestao', description: 'Soluções completas para gestão empresarial' },
-          { text: 'Automação', path: '/empresas/automacao', description: 'Automação de processos empresariais' },
-          { text: 'Analytics', path: '/empresas/analytics', description: 'Análise de dados empresariais' },
+          { title: 'Machine Learning', path: '/empresas/machine-learning' },
+          { title: 'Forecasting', path: '/empresas/forecasting' },
+          { title: 'Análise de Tendências', path: '/empresas/analise-tendencias' }
+        ]
+      },
+      {
+        title: 'Business Intelligence',
+        description: 'Transforme dados em insights acionáveis com nossas soluções de BI personalizadas.',
+        items: [
+          { title: 'Dashboards Interativos', path: '/empresas/dashboards' },
+          { title: 'KPIs em Tempo Real', path: '/empresas/kpis' },
+          { title: 'Relatórios Automatizados', path: '/empresas/relatorios' }
+        ]
+      },
+      {
+        title: 'Automação de Processos',
+        description: 'Otimize suas operações com automação inteligente e workflows eficientes.',
+        items: [
+          { title: 'RPA', path: '/empresas/rpa' },
+          { title: 'Workflow Automation', path: '/empresas/workflow' },
+          { title: 'Integração de Sistemas', path: '/empresas/integracao' }
+        ]
+      },
+      {
+        title: 'Performance Management',
+        description: 'Monitore e melhore o desempenho de sua empresa com métricas precisas.',
+        items: [
+          { title: 'Balanced Scorecard', path: '/empresas/balanced-scorecard' },
+          { title: 'OKRs', path: '/empresas/okrs' },
+          { title: 'Performance Analytics', path: '/empresas/performance-analytics' }
         ]
       }
     ]
@@ -146,173 +174,275 @@ const Navbar = () => {
   };
 
   // Mobile menu item component
-  const MobileMenuItem = ({ item }) => {
-    const isActive = location.pathname === item.path;
-    const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
+  const MobileMenuItem = ({ item, onClose }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [activeSubmenu, setActiveSubmenu] = useState(null);
 
-    const handleClick = () => {
-      if (item.submenu) {
-        setIsSubmenuOpen(!isSubmenuOpen);
-      } else {
-        handleDrawerToggle();
+    const handleToggle = () => {
+      setIsOpen(!isOpen);
+      if (!isOpen) {
+        setActiveSubmenu(null);
       }
     };
 
+    const handleSubmenuToggle = (submenuTitle) => {
+      setActiveSubmenu(activeSubmenu === submenuTitle ? null : submenuTitle);
+    };
+
     return (
-      <>
+      <Box sx={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
         <ListItem
           button
-          onClick={handleClick}
+          onClick={handleToggle}
           sx={{
             py: 2,
-            borderBottom: '1px solid',
-            borderColor: 'divider',
-            backgroundColor: isActive ? ACTIVE_BG : 'transparent',
+            px: 3,
             '&:hover': {
-              backgroundColor: HOVER_BG,
+              backgroundColor: 'rgba(255, 255, 255, 0.05)',
             },
-            transition: 'all 0.2s ease-in-out',
           }}
         >
-          <ListItemIcon sx={{ 
-            color: isActive ? ACTIVE_COLOR : 'inherit',
-            minWidth: 40,
-            transition: 'color 0.2s ease-in-out',
-          }}>
-            {item.icon}
-          </ListItemIcon>
-          <ListItemText 
-            primary={item.text}
-            sx={{
-              '& .MuiTypography-root': {
-                color: isActive ? ACTIVE_COLOR : 'inherit',
-                fontWeight: isActive ? 600 : 400,
-                transition: 'all 0.2s ease-in-out',
+          <ListItemText
+            primary={item.title}
+            primaryTypographyProps={{
+              sx: {
+                color: 'white',
+                fontWeight: 500,
+                fontSize: '1.1rem',
               },
             }}
           />
-          {item.submenu && (
-            <Box
-              component="span"
-              sx={{
-                transform: isSubmenuOpen ? 'rotate(180deg)' : 'none',
-                transition: 'transform 0.2s ease-in-out',
-              }}
-            >
-              ▼
-            </Box>
-          )}
-        </ListItem>
-        {item.submenu && (
           <Box
+            component="span"
             sx={{
-              maxHeight: isSubmenuOpen ? '1000px' : 0,
-              overflow: 'hidden',
-              transition: 'max-height 0.3s ease-in-out',
+              transform: isOpen ? 'rotate(180deg)' : 'none',
+              transition: 'transform 0.3s ease',
+              color: 'white',
             }}
           >
-            <List sx={{ pl: 4, bgcolor: 'background.paper' }}>
-              {item.submenu.map((submenu, subIndex) => (
-                <Box key={subIndex}>
-                  <Typography
-                    variant="subtitle2"
-                    sx={{ 
-                      px: 2,
-                      py: 1,
-                      color: 'text.secondary',
-                      fontWeight: 600,
-                      fontSize: '0.875rem',
+            ▼
+          </Box>
+        </ListItem>
+
+        <Collapse in={isOpen} timeout="auto" unmountOnExit>
+          <Box sx={{ pl: 3, pr: 2 }}>
+            {item.submenu?.map((submenu) => (
+              <Box key={submenu.title}>
+                <ListItem
+                  button
+                  onClick={() => handleSubmenuToggle(submenu.title)}
+                  sx={{
+                    py: 1.5,
+                    '&:hover': {
+                      backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                    },
+                  }}
+                >
+                  <ListItemText
+                    primary={submenu.title}
+                    secondary={submenu.description}
+                    primaryTypographyProps={{
+                      sx: {
+                        color: 'white',
+                        fontWeight: 500,
+                      },
+                    }}
+                    secondaryTypographyProps={{
+                      sx: {
+                        color: 'rgba(255, 255, 255, 0.7)',
+                        fontSize: '0.85rem',
+                      },
+                    }}
+                  />
+                  <Box
+                    component="span"
+                    sx={{
+                      transform: activeSubmenu === submenu.title ? 'rotate(180deg)' : 'none',
+                      transition: 'transform 0.3s ease',
+                      color: 'white',
                     }}
                   >
-                    {submenu.text}
-                  </Typography>
-                  {submenu.items.map((subItem, itemIndex) => (
-                    <ListItem
-                      key={itemIndex}
-                      button
-                      component={RouterLink}
-                      to={subItem.path}
-                      onClick={handleDrawerToggle}
-                      sx={{
-                        py: 1.5,
-                        pl: 2,
-                        '&:hover': {
-                          backgroundColor: HOVER_BG,
-                        },
-                        transition: 'all 0.2s ease-in-out',
-                      }}
-                    >
-                      <ListItemText 
-                        primary={subItem.text}
-                        secondary={subItem.description}
-                        primaryTypographyProps={{
-                          variant: 'body2',
-                          fontWeight: 500,
+                    ▼
+                  </Box>
+                </ListItem>
+
+                <Collapse in={activeSubmenu === submenu.title} timeout="auto" unmountOnExit>
+                  <Box sx={{ pl: 2 }}>
+                    {submenu.items?.map((subItem) => (
+                      <ListItem
+                        key={subItem.path}
+                        button
+                        component={RouterLink}
+                        to={subItem.path}
+                        onClick={onClose}
+                        sx={{
+                          py: 1,
+                          '&:hover': {
+                            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                          },
                         }}
-                        secondaryTypographyProps={{
-                          variant: 'caption',
-                          sx: { 
-                            color: 'text.secondary',
-                            display: '-webkit-box',
-                            WebkitLineClamp: 2,
-                            WebkitBoxOrient: 'vertical',
-                            overflow: 'hidden',
-                          }
-                        }}
-                      />
-                    </ListItem>
-                  ))}
-                </Box>
-              ))}
-            </List>
+                      >
+                        <ListItemText
+                          primary={subItem.title}
+                          primaryTypographyProps={{
+                            sx: {
+                              color: 'white',
+                              fontSize: '0.95rem',
+                            },
+                          }}
+                        />
+                      </ListItem>
+                    ))}
+                  </Box>
+                </Collapse>
+              </Box>
+            ))}
           </Box>
-        )}
-      </>
+        </Collapse>
+      </Box>
     );
   };
 
   // Desktop menu item component
   const DesktopMenuItem = ({ item }) => {
-    const isActive = location.pathname === item.path;
-    
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [activeSubmenu, setActiveSubmenu] = useState(null);
+
+    const handleMouseEnter = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+
+    const handleMouseLeave = () => {
+      setAnchorEl(null);
+      setActiveSubmenu(null);
+    };
+
+    const handleSubmenuEnter = (submenuTitle) => {
+      setActiveSubmenu(submenuTitle);
+    };
+
+    const handleSubmenuLeave = () => {
+      setActiveSubmenu(null);
+    };
+
+    const open = Boolean(anchorEl);
+
     return (
-      <Button
-        component={RouterLink}
-        to={item.path}
-        onMouseEnter={(e) => handleMenuOpen(e, item)}
-        onMouseLeave={handleMenuClose}
-        sx={{
-          px: 2,
-          py: 3,
-          color: isActive ? ACTIVE_COLOR : 'white',
-          fontSize: '0.95rem',
-          fontWeight: 500,
-          textTransform: 'none',
-          borderRadius: 0,
-          height: 72,
-          position: 'relative',
-          '&:hover': {
-            backgroundColor: 'transparent',
-            color: HOVER_COLOR,
-          },
-          '&::after': {
-            content: '""',
-            position: 'absolute',
-            bottom: 0,
-            left: '50%',
-            width: isActive ? '100%' : '0%',
-            height: '3px',
-            backgroundColor: ACTIVE_COLOR,
-            transition: 'all 0.3s ease',
-            transform: 'translateX(-50%)',
-          },
-          '&:hover::after': {
-            width: '100%'
-          }
-        }}
+      <Box
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        sx={{ position: 'relative' }}
       >
-        {item.text}
-      </Button>
+        <Button
+          color="inherit"
+          sx={{
+            textTransform: 'none',
+            fontWeight: 500,
+            fontSize: '1rem',
+            px: 2,
+            '&:hover': {
+              backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            },
+          }}
+        >
+          {item.title}
+        </Button>
+
+        <Menu
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleMouseLeave}
+          PaperProps={{
+            onMouseEnter: () => setAnchorEl(anchorEl),
+            onMouseLeave: handleMouseLeave,
+            sx: {
+              mt: 1.5,
+              minWidth: 600,
+              maxWidth: 800,
+              borderRadius: 2,
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
+              overflow: 'hidden',
+            },
+          }}
+          MenuListProps={{
+            sx: {
+              p: 0,
+              bgcolor: 'background.paper',
+            },
+          }}
+        >
+          <Grid container>
+            {item.submenu?.map((submenu) => (
+              <Grid item xs={6} key={submenu.title}>
+                <Box
+                  onMouseEnter={() => handleSubmenuEnter(submenu.title)}
+                  onMouseLeave={handleSubmenuLeave}
+                  sx={{
+                    p: 2,
+                    borderRight: '1px solid',
+                    borderBottom: '1px solid',
+                    borderColor: 'divider',
+                    '&:last-child': {
+                      borderRight: 'none',
+                      borderBottom: 'none',
+                    },
+                  }}
+                >
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      fontWeight: 600,
+                      mb: 1,
+                      color: 'text.primary',
+                    }}
+                  >
+                    {submenu.title}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: 'text.secondary',
+                      mb: 2,
+                      fontSize: '0.875rem',
+                    }}
+                  >
+                    {submenu.description}
+                  </Typography>
+                  <List sx={{ p: 0 }}>
+                    {submenu.items?.map((subItem) => (
+                      <ListItem
+                        key={subItem.path}
+                        button
+                        component={RouterLink}
+                        to={subItem.path}
+                        sx={{
+                          py: 1,
+                          px: 0,
+                          '&:hover': {
+                            backgroundColor: 'transparent',
+                          },
+                        }}
+                      >
+                        <ListItemText
+                          primary={subItem.title}
+                          primaryTypographyProps={{
+                            sx: {
+                              color: 'text.primary',
+                              '&:hover': {
+                                color: 'primary.main',
+                              },
+                            },
+                          }}
+                        />
+                      </ListItem>
+                    ))}
+                  </List>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Menu>
+      </Box>
     );
   };
 
@@ -507,112 +637,7 @@ const Navbar = () => {
 
         <List sx={{ p: 0 }}>
           {menuItems.map((item) => (
-            <Box key={item.text}>
-              <ListItem
-                button
-                onClick={() => {
-                  if (item.submenu) {
-                    setSelectedSubmenu(item.text === selectedSubmenu ? null : item.text);
-                  } else {
-                    handleDrawerToggle();
-                  }
-                }}
-                sx={{
-                  py: 2,
-                  borderBottom: '1px solid',
-                  borderColor: 'divider',
-                  '&:hover': {
-                    backgroundColor: HOVER_BG,
-                  },
-                }}
-              >
-                <ListItemIcon>
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText 
-                  primary={item.text}
-                  sx={{
-                    '& .MuiTypography-root': {
-                      fontWeight: 500,
-                    },
-                  }}
-                />
-                {item.submenu && (
-                  <Box
-                    component="span"
-                    sx={{
-                      transform: selectedSubmenu === item.text ? 'rotate(180deg)' : 'none',
-                      transition: 'transform 0.2s ease-in-out',
-                    }}
-                  >
-                    ▼
-                  </Box>
-                )}
-              </ListItem>
-              {item.submenu && selectedSubmenu === item.text && (
-                <Box
-                  sx={{
-                    maxHeight: '1000px',
-                    overflow: 'hidden',
-                    transition: 'max-height 0.3s ease-in-out',
-                  }}
-                >
-                  <List sx={{ pl: 4, bgcolor: 'background.paper' }}>
-                    {item.submenu.map((submenu, subIndex) => (
-                      <Box key={subIndex}>
-                        <Typography
-                          variant="subtitle2"
-                          sx={{ 
-                            px: 2,
-                            py: 1,
-                            color: 'text.secondary',
-                            fontWeight: 600,
-                            fontSize: '0.875rem',
-                          }}
-                        >
-                          {submenu.text}
-                        </Typography>
-                        {submenu.items.map((subItem, itemIndex) => (
-                          <ListItem
-                            key={itemIndex}
-                            button
-                            component={RouterLink}
-                            to={subItem.path}
-                            onClick={handleDrawerToggle}
-                            sx={{
-                              py: 1.5,
-                              pl: 2,
-                              '&:hover': {
-                                backgroundColor: HOVER_BG,
-                              },
-                            }}
-                          >
-                            <ListItemText 
-                              primary={subItem.text}
-                              secondary={subItem.description}
-                              primaryTypographyProps={{
-                                variant: 'body2',
-                                fontWeight: 500,
-                              }}
-                              secondaryTypographyProps={{
-                                variant: 'caption',
-                                sx: { 
-                                  color: 'text.secondary',
-                                  display: '-webkit-box',
-                                  WebkitLineClamp: 2,
-                                  WebkitBoxOrient: 'vertical',
-                                  overflow: 'hidden',
-                                }
-                              }}
-                            />
-                          </ListItem>
-                        ))}
-                      </Box>
-                    ))}
-                  </List>
-                </Box>
-              )}
-            </Box>
+            <MobileMenuItem key={item.text} item={item} onClose={handleDrawerToggle} />
           ))}
           <ListItem
             button
