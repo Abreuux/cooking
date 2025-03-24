@@ -190,7 +190,7 @@ const Navbar = () => {
     };
 
     return (
-      <Box sx={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+      <Box sx={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)' }}>
         <ListItem
           button
           onClick={handleToggle}
@@ -198,16 +198,16 @@ const Navbar = () => {
             py: 2,
             px: 3,
             '&:hover': {
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
+              backgroundColor: 'rgba(0, 0, 0, 0.04)',
             },
           }}
         >
           <ListItemText
-            primary={item.title}
+            primary={item.title || item.text}
             primaryTypographyProps={{
               sx: {
-                color: 'white',
-                fontWeight: 500,
+                color: '#2B3990',
+                fontWeight: 600,
                 fontSize: '1.1rem',
               },
             }}
@@ -217,7 +217,7 @@ const Navbar = () => {
             sx={{
               transform: isOpen ? 'rotate(180deg)' : 'none',
               transition: 'transform 0.3s ease',
-              color: 'white',
+              color: '#2B3990',
             }}
           >
             ▼
@@ -226,30 +226,30 @@ const Navbar = () => {
 
         <Collapse in={isOpen} timeout="auto" unmountOnExit>
           <Box sx={{ pl: 3, pr: 2 }}>
-            {item.submenu?.map((submenu) => (
-              <Box key={submenu.title}>
+            {(item.submenu || []).map((submenu) => (
+              <Box key={submenu.title || submenu.text}>
                 <ListItem
                   button
-                  onClick={() => handleSubmenuToggle(submenu.title)}
+                  onClick={() => handleSubmenuToggle(submenu.title || submenu.text)}
                   sx={{
                     py: 1.5,
                     '&:hover': {
-                      backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                      backgroundColor: 'rgba(0, 0, 0, 0.04)',
                     },
                   }}
                 >
                   <ListItemText
-                    primary={submenu.title}
+                    primary={submenu.title || submenu.text}
                     secondary={submenu.description}
                     primaryTypographyProps={{
                       sx: {
-                        color: 'white',
+                        color: '#2B3990',
                         fontWeight: 500,
                       },
                     }}
                     secondaryTypographyProps={{
                       sx: {
-                        color: 'rgba(255, 255, 255, 0.7)',
+                        color: 'rgba(43, 57, 144, 0.7)',
                         fontSize: '0.85rem',
                       },
                     }}
@@ -257,18 +257,18 @@ const Navbar = () => {
                   <Box
                     component="span"
                     sx={{
-                      transform: activeSubmenu === submenu.title ? 'rotate(180deg)' : 'none',
+                      transform: activeSubmenu === (submenu.title || submenu.text) ? 'rotate(180deg)' : 'none',
                       transition: 'transform 0.3s ease',
-                      color: 'white',
+                      color: '#2B3990',
                     }}
                   >
                     ▼
                   </Box>
                 </ListItem>
 
-                <Collapse in={activeSubmenu === submenu.title} timeout="auto" unmountOnExit>
+                <Collapse in={activeSubmenu === (submenu.title || submenu.text)} timeout="auto" unmountOnExit>
                   <Box sx={{ pl: 2 }}>
-                    {submenu.items?.map((subItem) => (
+                    {(submenu.items || []).map((subItem) => (
                       <ListItem
                         key={subItem.path}
                         button
@@ -278,15 +278,15 @@ const Navbar = () => {
                         sx={{
                           py: 1,
                           '&:hover': {
-                            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                            backgroundColor: 'rgba(0, 0, 0, 0.04)',
                           },
                         }}
                       >
                         <ListItemText
-                          primary={subItem.title}
+                          primary={subItem.title || subItem.text}
                           primaryTypographyProps={{
                             sx: {
-                              color: 'white',
+                              color: '#2B3990',
                               fontSize: '0.95rem',
                             },
                           }}
@@ -307,6 +307,8 @@ const Navbar = () => {
   const DesktopMenuItem = ({ item }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [activeSubmenu, setActiveSubmenu] = useState(null);
+    const location = useLocation();
+    const isActive = location.pathname.startsWith(item.path);
 
     const handleMouseEnter = (event) => {
       setAnchorEl(event.currentTarget);
@@ -340,12 +342,28 @@ const Navbar = () => {
             fontWeight: 500,
             fontSize: '1rem',
             px: 2,
+            color: isActive ? ACTIVE_COLOR : 'white',
+            position: 'relative',
             '&:hover': {
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
+              color: HOVER_COLOR,
+              '&::after': {
+                width: '100%',
+              },
+            },
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              bottom: 0,
+              left: '50%',
+              width: isActive ? '100%' : '0%',
+              height: '3px',
+              backgroundColor: HOVER_COLOR,
+              transition: 'all 0.3s ease',
+              transform: 'translateX(-50%)',
             },
           }}
         >
-          {item.title}
+          {item.title || item.text}
         </Button>
 
         <Menu
@@ -357,11 +375,13 @@ const Navbar = () => {
             onMouseLeave: handleMouseLeave,
             sx: {
               mt: 1.5,
-              minWidth: 600,
-              maxWidth: 800,
+              minWidth: 800,
+              maxWidth: 1000,
               borderRadius: 2,
-              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
               overflow: 'hidden',
+              border: '1px solid',
+              borderColor: 'divider',
             },
           }}
           MenuListProps={{
@@ -372,44 +392,48 @@ const Navbar = () => {
           }}
         >
           <Grid container>
-            {item.submenu?.map((submenu) => (
-              <Grid item xs={6} key={submenu.title}>
+            {(item.submenu || []).map((submenu) => (
+              <Grid item xs={6} key={submenu.title || submenu.text}>
                 <Box
-                  onMouseEnter={() => handleSubmenuEnter(submenu.title)}
+                  onMouseEnter={() => handleSubmenuEnter(submenu.title || submenu.text)}
                   onMouseLeave={handleSubmenuLeave}
                   sx={{
-                    p: 2,
+                    p: 3,
+                    height: '100%',
                     borderRight: '1px solid',
                     borderBottom: '1px solid',
                     borderColor: 'divider',
-                    '&:last-child': {
-                      borderRight: 'none',
-                      borderBottom: 'none',
+                    '&:hover': {
+                      bgcolor: 'rgba(0, 0, 0, 0.02)',
                     },
                   }}
                 >
                   <Typography
-                    variant="subtitle1"
+                    variant="h6"
                     sx={{
                       fontWeight: 600,
                       mb: 1,
-                      color: 'text.primary',
+                      color: 'primary.main',
+                      fontSize: '1.1rem',
                     }}
                   >
-                    {submenu.title}
+                    {submenu.title || submenu.text}
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: 'text.secondary',
-                      mb: 2,
-                      fontSize: '0.875rem',
-                    }}
-                  >
-                    {submenu.description}
-                  </Typography>
+                  {submenu.description && (
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: 'text.secondary',
+                        mb: 2,
+                        fontSize: '0.875rem',
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      {submenu.description}
+                    </Typography>
+                  )}
                   <List sx={{ p: 0 }}>
-                    {submenu.items?.map((subItem) => (
+                    {(submenu.items || []).map((subItem) => (
                       <ListItem
                         key={subItem.path}
                         button
@@ -418,19 +442,30 @@ const Navbar = () => {
                         sx={{
                           py: 1,
                           px: 0,
+                          borderRadius: 1,
                           '&:hover': {
-                            backgroundColor: 'transparent',
+                            bgcolor: 'transparent',
+                            '& .MuiTypography-root': {
+                              color: 'primary.main',
+                            },
                           },
                         }}
                       >
                         <ListItemText
-                          primary={subItem.title}
+                          primary={subItem.title || subItem.text}
+                          secondary={subItem.description}
                           primaryTypographyProps={{
                             sx: {
+                              fontWeight: 500,
                               color: 'text.primary',
-                              '&:hover': {
-                                color: 'primary.main',
-                              },
+                              transition: 'color 0.2s ease',
+                            },
+                          }}
+                          secondaryTypographyProps={{
+                            sx: {
+                              color: 'text.secondary',
+                              fontSize: '0.75rem',
+                              mt: 0.5,
                             },
                           }}
                         />
