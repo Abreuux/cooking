@@ -62,6 +62,9 @@ const menuItems = [
           { text: 'Gestão Pública', path: '/governo/gestao', description: 'Soluções para gestão pública' },
           { text: 'Cidades Inteligentes', path: '/governo/smart-city', description: 'Gestão de cidades inteligentes' },
           { text: 'Segurança', path: '/governo/seguranca', description: 'Segurança e conformidade governamental' },
+          { text: 'MuniProcess', path: '/governo/muniprocess', description: 'Automação de processos municipais' },
+          { text: 'CityAutomation', path: '/governo/cityautomation', description: 'Automação de serviços públicos' },
+          { text: 'ServiceCapacity', path: '/governo/servicecapacity', description: 'Gestão de capacidade de serviços' },
         ]
       }
     ]
@@ -74,9 +77,16 @@ const menuItems = [
       {
         text: 'Nossos Produtos',
         items: [
-          { text: 'Software', path: '/produtos/software', description: 'Soluções de software empresarial' },
-          { text: 'Hardware', path: '/produtos/hardware', description: 'Equipamentos e dispositivos' },
-          { text: 'Serviços', path: '/produtos/servicos', description: 'Serviços especializados' },
+          { text: 'CityDataHub', path: '/produtos/citydatahub', description: 'Plataforma de dados municipais' },
+          { text: 'CityPredict', path: '/produtos/citypredict', description: 'Análise preditiva para cidades' },
+          { text: 'DataInsights', path: '/produtos/datainsights', description: 'Insights de dados empresariais' },
+          { text: 'PerformanceAnalytics', path: '/produtos/performanceanalytics', description: 'Análise de performance' },
+          { text: 'ProcessAutomation', path: '/produtos/processautomation', description: 'Automação de processos' },
+          { text: 'SmartWorkflow', path: '/produtos/smartworkflow', description: 'Workflow inteligente' },
+          { text: 'GovInsights', path: '/produtos/govinsights', description: 'Insights governamentais' },
+          { text: 'CityServices', path: '/produtos/cityservices', description: 'Serviços para cidades' },
+          { text: 'SecureGov', path: '/produtos/securegov', description: 'Segurança governamental' },
+          { text: 'DataProtect', path: '/produtos/dataprotect', description: 'Proteção de dados' },
         ]
       }
     ]
