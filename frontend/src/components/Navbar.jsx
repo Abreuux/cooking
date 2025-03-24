@@ -40,16 +40,46 @@ const menuItems = [
     text: 'Empresas',
     path: '/empresas',
     icon: <BusinessIcon />,
+    submenu: [
+      {
+        text: 'Soluções Empresariais',
+        items: [
+          { text: 'Gestão Empresarial', path: '/empresas/gestao', description: 'Soluções completas para gestão empresarial' },
+          { text: 'Automação', path: '/empresas/automacao', description: 'Automação de processos empresariais' },
+          { text: 'Analytics', path: '/empresas/analytics', description: 'Análise de dados empresariais' },
+        ]
+      }
+    ]
   },
   {
     text: 'Governo',
     path: '/governo',
     icon: <AccountBalanceIcon />,
+    submenu: [
+      {
+        text: 'Soluções Governamentais',
+        items: [
+          { text: 'Gestão Pública', path: '/governo/gestao', description: 'Soluções para gestão pública' },
+          { text: 'Cidades Inteligentes', path: '/governo/smart-city', description: 'Gestão de cidades inteligentes' },
+          { text: 'Segurança', path: '/governo/seguranca', description: 'Segurança e conformidade governamental' },
+        ]
+      }
+    ]
   },
   {
     text: 'Produtos',
     path: '/produtos',
     icon: <StorageIcon />,
+    submenu: [
+      {
+        text: 'Nossos Produtos',
+        items: [
+          { text: 'Software', path: '/produtos/software', description: 'Soluções de software empresarial' },
+          { text: 'Hardware', path: '/produtos/hardware', description: 'Equipamentos e dispositivos' },
+          { text: 'Serviços', path: '/produtos/servicos', description: 'Serviços especializados' },
+        ]
+      }
+    ]
   },
   {
     text: 'Soluções',
@@ -363,11 +393,13 @@ const Navbar = () => {
             borderRadius: 2,
             border: '1px solid',
             borderColor: 'divider',
+            transformOrigin: 'top center',
+            transition: 'all 0.2s ease-in-out',
           }
         }}
       >
         <Grid container spacing={2} sx={{ p: 2 }}>
-          {menuItems.find(item => item.text === 'Soluções')?.submenu.map((submenu, index) => (
+          {menuItems.find(item => item.text === selectedSubmenu)?.submenu.map((submenu, index) => (
             <Grid item xs={12} md={6} key={index}>
               <Typography
                 variant="subtitle1"
@@ -447,7 +479,7 @@ const Navbar = () => {
               component="img"
               src="/logo.png"
               alt="Necotium"
-              sx={{ height: 40 }}
+              sx={{ height: 50 }}
             />
           </RouterLink>
           <IconButton 
@@ -468,9 +500,13 @@ const Navbar = () => {
             <Box key={item.text}>
               <ListItem
                 button
-                component={RouterLink}
-                to={item.path}
-                onClick={handleDrawerToggle}
+                onClick={() => {
+                  if (item.submenu) {
+                    setSelectedSubmenu(item.text === selectedSubmenu ? null : item.text);
+                  } else {
+                    handleDrawerToggle();
+                  }
+                }}
                 sx={{
                   py: 2,
                   borderBottom: '1px solid',
@@ -491,61 +527,80 @@ const Navbar = () => {
                     },
                   }}
                 />
+                {item.submenu && (
+                  <Box
+                    component="span"
+                    sx={{
+                      transform: selectedSubmenu === item.text ? 'rotate(180deg)' : 'none',
+                      transition: 'transform 0.2s ease-in-out',
+                    }}
+                  >
+                    ▼
+                  </Box>
+                )}
               </ListItem>
-              {item.submenu && (
-                <List sx={{ pl: 4, bgcolor: 'background.paper' }}>
-                  {item.submenu.map((submenu, subIndex) => (
-                    <Box key={subIndex}>
-                      <Typography
-                        variant="subtitle2"
-                        sx={{ 
-                          px: 2,
-                          py: 1,
-                          color: 'text.secondary',
-                          fontWeight: 600,
-                          fontSize: '0.875rem',
-                        }}
-                      >
-                        {submenu.text}
-                      </Typography>
-                      {submenu.items.map((subItem, itemIndex) => (
-                        <ListItem
-                          key={itemIndex}
-                          button
-                          component={RouterLink}
-                          to={subItem.path}
-                          onClick={handleDrawerToggle}
-                          sx={{
-                            py: 1.5,
-                            pl: 2,
-                            '&:hover': {
-                              backgroundColor: HOVER_BG,
-                            },
+              {item.submenu && selectedSubmenu === item.text && (
+                <Box
+                  sx={{
+                    maxHeight: '1000px',
+                    overflow: 'hidden',
+                    transition: 'max-height 0.3s ease-in-out',
+                  }}
+                >
+                  <List sx={{ pl: 4, bgcolor: 'background.paper' }}>
+                    {item.submenu.map((submenu, subIndex) => (
+                      <Box key={subIndex}>
+                        <Typography
+                          variant="subtitle2"
+                          sx={{ 
+                            px: 2,
+                            py: 1,
+                            color: 'text.secondary',
+                            fontWeight: 600,
+                            fontSize: '0.875rem',
                           }}
                         >
-                          <ListItemText 
-                            primary={subItem.text}
-                            secondary={subItem.description}
-                            primaryTypographyProps={{
-                              variant: 'body2',
-                              fontWeight: 500,
+                          {submenu.text}
+                        </Typography>
+                        {submenu.items.map((subItem, itemIndex) => (
+                          <ListItem
+                            key={itemIndex}
+                            button
+                            component={RouterLink}
+                            to={subItem.path}
+                            onClick={handleDrawerToggle}
+                            sx={{
+                              py: 1.5,
+                              pl: 2,
+                              '&:hover': {
+                                backgroundColor: HOVER_BG,
+                              },
                             }}
-                            secondaryTypographyProps={{
-                              variant: 'caption',
-                              sx: { 
-                                color: 'text.secondary',
-                                display: '-webkit-box',
-                                WebkitLineClamp: 2,
-                                WebkitBoxOrient: 'vertical',
-                                overflow: 'hidden',
-                              }
-                            }}
-                          />
-                        </ListItem>
-                      ))}
-                    </Box>
-                  ))}
-                </List>
+                          >
+                            <ListItemText 
+                              primary={subItem.text}
+                              secondary={subItem.description}
+                              primaryTypographyProps={{
+                                variant: 'body2',
+                                fontWeight: 500,
+                              }}
+                              secondaryTypographyProps={{
+                                variant: 'caption',
+                                sx: { 
+                                  color: 'text.secondary',
+                                  display: '-webkit-box',
+                                  WebkitLineClamp: 2,
+                                  WebkitBoxOrient: 'vertical',
+                                  overflow: 'hidden',
+                                }
+                              }}
+                            />
+                          </ListItem>
+                        ))}
+                      </Box>
+                    ))}
+                  </List>
+                </Box>
               )}
             </Box>
           ))}
