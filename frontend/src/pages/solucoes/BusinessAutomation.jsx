@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Container, Grid, Typography, Button, Paper, Card, CardContent, Divider, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { Box, Container, Grid, Typography, Button, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import PageBanner from '../../components/PageBanner';
+import InteractiveBanner from '../../components/InteractiveBanner';
+import InteractiveCard from '../../components/InteractiveCard';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import SpeedIcon from '@mui/icons-material/Speed';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
@@ -9,25 +10,48 @@ import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
 import SecurityIcon from '@mui/icons-material/Security';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const BusinessAutomation = () => {
   const theme = useTheme();
 
   const features = [
     {
-      icon: <AutoFixHighIcon sx={{ fontSize: 40, color: '#C4D600' }} />,
+      icon: <AutoFixHighIcon />,
       title: 'Automação Inteligente',
-      description: 'Automatize processos complexos com inteligência artificial e aprendizado de máquina.'
+      description: 'Automatize processos complexos com inteligência artificial e aprendizado de máquina para máxima eficiência.',
+      features: [
+        'IA integrada',
+        'Aprendizado contínuo',
+        'Decisões automáticas',
+        'Otimização dinâmica'
+      ],
+      tags: ['IA', 'Automação', 'Inteligente']
     },
     {
-      icon: <SpeedIcon sx={{ fontSize: 40, color: '#C4D600' }} />,
+      icon: <SpeedIcon />,
       title: 'Otimização em Tempo Real',
-      description: 'Ajuste e otimize processos automaticamente com base em dados em tempo real.'
+      description: 'Ajuste e otimize processos automaticamente com base em dados em tempo real e feedback contínuo.',
+      features: [
+        'Monitoramento contínuo',
+        'Ajustes automáticos',
+        'Performance tracking',
+        'Alertas inteligentes'
+      ],
+      tags: ['Tempo Real', 'Otimização', 'Performance']
     },
     {
-      icon: <PrecisionManufacturingIcon sx={{ fontSize: 40, color: '#C4D600' }} />,
+      icon: <PrecisionManufacturingIcon />,
       title: 'Workflows Personalizados',
-      description: 'Crie fluxos de trabalho adaptados às necessidades específicas do seu negócio.'
+      description: 'Crie fluxos de trabalho adaptados às necessidades específicas do seu negócio com total flexibilidade.',
+      features: [
+        'Designer visual',
+        'Templates prontos',
+        'Integração fácil',
+        'Escalabilidade'
+      ],
+      tags: ['Workflow', 'Personalização', 'Flexibilidade']
     }
   ];
 
@@ -48,31 +72,54 @@ const BusinessAutomation = () => {
 
   return (
     <Box>
-      <PageBanner
+      <InteractiveBanner
+        image="/images/especialista-em-investigacao-cibernetica-trabalhar-numa-sala-de-hacking-governo.jpg"
         title="Business Automation"
-        subtitle="Revolucione seus processos empresariais com automação inteligente"
-        image="/images/solutions/automation-banner.jpg"
-        buttonText="Agende uma Demo"
-        buttonLink="/demo"
-        backgroundColor="#2B3990"
-        accentColor="#C4D600"
+        subtitle="Revolucione seus processos com automação inteligente"
+        ctaText="Automatize Agora"
+        ctaLink="/demo"
+        imagePosition="background"
+        overlayOpacity={0.3}
+        textColor="white"
+        height="80vh"
+        minHeight="600px"
       />
 
       {/* Hero Section */}
       <Container maxWidth="lg" sx={{ py: 8 }}>
         <Grid container spacing={6} alignItems="center">
           <Grid item xs={12} md={6}>
-            <Typography variant="h3" component="h1" gutterBottom sx={{ color: '#2B3990', fontWeight: 'bold' }}>
-              Automatize e 
+            <Typography variant="h3" component="h2" gutterBottom sx={{ color: '#2B3990', fontWeight: 'bold' }}>
+              Automação
               <Box component="span" sx={{ color: '#C4D600', display: 'block' }}>
-                Transforme seu Negócio
+                Inteligente
               </Box>
             </Typography>
             <Typography variant="h6" paragraph color="text.secondary" sx={{ mb: 4 }}>
-              Nossa solução de Business Automation combina tecnologias avançadas de IA
-              com automação robusta para transformar seus processos empresariais em
-              operações eficientes e escaláveis.
+              Transforme processos manuais repetitivos em fluxos automatizados inteligentes que operam continuamente,
+              liberando sua equipe para focar em atividades estratégicas de alto valor. Nossa plataforma de automação
+              empresarial integra inteligência artificial avançada com robótica de processos, criando soluções
+              personalizadas que se adaptam às necessidades específicas do seu negócio e escalam conforme seu crescimento.
             </Typography>
+
+            {/* Automação Features */}
+            <Box sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <SmartToyIcon sx={{ color: '#C4D600', mr: 2, fontSize: 28 }} />
+                <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#2B3990' }}>
+                  IA Integrada
+                </Typography>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+                <SettingsIcon sx={{ color: '#C4D600', mr: 2, fontSize: 28 }} />
+                <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#2B3990' }}>
+                  Configuração Flexível
+                </Typography>
+              </Box>
+              <Typography variant="h5" sx={{ color: '#666', fontStyle: 'italic', textAlign: 'center', py: 2 }}>
+                "Automatize hoje, escale amanhã"
+              </Typography>
+            </Box>
             <Box sx={{ mt: 4, display: 'flex', gap: 2 }}>
               <Button 
                 variant="contained" 
@@ -124,35 +171,21 @@ const BusinessAutomation = () => {
       {/* Features Section */}
       <Box sx={{ bgcolor: 'rgba(196, 214, 0, 0.1)', py: 8 }}>
         <Container maxWidth="lg">
-          <Typography variant="h4" component="h2" align="center" gutterBottom sx={{ color: '#2B3990', mb: 6 }}>
+          <Typography variant="h3" component="h2" align="center" gutterBottom sx={{ color: '#2B3990', fontWeight: 'bold', mb: 6 }}>
             Recursos Avançados
           </Typography>
           <Grid container spacing={4}>
             {features.map((feature, index) => (
-              <Grid item xs={12} md={4} key={index}>
-                <Card 
-                  elevation={0}
-                  sx={{ 
-                    height: '100%',
-                    bgcolor: 'transparent',
-                    transition: 'transform 0.3s ease-in-out',
-                    '&:hover': {
-                      transform: 'translateY(-8px)'
-                    }
-                  }}
-                >
-                  <CardContent sx={{ textAlign: 'center', p: 4 }}>
-                    <Box sx={{ mb: 2 }}>
-                      {feature.icon}
-                    </Box>
-                    <Typography variant="h6" gutterBottom sx={{ color: '#2B3990', fontWeight: 'bold' }}>
-                      {feature.title}
-                    </Typography>
-                    <Typography variant="body1" color="text.secondary">
-                      {feature.description}
-                    </Typography>
-                  </CardContent>
-                </Card>
+              <Grid item xs={12} md={4} key={feature.title}>
+                <InteractiveCard
+                  title={feature.title}
+                  description={feature.description}
+                  icon={feature.icon}
+                  features={feature.features}
+                  tags={feature.tags}
+                  animationDelay={index * 0.1}
+                  href="/demo"
+                />
               </Grid>
             ))}
           </Grid>

@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Container, Grid, Typography, Button, Paper, Card, CardContent, Divider, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { Box, Container, Grid, Typography, Button, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import PageBanner from '../../components/PageBanner';
+import InteractiveBanner from '../../components/InteractiveBanner';
+import InteractiveCard from '../../components/InteractiveCard';
 import DataUsageIcon from '@mui/icons-material/DataUsage';
 import InsightsIcon from '@mui/icons-material/Insights';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
@@ -9,25 +10,48 @@ import StorageIcon from '@mui/icons-material/Storage';
 import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
 import SecurityIcon from '@mui/icons-material/Security';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import PsychologyIcon from '@mui/icons-material/Psychology';
+import BarChartIcon from '@mui/icons-material/BarChart';
 
 const DataIntelligence = () => {
   const theme = useTheme();
 
   const features = [
     {
-      icon: <DataUsageIcon sx={{ fontSize: 40, color: '#C4D600' }} />,
+      icon: <DataUsageIcon />,
       title: 'Análise Preditiva',
-      description: 'Antecipe tendências e comportamentos com modelos preditivos avançados.'
+      description: 'Antecipe tendências e comportamentos com modelos preditivos avançados baseados em machine learning.',
+      features: [
+        'Modelos preditivos',
+        'Análise de tendências',
+        'Forecasting avançado',
+        'Detecção de padrões'
+      ],
+      tags: ['Preditiva', 'ML', 'Tendências']
     },
     {
-      icon: <InsightsIcon sx={{ fontSize: 40, color: '#C4D600' }} />,
+      icon: <InsightsIcon />,
       title: 'Insights em Tempo Real',
-      description: 'Obtenha insights instantâneos para tomada de decisão rápida e precisa.'
+      description: 'Obtenha insights instantâneos para tomada de decisão rápida e precisa com processamento em tempo real.',
+      features: [
+        'Processamento real-time',
+        'Dashboards dinâmicos',
+        'Alertas inteligentes',
+        'Análise instantânea'
+      ],
+      tags: ['Tempo Real', 'Insights', 'Dashboards']
     },
     {
-      icon: <StorageIcon sx={{ fontSize: 40, color: '#C4D600' }} />,
+      icon: <StorageIcon />,
       title: 'Gestão de Dados',
-      description: 'Centralize e organize seus dados de forma eficiente e segura.'
+      description: 'Centralize e organize seus dados de forma eficiente e segura com governança avançada.',
+      features: [
+        'Data Lake integrado',
+        'Governança de dados',
+        'Qualidade garantida',
+        'Segurança avançada'
+      ],
+      tags: ['Gestão', 'Governança', 'Segurança']
     }
   ];
 
@@ -48,31 +72,55 @@ const DataIntelligence = () => {
 
   return (
     <Box>
-      <PageBanner
+      <InteractiveBanner
+        image="/images/pessoal-profissional-de-negocios-gerencia-dados-financeiros-para-resolver-tarefas-de-desenvolvimento.jpg"
         title="Data Intelligence"
         subtitle="Transforme dados em estratégias vencedoras"
-        image="/images/solutions/data-intelligence-banner.jpg"
-        buttonText="Agende uma Demo"
-        buttonLink="/demo"
-        backgroundColor="#2B3990"
-        accentColor="#C4D600"
+        ctaText="Descubra Insights"
+        ctaLink="/demo"
+        imagePosition="background"
+        overlayOpacity={0.3}
+        textColor="white"
+        height="80vh"
+        minHeight="600px"
       />
 
       {/* Hero Section */}
       <Container maxWidth="lg" sx={{ py: 8 }}>
         <Grid container spacing={6} alignItems="center">
           <Grid item xs={12} md={6}>
-            <Typography variant="h3" component="h1" gutterBottom sx={{ color: '#2B3990', fontWeight: 'bold' }}>
-              Potencialize seu 
+            <Typography variant="h3" component="h2" gutterBottom sx={{ color: '#2B3990', fontWeight: 'bold' }}>
+              Inteligência
               <Box component="span" sx={{ color: '#C4D600', display: 'block' }}>
-                Poder Analítico
+                Corporativa
               </Box>
             </Typography>
             <Typography variant="h6" paragraph color="text.secondary" sx={{ mb: 4 }}>
-              Nossa solução de Data Intelligence combina análise avançada, 
-              inteligência artificial e visualização de dados para transformar 
-              informações complexas em insights acionáveis.
+              Desbloqueie o verdadeiro potencial dos seus dados corporativos através de uma plataforma integrada
+              de inteligência empresarial que combina análise avançada, machine learning e visualização intuitiva.
+              Nossa solução transforma volumes massivos de informações dispersas em insights estratégicos precisos,
+              permitindo que líderes empresariais tomem decisões fundamentadas que impulsionam crescimento sustentável
+              e vantagem competitiva no mercado.
             </Typography>
+
+            {/* Inteligência Features */}
+            <Box sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <PsychologyIcon sx={{ color: '#C4D600', mr: 2, fontSize: 28 }} />
+                <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#2B3990' }}>
+                  IA Avançada
+                </Typography>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+                <BarChartIcon sx={{ color: '#C4D600', mr: 2, fontSize: 28 }} />
+                <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#2B3990' }}>
+                  Análise Preditiva
+                </Typography>
+              </Box>
+              <Typography variant="h5" sx={{ color: '#666', fontStyle: 'italic', textAlign: 'center', py: 2 }}>
+                "Dados inteligentes, decisões vencedoras"
+              </Typography>
+            </Box>
             <Box sx={{ mt: 4, display: 'flex', gap: 2 }}>
               <Button 
                 variant="contained" 

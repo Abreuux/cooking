@@ -6,8 +6,6 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
   return (
     <Box
       component="footer"
@@ -15,7 +13,6 @@ const Footer = () => {
         bgcolor: '#1A1A2E',
         color: 'white',
         py: 6,
-        mt: 'auto',
       }}
     >
       <Container maxWidth="lg">
@@ -23,7 +20,7 @@ const Footer = () => {
           <Grid item xs={12} sm={4}>
             <Box
               component="img"
-              src="/images/logo-white.png"
+              src="/logo.png"
               alt="Necotium Logo"
               sx={{ height: 40, mb: 2 }}
             />
@@ -47,6 +44,14 @@ const Footer = () => {
             </Link>
             <Link
               component={RouterLink}
+              to="/about"
+              color="inherit"
+              sx={{ display: 'block', mb: 1 }}
+            >
+              Sobre
+            </Link>
+            <Link
+              component={RouterLink}
               to="/solucoes"
               color="inherit"
               sx={{ display: 'block', mb: 1 }}
@@ -63,7 +68,7 @@ const Footer = () => {
             </Link>
             <Link
               component={RouterLink}
-              to="/contato"
+              to="/contact"
               color="inherit"
               sx={{ display: 'block', mb: 1 }}
             >
@@ -81,6 +86,22 @@ const Footer = () => {
           
           <Grid item xs={12} sm={4}>
             <Typography variant="h6" sx={{ mb: 2 }}>
+              Informações de Contato
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 1 }}>
+              Rua Vigário Barreto 28
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 1 }}>
+              Recife, PE
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 1 }}>
+              (81) 997038863
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 2 }}>
+              contato@necorium.com.br
+            </Typography>
+
+            <Typography variant="h6" sx={{ mb: 2, mt: 3 }}>
               Conecte-se Conosco
             </Typography>
             <Box>
@@ -106,7 +127,7 @@ const Footer = () => {
               </IconButton>
               <IconButton
                 component="a"
-                href="https://www.instagram.com/necotium"
+                href="https://www.instagram.com/necotiumbr/"
                 target="_blank"
                 rel="noopener noreferrer"
                 color="inherit"
@@ -120,7 +141,7 @@ const Footer = () => {
         
         <Box sx={{ mt: 4, pt: 2, borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
           <Typography variant="body2" align="center">
-            © {currentYear} Necotium. Todos os direitos reservados.
+            © 2020 Necotium. Todos os direitos reservados.
           </Typography>
         </Box>
       </Container>

@@ -16,19 +16,12 @@ import {
   useTheme,
   SwipeableDrawer,
   Menu,
-  MenuItem,
-  Fade,
   Grid,
   Collapse,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import BusinessIcon from '@mui/icons-material/Business';
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import StorageIcon from '@mui/icons-material/Storage';
-import AnalyticsIcon from '@mui/icons-material/Analytics';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
-import { motion, AnimatePresence } from 'framer-motion';
 
 // Style constants
 const HOVER_COLOR = '#C4D600';
@@ -45,18 +38,18 @@ const menuItems = [
         title: 'Soluções',
         description: 'Soluções empresariais integradas para sua empresa',
         items: [
-          { title: 'Analytics Suite', path: '/empresas/solucoes/analytics-suite', description: 'Análise avançada de dados empresariais' },
-          { title: 'Business Automation', path: '/empresas/solucoes/business-automation', description: 'Automação de processos de negócio' },
-          { title: 'Data Intelligence', path: '/empresas/solucoes/data-intelligence', description: 'Inteligência de dados corporativos' }
+          { title: 'Analytics Suite', path: '/solucoes/analytics-suite', description: 'Análise avançada de dados empresariais' },
+          { title: 'Business Automation', path: '/solucoes/business-automation', description: 'Automação de processos de negócio' },
+          { title: 'Data Intelligence', path: '/solucoes/data-intelligence', description: 'Inteligência de dados corporativos' }
         ]
       },
       {
         title: 'Produtos',
         description: 'Produtos especializados para o setor empresarial',
         items: [
-          { title: 'DataInsights', path: '/empresas/produtos/datainsights', description: 'Análise preditiva e insights de negócio' },
-          { title: 'PerformanceAnalytics', path: '/empresas/produtos/performanceanalytics', description: 'Métricas e análise de desempenho' },
-          { title: 'ProcessAutomation', path: '/empresas/produtos/processautomation', description: 'Automação de processos empresariais' }
+          { title: 'DataInsights', path: '/produtos/datainsights', description: 'Análise preditiva e insights de negócio' },
+          { title: 'PerformanceAnalytics', path: '/produtos/performanceanalytics', description: 'Métricas e análise de desempenho' },
+          { title: 'ProcessAutomation', path: '/produtos/processautomation', description: 'Automação de processos empresariais' }
         ]
       }
     ]
@@ -69,18 +62,18 @@ const menuItems = [
         title: 'Soluções',
         description: 'Soluções especializadas para gestão pública',
         items: [
-          { title: 'Smart City Suite', path: '/governo/solucoes/smart-city', description: 'Soluções para cidades inteligentes' },
-          { title: 'Public Intelligence', path: '/governo/solucoes/public-intelligence', description: 'Inteligência para gestão pública' },
-          { title: 'Gov Security', path: '/governo/solucoes/gov-security', description: 'Segurança para órgãos públicos' }
+          { title: 'Smart City Suite', path: '/solucoes/smart-city', description: 'Soluções para cidades inteligentes' },
+          { title: 'Public Intelligence', path: '/solucoes/public-intelligence', description: 'Inteligência para gestão pública' },
+          { title: 'Gov Security', path: '/solucoes/gov-security', description: 'Segurança para órgãos públicos' }
         ]
       },
       {
         title: 'Produtos',
         description: 'Produtos especializados para o setor público',
         items: [
-          { title: 'CityDataHub', path: '/governo/produtos/citydatahub', description: 'Central de dados municipais' },
-          { title: 'CityPredict', path: '/governo/produtos/citypredict', description: 'Previsão e análise urbana' },
-          { title: 'GovInsights', path: '/governo/produtos/govinsights', description: 'Insights para gestão pública' }
+          { title: 'CityDataHub', path: '/produtos/citydatahub', description: 'Central de dados municipais' },
+          { title: 'CityPredict', path: '/produtos/citypredict', description: 'Previsão e análise urbana' },
+          { title: 'GovInsights', path: '/produtos/govinsights', description: 'Insights para gestão pública' }
         ]
       }
     ]
@@ -93,18 +86,22 @@ const menuItems = [
         title: 'Empresas',
         description: 'Produtos para o setor empresarial',
         items: [
-          { title: 'SmartWorkflow', path: '/produtos/empresas/smartworkflow', description: 'Gestão de fluxos de trabalho' },
-          { title: 'DataProtect', path: '/produtos/empresas/dataprotect', description: 'Proteção de dados corporativos' },
-          { title: 'BusinessMetrics', path: '/produtos/empresas/businessmetrics', description: 'Métricas de negócio' }
+          { title: 'SmartWorkflow', path: '/produtos/smartworkflow', description: 'Gestão de fluxos de trabalho' },
+          { title: 'DataProtect', path: '/produtos/dataprotect', description: 'Proteção de dados corporativos' },
+          { title: 'DataInsights', path: '/produtos/datainsights', description: 'Análise preditiva e insights de negócio' },
+          { title: 'PerformanceAnalytics', path: '/produtos/performanceanalytics', description: 'Métricas e análise de desempenho' },
+          { title: 'ProcessAutomation', path: '/produtos/processautomation', description: 'Automação de processos empresariais' }
         ]
       },
       {
         title: 'Governo',
         description: 'Produtos para o setor público',
         items: [
-          { title: 'CityServices', path: '/produtos/governo/cityservices', description: 'Serviços municipais integrados' },
-          { title: 'SecureGov', path: '/produtos/governo/securegov', description: 'Segurança governamental' },
-          { title: 'PublicAnalytics', path: '/produtos/governo/publicanalytics', description: 'Analytics para setor público' }
+          { title: 'CityServices', path: '/produtos/cityservices', description: 'Serviços municipais integrados' },
+          { title: 'SecureGov', path: '/produtos/securegov', description: 'Segurança governamental' },
+          { title: 'CityDataHub', path: '/produtos/citydatahub', description: 'Central de dados municipais' },
+          { title: 'CityPredict', path: '/produtos/citypredict', description: 'Previsão e análise urbana' },
+          { title: 'GovInsights', path: '/produtos/govinsights', description: 'Insights para gestão pública' }
         ]
       }
     ]
@@ -117,18 +114,18 @@ const menuItems = [
         title: 'Empresas',
         description: 'Soluções corporativas integradas',
         items: [
-          { title: 'Enterprise Suite', path: '/solucoes/empresas/enterprise-suite', description: 'Suite completa empresarial' },
-          { title: 'Corporate Analytics', path: '/solucoes/empresas/corporate-analytics', description: 'Analytics corporativo' },
-          { title: 'Business Security', path: '/solucoes/empresas/business-security', description: 'Segurança empresarial' }
+          { title: 'Analytics Suite', path: '/solucoes/analytics-suite', description: 'Análise avançada de dados empresariais' },
+          { title: 'Business Automation', path: '/solucoes/business-automation', description: 'Automação de processos de negócio' },
+          { title: 'Data Intelligence', path: '/solucoes/data-intelligence', description: 'Inteligência de dados corporativos' }
         ]
       },
       {
         title: 'Governo',
         description: 'Soluções governamentais integradas',
         items: [
-          { title: 'Government Suite', path: '/solucoes/governo/government-suite', description: 'Suite completa governamental' },
-          { title: 'Public Management', path: '/solucoes/governo/public-management', description: 'Gestão pública integrada' },
-          { title: 'City Intelligence', path: '/solucoes/governo/city-intelligence', description: 'Inteligência municipal' }
+          { title: 'Smart City Suite', path: '/solucoes/smart-city', description: 'Soluções para cidades inteligentes' },
+          { title: 'Public Intelligence', path: '/solucoes/public-intelligence', description: 'Inteligência para gestão pública' },
+          { title: 'Gov Security', path: '/solucoes/gov-security', description: 'Segurança para órgãos públicos' }
         ]
       }
     ]
@@ -139,29 +136,14 @@ const Navbar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedSubmenu, setSelectedSubmenu] = useState(null);
   const location = useLocation();
 
   useEffect(() => {
     setMobileOpen(false);
-    setAnchorEl(null);
-    setSelectedSubmenu(null);
   }, [location.pathname]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-  };
-
-  const handleMenuOpen = (event, item) => {
-    if (item.submenu) {
-      setAnchorEl(event.currentTarget);
-    }
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    setSelectedSubmenu(null);
   };
 
   // Mobile menu item component
@@ -194,7 +176,7 @@ const Navbar = () => {
           }}
         >
           <ListItemText
-            primary={item.title || item.text}
+            primary={item.title}
             primaryTypographyProps={{
               sx: {
                 color: '#2B3990',
@@ -218,19 +200,19 @@ const Navbar = () => {
         <Collapse in={isOpen} timeout="auto" unmountOnExit>
           <Box sx={{ pl: 3, pr: 2 }}>
             {(item.submenu || []).map((submenu) => (
-              <Box key={submenu.title || submenu.text}>
+              <Box key={submenu.title}>
                 <ListItem
-                  button
-                  onClick={() => handleSubmenuToggle(submenu.title || submenu.text)}
+                  onClick={() => handleSubmenuToggle(submenu.title)}
                   sx={{
                     py: 1.5,
+                    cursor: 'pointer',
                     '&:hover': {
                       backgroundColor: 'rgba(0, 0, 0, 0.04)',
                     },
                   }}
                 >
                   <ListItemText
-                    primary={submenu.title || submenu.text}
+                    primary={submenu.title}
                     secondary={submenu.description}
                     primaryTypographyProps={{
                       sx: {
@@ -248,7 +230,7 @@ const Navbar = () => {
                   <Box
                     component="span"
                     sx={{
-                      transform: activeSubmenu === (submenu.title || submenu.text) ? 'rotate(180deg)' : 'none',
+                      transform: activeSubmenu === submenu.title ? 'rotate(180deg)' : 'none',
                       transition: 'transform 0.3s ease',
                       color: '#2B3990',
                     }}
@@ -257,24 +239,24 @@ const Navbar = () => {
                   </Box>
                 </ListItem>
 
-                <Collapse in={activeSubmenu === (submenu.title || submenu.text)} timeout="auto" unmountOnExit>
+                <Collapse in={activeSubmenu === submenu.title} timeout="auto" unmountOnExit>
                   <Box sx={{ pl: 2 }}>
                     {(submenu.items || []).map((subItem) => (
                       <ListItem
                         key={subItem.path}
-                        button
                         component={RouterLink}
                         to={subItem.path}
                         onClick={onClose}
                         sx={{
                           py: 1,
+                          cursor: 'pointer',
                           '&:hover': {
                             backgroundColor: 'rgba(0, 0, 0, 0.04)',
                           },
                         }}
                       >
                         <ListItemText
-                          primary={subItem.title || subItem.text}
+                          primary={subItem.title}
                           primaryTypographyProps={{
                             sx: {
                               color: '#2B3990',
@@ -297,33 +279,38 @@ const Navbar = () => {
   // Desktop menu item component
   const DesktopMenuItem = ({ item }) => {
     const [anchorEl, setAnchorEl] = useState(null);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const location = useLocation();
     const isActive = location.pathname.startsWith(item.path);
+    const timeoutRef = React.useRef(null);
 
     const handleMouseEnter = (event) => {
-      const allMenus = document.querySelectorAll('[role="menu"]');
-      allMenus.forEach(menu => {
-        if (menu !== event.currentTarget) {
-          menu.style.display = 'none';
-        }
-      });
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
       setAnchorEl(event.currentTarget);
+      setIsMenuOpen(true);
     };
 
-    const handleMouseLeave = (event) => {
-      const rect = event.currentTarget.getBoundingClientRect();
-      const isMouseInMenu = 
-        event.clientX >= rect.left &&
-        event.clientX <= rect.right &&
-        event.clientY >= rect.top &&
-        event.clientY <= rect.bottom;
-
-      if (!isMouseInMenu) {
+    const handleMouseLeave = () => {
+      timeoutRef.current = setTimeout(() => {
+        setIsMenuOpen(false);
         setAnchorEl(null);
+      }, 150); // Small delay to allow moving to submenu
+    };
+
+    const handleMenuMouseEnter = () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
       }
     };
 
-    const open = Boolean(anchorEl);
+    const handleMenuMouseLeave = () => {
+      setIsMenuOpen(false);
+      setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl) && isMenuOpen;
 
     return (
       <Box
@@ -359,16 +346,26 @@ const Navbar = () => {
             },
           }}
         >
-          {item.title || item.text}
+          {item.title}
         </Button>
 
         <Menu
           anchorEl={anchorEl}
           open={open}
-          onClose={handleMouseLeave}
+          onClose={() => {
+            setIsMenuOpen(false);
+            setAnchorEl(null);
+          }}
           PaperProps={{
-            onMouseEnter: () => setAnchorEl(anchorEl),
-            onMouseLeave: handleMouseLeave,
+            onMouseEnter: () => {
+              if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+              }
+            },
+            onMouseLeave: () => {
+              setIsMenuOpen(false);
+              setAnchorEl(null);
+            },
             sx: {
               mt: 1.5,
               minWidth: 800,
@@ -389,10 +386,8 @@ const Navbar = () => {
         >
           <Grid container>
             {(item.submenu || []).map((submenu) => (
-              <Grid item xs={6} key={submenu.title || submenu.text}>
+              <Grid item xs={6} key={submenu.title}>
                 <Box
-                  onMouseEnter={() => handleMouseEnter(event)}
-                  onMouseLeave={handleMouseLeave}
                   sx={{
                     p: 3,
                     height: '100%',
@@ -413,7 +408,7 @@ const Navbar = () => {
                       fontSize: '1.1rem',
                     }}
                   >
-                    {submenu.title || submenu.text}
+                    {submenu.title}
                   </Typography>
                   {submenu.description && (
                     <Typography
@@ -432,13 +427,13 @@ const Navbar = () => {
                     {(submenu.items || []).map((subItem) => (
                       <ListItem
                         key={subItem.path}
-                        button
                         component={RouterLink}
                         to={subItem.path}
                         sx={{
                           py: 1,
                           px: 0,
                           borderRadius: 1,
+                          cursor: 'pointer',
                           '&:hover': {
                             bgcolor: 'transparent',
                             '& .MuiTypography-root': {
@@ -448,7 +443,7 @@ const Navbar = () => {
                         }}
                       >
                         <ListItemText
-                          primary={subItem.title || subItem.text}
+                          primary={subItem.title}
                           secondary={subItem.description}
                           primaryTypographyProps={{
                             sx: {
@@ -504,7 +499,7 @@ const Navbar = () => {
 
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {menuItems.map((item) => (
-                <DesktopMenuItem key={item.text} item={item} />
+                <DesktopMenuItem key={item.title} item={item} />
               ))}
             </Box>
 
@@ -523,7 +518,7 @@ const Navbar = () => {
                   },
                 }}
               >
-                Contato
+                Comece um projeto
               </Button>
             </Box>
 
@@ -542,72 +537,7 @@ const Navbar = () => {
         </Container>
       </AppBar>
 
-      {/* Solutions Dropdown Menu */}
-      <Menu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleMenuClose}
-        TransitionComponent={Fade}
-        MenuListProps={{
-          onMouseLeave: handleMenuClose,
-        }}
-        sx={{
-          '& .MuiPaper-root': {
-            width: '90%',
-            maxWidth: '800px',
-            mt: 1,
-            boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-            borderRadius: 2,
-            border: '1px solid',
-            borderColor: 'divider',
-            transformOrigin: 'top center',
-            transition: 'all 0.2s ease-in-out',
-          }
-        }}
-      >
-        <Grid container spacing={2} sx={{ p: 2 }}>
-          {menuItems.find(item => item.text === selectedSubmenu)?.submenu.map((submenu, index) => (
-            <Grid item xs={12} md={6} key={index}>
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  fontWeight: 600,
-                  color: 'primary.main',
-                  mb: 1,
-                  pl: 2
-                }}
-              >
-                {submenu.text}
-              </Typography>
-              {submenu.items.map((item, itemIndex) => (
-                <MenuItem
-                  key={itemIndex}
-                  component={RouterLink}
-                  to={item.path}
-                  onClick={handleMenuClose}
-                  sx={{
-                    py: 1,
-                    px: 2,
-                    borderRadius: 1,
-                    '&:hover': {
-                      backgroundColor: HOVER_BG,
-                    }
-                  }}
-                >
-                  <Box>
-                    <Typography variant="body1" fontWeight={500}>
-                      {item.text}
-                    </Typography>
-                    <Typography variant="caption" color="text.secondary">
-                      {item.description}
-                    </Typography>
-                  </Box>
-                </MenuItem>
-              ))}
-            </Grid>
-          ))}
-        </Grid>
-      </Menu>
+
 
       <SwipeableDrawer
         variant="temporary"
@@ -664,10 +594,9 @@ const Navbar = () => {
 
         <List sx={{ p: 0 }}>
           {menuItems.map((item) => (
-            <MobileMenuItem key={item.text} item={item} onClose={handleDrawerToggle} />
+            <MobileMenuItem key={item.title} item={item} onClose={handleDrawerToggle} />
           ))}
           <ListItem
-            button
             component={RouterLink}
             to="/contact"
             onClick={handleDrawerToggle}
@@ -683,8 +612,8 @@ const Navbar = () => {
             <ListItemIcon>
               <ContactMailIcon />
             </ListItemIcon>
-            <ListItemText 
-              primary="Contato"
+            <ListItemText
+              primary="Comece um projeto"
               sx={{
                 '& .MuiTypography-root': {
                   fontWeight: 500,

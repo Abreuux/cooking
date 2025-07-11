@@ -10,6 +10,9 @@ import Footer from './components/Footer';
 // Eagerly loaded pages
 import Home from './pages/Home';
 
+// Lazily loaded main pages
+const About = lazy(() => import(/* webpackChunkName: "about" */ './pages/About'));
+
 // Prefetching function
 const prefetchComponent = (importFn) => {
   importFn();
@@ -291,46 +294,51 @@ function App() {
       <CssBaseline />
       <Router>
         <ScrollToTop />
-        <Navbar />
-        <Suspense fallback={<LoadingFallback />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/empresas" element={<Empresas />} />
-            <Route path="/governo" element={<Governo />} />
-            <Route path="/solutions" element={<Solutions />} />
-            <Route path="/success-cases" element={<SuccessCases />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/demo" element={<Demo />} />
-            
-            {/* Main Product and Solution Routes */}
-            <Route path="/produtos" element={<ProdutosHome />} />
-            <Route path="/solucoes" element={<SolucoesHome />} />
-            
-            {/* Solution Routes */}
-            <Route path="/solucoes/analytics-suite" element={<AnalyticsSuite />} />
-            <Route path="/solucoes/business-automation" element={<BusinessAutomation />} />
-            <Route path="/solucoes/data-intelligence" element={<DataIntelligence />} />
-            <Route path="/solucoes/smart-city" element={<SmartCity />} />
-            <Route path="/solucoes/public-intelligence" element={<PublicIntelligence />} />
-            <Route path="/solucoes/gov-security" element={<GovSecurity />} />
-            
-            {/* Product Routes */}
-            <Route path="/produtos/citydatahub" element={<CityDataHub />} />
-            <Route path="/produtos/citypredict" element={<CityPredict />} />
-            <Route path="/produtos/datainsights" element={<DataInsights />} />
-            <Route path="/produtos/performanceanalytics" element={<PerformanceAnalytics />} />
-            <Route path="/produtos/processautomation" element={<ProcessAutomation />} />
-            <Route path="/produtos/smartworkflow" element={<SmartWorkflow />} />
-            <Route path="/produtos/govinsights" element={<GovInsights />} />
-            <Route path="/produtos/cityservices" element={<CityServices />} />
-            <Route path="/produtos/securegov" element={<SecureGov />} />
-            <Route path="/produtos/dataprotect" element={<DataProtect />} />
-            
-            {/* Utility Routes */}
-            <Route path="/sitemap" element={<Sitemap />} />
-          </Routes>
-        </Suspense>
-        <Footer />
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+          <Navbar />
+          <Box component="main" sx={{ flexGrow: 1 }}>
+            <Suspense fallback={<LoadingFallback />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/empresas" element={<Empresas />} />
+                <Route path="/governo" element={<Governo />} />
+                <Route path="/solutions" element={<Solutions />} />
+                <Route path="/success-cases" element={<SuccessCases />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/demo" element={<Demo />} />
+
+                {/* Main Product and Solution Routes */}
+                <Route path="/produtos" element={<ProdutosHome />} />
+                <Route path="/solucoes" element={<SolucoesHome />} />
+
+                {/* Solution Routes */}
+                <Route path="/solucoes/analytics-suite" element={<AnalyticsSuite />} />
+                <Route path="/solucoes/business-automation" element={<BusinessAutomation />} />
+                <Route path="/solucoes/data-intelligence" element={<DataIntelligence />} />
+                <Route path="/solucoes/smart-city" element={<SmartCity />} />
+                <Route path="/solucoes/public-intelligence" element={<PublicIntelligence />} />
+                <Route path="/solucoes/gov-security" element={<GovSecurity />} />
+
+                {/* Product Routes */}
+                <Route path="/produtos/citydatahub" element={<CityDataHub />} />
+                <Route path="/produtos/citypredict" element={<CityPredict />} />
+                <Route path="/produtos/datainsights" element={<DataInsights />} />
+                <Route path="/produtos/performanceanalytics" element={<PerformanceAnalytics />} />
+                <Route path="/produtos/processautomation" element={<ProcessAutomation />} />
+                <Route path="/produtos/smartworkflow" element={<SmartWorkflow />} />
+                <Route path="/produtos/govinsights" element={<GovInsights />} />
+                <Route path="/produtos/cityservices" element={<CityServices />} />
+                <Route path="/produtos/securegov" element={<SecureGov />} />
+                <Route path="/produtos/dataprotect" element={<DataProtect />} />
+
+                {/* Utility Routes */}
+                <Route path="/sitemap" element={<Sitemap />} />
+              </Routes>
+            </Suspense>
+          </Box>
+          <Footer />
+        </Box>
       </Router>
     </ThemeProvider>
   );
