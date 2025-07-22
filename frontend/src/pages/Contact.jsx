@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Container,
@@ -10,10 +10,12 @@ import {
   CardContent,
   Snackbar,
   Alert,
+  CircularProgress,
 } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
+import { submitToHubSpotAPI, initializeHubSpot } from '../utils/hubspot';
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -30,6 +32,13 @@ function Contact() {
     severity: 'success',
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Initialize HubSpot when component mounts
+  useEffect(() => {
+    initializeHubSpot();
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -40,37 +49,55 @@ function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      // Submit to HubSpot first
+      await submitToHubSpotAPI('contact', formData);
+
+      // Also submit to our existing API endpoint (optional - remove if not needed)
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (!response.ok) {
+          console.warn('Internal API submission failed, but HubSpot submission succeeded');
+        }
+      } catch (apiError) {
+        console.warn('Internal API submission failed:', apiError);
+        // Don't throw here since HubSpot submission succeeded
+      }
+
+      // Show success message
+      setSnackbar({
+        open: true,
+        message: 'Mensagem enviada com sucesso! Entraremos em contato em breve.',
+        severity: 'success',
       });
 
-      if (response.ok) {
-        setSnackbar({
-          open: true,
-          message: 'Mensagem enviada com sucesso! Entraremos em contato em breve.',
-          severity: 'success',
-        });
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          company: '',
-          message: '',
-        });
-      } else {
-        throw new Error('Falha ao enviar mensagem');
-      }
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        message: '',
+      });
+
     } catch (error) {
+      console.error('Form submission error:', error);
       setSnackbar({
         open: true,
         message: 'Erro ao enviar mensagem. Por favor, tente novamente.',
         severity: 'error',
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -185,8 +212,10 @@ function Contact() {
                         color="primary"
                         size="large"
                         fullWidth
+                        disabled={isSubmitting}
+                        startIcon={isSubmitting ? <CircularProgress size={20} color="inherit" /> : null}
                       >
-                        Enviar Mensagem
+                        {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
                       </Button>
                     </Grid>
                   </Grid>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Container,
@@ -14,7 +14,9 @@ import {
   MenuItem,
   Snackbar,
   Alert,
+  CircularProgress,
 } from '@mui/material';
+import { submitToHubSpotAPI, initializeHubSpot } from '../utils/hubspot';
 
 function Demo() {
   const [formData, setFormData] = useState({
@@ -34,6 +36,13 @@ function Demo() {
     message: '',
     severity: 'success',
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Initialize HubSpot when component mounts
+  useEffect(() => {
+    initializeHubSpot();
+  }, []);
 
   const sectors = [
     'Indústria',
@@ -62,41 +71,59 @@ function Demo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
     try {
-      const response = await fetch('/api/demo', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      // Submit to HubSpot first
+      await submitToHubSpotAPI('demo', formData);
+
+      // Also submit to our existing API endpoint (optional - remove if not needed)
+      try {
+        const response = await fetch('/api/demo', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (!response.ok) {
+          console.warn('Internal API submission failed, but HubSpot submission succeeded');
+        }
+      } catch (apiError) {
+        console.warn('Internal API submission failed:', apiError);
+        // Don't throw here since HubSpot submission succeeded
+      }
+
+      // Show success message
+      setSnackbar({
+        open: true,
+        message: 'Solicitação de demonstração enviada com sucesso! Entraremos em contato em breve.',
+        severity: 'success',
       });
 
-      if (response.ok) {
-        setSnackbar({
-          open: true,
-          message: 'Solicitação de demonstração enviada com sucesso! Entraremos em contato em breve.',
-          severity: 'success',
-        });
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          company: '',
-          position: '',
-          sector: '',
-          interest: '',
-          preferredDate: '',
-          message: '',
-        });
-      } else {
-        throw new Error('Falha ao enviar solicitação');
-      }
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        position: '',
+        sector: '',
+        interest: '',
+        preferredDate: '',
+        message: '',
+      });
+
     } catch (error) {
+      console.error('Demo form submission error:', error);
       setSnackbar({
         open: true,
         message: 'Erro ao enviar solicitação. Por favor, tente novamente.',
         severity: 'error',
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -238,8 +265,10 @@ function Demo() {
                     color="primary"
                     size="large"
                     fullWidth
+                    disabled={isSubmitting}
+                    startIcon={isSubmitting ? <CircularProgress size={20} color="inherit" /> : null}
                   >
-                    Solicitar Demonstração
+                    {isSubmitting ? 'Enviando...' : 'Solicitar Demonstração'}
                   </Button>
                 </Grid>
               </Grid>
