@@ -98,18 +98,25 @@ function Home() {
 
   const testimonials = [
     {
-      name: 'João Silva',
-      role: 'Secretário de Administração',
-      organization: 'Prefeitura de Recife',
-      content: 'A implementação do CityDataHub transformou nossa gestão municipal.',
+      name: 'Cândido Roberto',
+      role: 'Diretor',
+      organization: 'CARROCIM',
+      content: 'Os dashboards desenvolvidos pela Necotium nos auxiliam diariamente na tomada de decisão do nosso principal processo, o de compra e venda para nossa empresa.',
       image: '/images/avatar1.jpg',
     },
     {
-      name: 'Maria Santos',
-      role: 'Diretora de Tecnologia',
-      organization: 'Empresa XYZ',
-      content: 'Os insights gerados pela plataforma são fundamentais para nossas decisões.',
+      name: 'Jessika Heimann',
+      role: 'Diretora',
+      organization: 'Gateway & Partners',
+      content: 'Com a solução da Necotium, conseguimos nos aproximar mais de nossos clientes e pretensos clientes.',
       image: '/images/avatar2.jpg',
+    },
+    {
+      name: 'Barbara',
+      role: 'Diretora de Marketing',
+      organization: 'Vega Dessanilizadores',
+      content: 'A nossa estratégia de Go-To-Marketing teve um êxito de 120% maior com redução de 25% no orçamento em campanhas. Passamos a olhar para nossa base de clientes de outra forma. Valorizar, gerar valor com nossa base de dados não estava no nosso radar e foi uma mudança de cultura acima de tudo olhar sobre o prisma de dados como produtos.',
+      image: '/images/avatar3.jpg',
     },
   ];
 
@@ -261,7 +268,7 @@ function Home() {
         </Typography>
         <Grid container spacing={4} sx={{ mt: 2 }}>
           {testimonials.map((testimonial, index) => (
-            <Grid item xs={12} md={6} key={index}>
+            <Grid item xs={12} md={4} key={index}>
               <Card 
                 sx={{ 
                   height: '100%',

@@ -507,14 +507,21 @@ const Navbar = () => {
               <Button
                 component={RouterLink}
                 to="/contact"
-                color="inherit"
+                variant="outlined"
                 sx={{
                   textTransform: 'none',
                   fontWeight: 500,
                   fontSize: '1rem',
-                  px: 2,
+                  px: 3,
+                  py: 1,
+                  color: 'white',
+                  borderColor: 'white',
+                  borderWidth: 1.5,
+                  borderRadius: 2,
                   '&:hover': {
                     color: HOVER_COLOR,
+                    borderColor: HOVER_COLOR,
+                    backgroundColor: 'rgba(196, 214, 0, 0.1)',
                   },
                 }}
               >

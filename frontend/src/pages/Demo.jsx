@@ -17,6 +17,7 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { submitToHubSpotAPI, initializeHubSpot } from '../utils/hubspot';
+import SuccessMessage from '../components/SuccessMessage';
 
 function Demo() {
   const [formData, setFormData] = useState({
@@ -37,6 +38,7 @@ function Demo() {
     severity: 'success',
   });
 
+  const [successDialog, setSuccessDialog] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Initialize HubSpot when component mounts
@@ -95,12 +97,8 @@ function Demo() {
         // Don't throw here since HubSpot submission succeeded
       }
 
-      // Show success message
-      setSnackbar({
-        open: true,
-        message: 'Solicitação de demonstração enviada com sucesso! Entraremos em contato em breve.',
-        severity: 'success',
-      });
+      // Show success dialog
+      setSuccessDialog(true);
 
       // Reset form
       setFormData({
@@ -277,7 +275,7 @@ function Demo() {
         </Card>
 
         <Snackbar
-          open={snackbar.open}
+          open={snackbar.open && snackbar.severity === 'error'}
           autoHideDuration={6000}
           onClose={handleCloseSnackbar}
           anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
@@ -290,6 +288,13 @@ function Demo() {
             {snackbar.message}
           </Alert>
         </Snackbar>
+
+        <SuccessMessage
+          open={successDialog}
+          onClose={() => setSuccessDialog(false)}
+          title="Demonstração agendada com sucesso!"
+          message="Recebemos sua solicitação de demonstração e entraremos em contato em breve para agendar o melhor horário. Obrigado pelo interesse!"
+        />
       </Container>
     </Box>
   );

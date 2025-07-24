@@ -8,19 +8,13 @@ const BrandCarousel = () => {
   const carouselRef = useRef(null);
 
   const brands = [
-    { name: 'Grafeno', logo: '/images/brands/grafeno.png' },
-    { name: 'Uixtra', logo: '/images/brands/uixtra.png' },
-    { name: 'Trybe', logo: '/images/brands/trybe.png' },
-    { name: 'Seedz', logo: '/images/brands/seedz.png' },
-    { name: 'Distrito', logo: '/images/brands/distrito.png' },
-    { name: 'Cesar', logo: '/images/brands/cesar.png' },
-    { name: 'Escale', logo: '/images/brands/escale.png' },
-    { name: 'Milenio', logo: '/images/brands/milenio.png' },
-    { name: 'SPRO', logo: '/images/brands/spro.png' },
-    { name: 'Iniciador', logo: '/images/brands/iniciador.png' },
-    { name: 'Pilar', logo: '/images/brands/pilar.png' },
-    { name: 'Bitang', logo: '/images/brands/bitang.png' },
-    { name: 'Rabbot', logo: '/images/brands/rabbot.png' },
+    { name: 'Agio', logo: '/images/clients/logo-agio.png' },
+    { name: 'Bella Pia', logo: '/images/clients/logo-bella-pia.png' },
+    { name: 'Capricom', logo: '/images/clients/logo-capricom.png' },
+    { name: 'Comeia', logo: '/images/clients/logo-comeia.png' },
+    { name: 'Gateway Partners', logo: '/images/clients/logo-gateway-partners.png' },
+    { name: 'ProSolution', logo: '/images/clients/logo-prosolution.png' },
+    { name: 'Vega', logo: '/images/clients/logo-vega.jpeg' },
   ];
 
   useEffect(() => {

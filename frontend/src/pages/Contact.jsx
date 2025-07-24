@@ -16,6 +16,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import { submitToHubSpotAPI, initializeHubSpot } from '../utils/hubspot';
+import SuccessMessage from '../components/SuccessMessage';
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -32,6 +33,7 @@ function Contact() {
     severity: 'success',
   });
 
+  const [successDialog, setSuccessDialog] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Initialize HubSpot when component mounts
@@ -73,12 +75,8 @@ function Contact() {
         // Don't throw here since HubSpot submission succeeded
       }
 
-      // Show success message
-      setSnackbar({
-        open: true,
-        message: 'Mensagem enviada com sucesso! Entraremos em contato em breve.',
-        severity: 'success',
-      });
+      // Show success dialog
+      setSuccessDialog(true);
 
       // Reset form
       setFormData({
@@ -226,7 +224,7 @@ function Contact() {
         </Grid>
 
         <Snackbar
-          open={snackbar.open}
+          open={snackbar.open && snackbar.severity === 'error'}
           autoHideDuration={6000}
           onClose={handleCloseSnackbar}
           anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
@@ -239,6 +237,13 @@ function Contact() {
             {snackbar.message}
           </Alert>
         </Snackbar>
+
+        <SuccessMessage
+          open={successDialog}
+          onClose={() => setSuccessDialog(false)}
+          title="Mensagem enviada com sucesso!"
+          message="Recebemos sua mensagem e entraremos em contato em breve. Obrigado pelo interesse em nossos serviços!"
+        />
       </Container>
     </Box>
   );
