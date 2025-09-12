@@ -15,6 +15,7 @@ import {
   Snackbar,
   Alert,
 } from '@mui/material';
+import { submitFormToHubSpot } from '../utils/hubspot';
 
 function Demo() {
   const [formData, setFormData] = useState({
@@ -34,6 +35,8 @@ function Demo() {
     message: '',
     severity: 'success',
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const sectors = [
     'Indústria',
@@ -62,16 +65,30 @@ function Demo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch('/api/demo', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+    setIsSubmitting(true);
 
-      if (response.ok) {
+    try {
+      // Submit to both our backend and HubSpot
+      const [backendResponse, hubspotResponse] = await Promise.allSettled([
+        // Original backend submission
+        fetch('/api/demo', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        }),
+        // HubSpot submission
+        submitFormToHubSpot(formData, 'demo')
+      ]);
+
+      // Check if backend submission was successful
+      const backendSuccess = backendResponse.status === 'fulfilled' && backendResponse.value.ok;
+
+      // Check if HubSpot submission was successful
+      const hubspotSuccess = hubspotResponse.status === 'fulfilled';
+
+      if (backendSuccess) {
         setSnackbar({
           open: true,
           message: 'Solicitação de demonstração enviada com sucesso! Entraremos em contato em breve.',
@@ -88,15 +105,23 @@ function Demo() {
           preferredDate: '',
           message: '',
         });
+
+        // Log HubSpot status for debugging
+        if (!hubspotSuccess) {
+          console.warn('HubSpot submission failed:', hubspotResponse.reason);
+        }
       } else {
         throw new Error('Falha ao enviar solicitação');
       }
     } catch (error) {
+      console.error('Demo form submission error:', error);
       setSnackbar({
         open: true,
         message: 'Erro ao enviar solicitação. Por favor, tente novamente.',
         severity: 'error',
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -238,8 +263,9 @@ function Demo() {
                     color="primary"
                     size="large"
                     fullWidth
+                    disabled={isSubmitting}
                   >
-                    Solicitar Demonstração
+                    {isSubmitting ? 'Enviando...' : 'Solicitar Demonstração'}
                   </Button>
                 </Grid>
               </Grid>

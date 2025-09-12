@@ -14,6 +14,7 @@ import {
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
+import { submitFormToHubSpot } from '../utils/hubspot';
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -30,6 +31,8 @@ function Contact() {
     severity: 'success',
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -40,16 +43,30 @@ function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+    setIsSubmitting(true);
 
-      if (response.ok) {
+    try {
+      // Submit to both our backend and HubSpot
+      const [backendResponse, hubspotResponse] = await Promise.allSettled([
+        // Original backend submission
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        }),
+        // HubSpot submission
+        submitFormToHubSpot(formData, 'contact')
+      ]);
+
+      // Check if backend submission was successful
+      const backendSuccess = backendResponse.status === 'fulfilled' && backendResponse.value.ok;
+
+      // Check if HubSpot submission was successful
+      const hubspotSuccess = hubspotResponse.status === 'fulfilled';
+
+      if (backendSuccess) {
         setSnackbar({
           open: true,
           message: 'Mensagem enviada com sucesso! Entraremos em contato em breve.',
@@ -62,15 +79,23 @@ function Contact() {
           company: '',
           message: '',
         });
+
+        // Log HubSpot status for debugging
+        if (!hubspotSuccess) {
+          console.warn('HubSpot submission failed:', hubspotResponse.reason);
+        }
       } else {
         throw new Error('Falha ao enviar mensagem');
       }
     } catch (error) {
+      console.error('Form submission error:', error);
       setSnackbar({
         open: true,
         message: 'Erro ao enviar mensagem. Por favor, tente novamente.',
         severity: 'error',
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -185,8 +210,9 @@ function Contact() {
                         color="primary"
                         size="large"
                         fullWidth
+                        disabled={isSubmitting}
                       >
-                        Enviar Mensagem
+                        {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
                       </Button>
                     </Grid>
                   </Grid>
