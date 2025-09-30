@@ -256,7 +256,7 @@ const SolucoesHome = () => {
                 variant="contained"
                 color="secondary"
                 size="large"
-                onClick={() => navigate('/demo')}
+                onClick={() => window.open('https://form.typeform.com/to/a0d9de95', '_blank', 'noopener,noreferrer')}
                 sx={{ 
                   px: 6,
                   py: 2,

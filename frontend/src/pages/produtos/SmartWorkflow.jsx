@@ -79,7 +79,7 @@ const SmartWorkflow = () => {
                 variant="contained" 
                 color="primary"
                 size="large"
-                href="/contact"
+                onClick={() => window.open("https://form.typeform.com/to/a0d9de95", "_blank", "noopener,noreferrer")}
                 sx={{ 
                   mr: 2,
                   px: 4,
@@ -98,7 +98,7 @@ const SmartWorkflow = () => {
                 variant="outlined" 
                 color="primary"
                 size="large"
-                href="/demo"
+                onClick={() => window.open("https://form.typeform.com/to/a0d9de95", "_blank", "noopener,noreferrer")}
                 sx={{ 
                   px: 4,
                   py: 1.5,
@@ -239,7 +239,7 @@ const SmartWorkflow = () => {
                 variant="contained"
                 color="primary"
                 size="large"
-                href="/demo"
+                onClick={() => window.open("https://form.typeform.com/to/a0d9de95", "_blank", "noopener,noreferrer")}
                 sx={{ 
                   px: 6,
                   py: 2,

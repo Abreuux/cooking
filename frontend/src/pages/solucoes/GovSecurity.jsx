@@ -60,7 +60,7 @@ const GovSecurity = () => {
                 variant="contained" 
                 color="primary"
                 size="large"
-                href="/contact"
+                onClick={() => window.open("https://form.typeform.com/to/a0d9de95", "_blank", "noopener,noreferrer")}
                 sx={{ mr: 2 }}
               >
                 Fale com um Especialista
@@ -69,7 +69,7 @@ const GovSecurity = () => {
                 variant="outlined" 
                 color="primary"
                 size="large"
-                href="/demo"
+                onClick={() => window.open("https://form.typeform.com/to/a0d9de95", "_blank", "noopener,noreferrer")}
               >
                 Solicitar Demo
               </Button>

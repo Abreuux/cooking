@@ -223,6 +223,57 @@ function Home() {
         <Solutions features={features} />
       </Container>
 
+      {/* Statistics Section */}
+      <Box sx={{ bgcolor: 'primary.main', color: 'white', py: 8 }}>
+        <Container maxWidth="lg">
+          <Typography variant="h4" align="center" gutterBottom sx={{ mb: 6, fontWeight: 700 }}>
+            Resultados Comprovados
+          </Typography>
+          <Grid container spacing={4}>
+            <Grid item xs={6} md={3}>
+              <Box sx={{ textAlign: 'center' }}>
+                <Typography variant="h2" sx={{ fontWeight: 800, color: 'secondary.main', mb: 1 }}>
+                  150+
+                </Typography>
+                <Typography variant="h6" sx={{ opacity: 0.9 }}>
+                  Empresas Transformadas
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={6} md={3}>
+              <Box sx={{ textAlign: 'center' }}>
+                <Typography variant="h2" sx={{ fontWeight: 800, color: 'secondary.main', mb: 1 }}>
+                  340%
+                </Typography>
+                <Typography variant="h6" sx={{ opacity: 0.9 }}>
+                  ROI Médio em 12 meses
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={6} md={3}>
+              <Box sx={{ textAlign: 'center' }}>
+                <Typography variant="h2" sx={{ fontWeight: 800, color: 'secondary.main', mb: 1 }}>
+                  75%
+                </Typography>
+                <Typography variant="h6" sx={{ opacity: 0.9 }}>
+                  Redução em Tempo de Análise
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={6} md={3}>
+              <Box sx={{ textAlign: 'center' }}>
+                <Typography variant="h2" sx={{ fontWeight: 800, color: 'secondary.main', mb: 1 }}>
+                  38%
+                </Typography>
+                <Typography variant="h6" sx={{ opacity: 0.9 }}>
+                  Melhoria em Tomada de Decisão
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
       {/* Tecnologias */}
       <Box sx={{ bgcolor: 'grey.50', py: 8 }}>
         <Container maxWidth="lg">
@@ -307,6 +358,74 @@ function Home() {
         </Grid>
       </Container>
 
+      {/* Diagnostic Section */}
+      <Box 
+        sx={{ 
+          bgcolor: 'grey.50',
+          py: 6,
+          borderTop: '1px solid',
+          borderColor: 'grey.200',
+        }}
+      >
+        <Container maxWidth="md">
+          <Box sx={{ textAlign: 'center' }}>
+            <Typography variant="h4" gutterBottom sx={{ color: 'primary.main', fontWeight: 700 }}>
+              Diagnóstico Estratégico Gratuito
+            </Typography>
+            <Typography variant="h6" sx={{ mb: 3, color: 'text.secondary', fontWeight: 400 }}>
+              Descubra como seus dados podem impulsionar o crescimento da sua empresa
+            </Typography>
+            
+            <Box sx={{ 
+              display: 'inline-flex', 
+              alignItems: 'center', 
+              gap: 2, 
+              mb: 3,
+              p: 2,
+              bgcolor: 'white',
+              borderRadius: 2,
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+            }}>
+              <Typography variant="h5" sx={{ textDecoration: 'line-through', color: 'grey.500' }}>
+                R$ 5.000
+              </Typography>
+              <Typography variant="h5" sx={{ color: 'secondary.main', fontWeight: 700 }}>
+                GRATUITO
+              </Typography>
+            </Box>
+
+            <Typography variant="body1" sx={{ mb: 4, color: 'text.secondary', maxWidth: '500px', mx: 'auto' }}>
+              Análise completa dos seus dados atuais com insights acionáveis e roadmap personalizado
+            </Typography>
+
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              onClick={() => window.open('https://form.typeform.com/to/a0d9de95', '_blank', 'noopener,noreferrer')}
+              sx={{
+                px: 4,
+                py: 1.5,
+                fontSize: '1.1rem',
+                fontWeight: 600,
+                borderRadius: 2,
+                '&:hover': {
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 8px 25px rgba(43, 57, 144, 0.3)',
+                },
+                transition: 'all 0.3s ease',
+              }}
+            >
+              Agendar Diagnóstico
+            </Button>
+            
+            <Typography variant="caption" sx={{ display: 'block', mt: 2, color: 'text.secondary' }}>
+              Vagas limitadas • Resposta em até 24h
+            </Typography>
+          </Box>
+        </Container>
+      </Box>
+
       {/* CTA Section */}
       <Box 
         sx={{ 
@@ -333,7 +452,7 @@ function Home() {
                   variant="contained"
                   color="secondary"
                   size="large"
-                  onClick={() => navigate('/demo')}
+                  onClick={() => window.open('https://form.typeform.com/to/a0d9de95', '_blank', 'noopener,noreferrer')}
                   sx={{
                     py: 1.5,
                     px: 4,
@@ -345,7 +464,7 @@ function Home() {
                 <Button
                   variant="outlined"
                   size="large"
-                  onClick={() => navigate('/contact')}
+                  onClick={() => window.open('https://form.typeform.com/to/a0d9de95', '_blank', 'noopener,noreferrer')}
                   sx={{
                     py: 1.5,
                     px: 4,

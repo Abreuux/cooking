@@ -13,6 +13,9 @@ import Home from './pages/Home';
 // Lazily loaded main pages
 const About = lazy(() => import(/* webpackChunkName: "about" */ './pages/About'));
 
+// Landing pages
+const LandingDashboard = lazy(() => import(/* webpackChunkName: "landing-dashboard" */ './landing/landing-dashboard/LandingDashboard'));
+
 // Prefetching function
 const prefetchComponent = (importFn) => {
   importFn();
@@ -331,6 +334,9 @@ function App() {
                 <Route path="/produtos/cityservices" element={<CityServices />} />
                 <Route path="/produtos/securegov" element={<SecureGov />} />
                 <Route path="/produtos/dataprotect" element={<DataProtect />} />
+
+                {/* Landing Pages */}
+                <Route path="/landing" element={<LandingDashboard />} />
 
                 {/* Utility Routes */}
                 <Route path="/sitemap" element={<Sitemap />} />

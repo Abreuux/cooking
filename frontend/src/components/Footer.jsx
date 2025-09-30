@@ -98,7 +98,7 @@ const Footer = () => {
               (81) 997038863
             </Typography>
             <Typography variant="body2" sx={{ mb: 2 }}>
-              contato@necorium.com.br
+              contato@necotium.com.br
             </Typography>
 
             <Typography variant="h6" sx={{ mb: 2, mt: 3 }}>

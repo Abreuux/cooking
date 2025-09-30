@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Dialog,
+<<<<<<< HEAD
   DialogContent,
   Box,
   Typography,
@@ -8,10 +9,20 @@ import {
   IconButton,
   Fade,
   useTheme,
+=======
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Typography,
+  Button,
+  Box,
+  IconButton,
+>>>>>>> 67bdb0d036734245ba7170169a0011cfbb70c7fe
 } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CloseIcon from '@mui/icons-material/Close';
 
+<<<<<<< HEAD
 const SuccessMessage = ({ 
   open, 
   onClose, 
@@ -22,12 +33,26 @@ const SuccessMessage = ({
 }) => {
   const theme = useTheme();
 
+=======
+/**
+ * Success Message Dialog Component
+ * Displays a success message in a modal dialog
+ */
+const SuccessMessage = ({ 
+  open, 
+  onClose, 
+  title = "Sucesso!", 
+  message = "Operação realizada com sucesso!",
+  buttonText = "Fechar"
+}) => {
+>>>>>>> 67bdb0d036734245ba7170169a0011cfbb70c7fe
   return (
     <Dialog
       open={open}
       onClose={onClose}
       maxWidth="sm"
       fullWidth
+<<<<<<< HEAD
       TransitionComponent={Fade}
       TransitionProps={{
         timeout: 500,
@@ -44,20 +69,38 @@ const SuccessMessage = ({
     >
       {showCloseButton && (
         <IconButton
+=======
+      PaperProps={{
+        sx: {
+          borderRadius: 2,
+          textAlign: 'center',
+          p: 2,
+        }
+      }}
+    >
+      <DialogTitle sx={{ position: 'relative', pb: 1 }}>
+        <IconButton
+          aria-label="close"
+>>>>>>> 67bdb0d036734245ba7170169a0011cfbb70c7fe
           onClick={onClose}
           sx={{
             position: 'absolute',
             right: 8,
             top: 8,
+<<<<<<< HEAD
             color: 'grey.500',
             zIndex: 1,
             '&:hover': {
               backgroundColor: 'grey.100',
             },
+=======
+            color: (theme) => theme.palette.grey[500],
+>>>>>>> 67bdb0d036734245ba7170169a0011cfbb70c7fe
           }}
         >
           <CloseIcon />
         </IconButton>
+<<<<<<< HEAD
       )}
 
       <DialogContent sx={{ textAlign: 'center', py: 6, px: 4 }}>
@@ -165,6 +208,53 @@ const SuccessMessage = ({
           }
         }
       `}</style>
+=======
+      </DialogTitle>
+      
+      <DialogContent sx={{ pt: 0 }}>
+        <Box sx={{ mb: 2 }}>
+          <CheckCircleIcon 
+            sx={{ 
+              fontSize: 64, 
+              color: 'success.main',
+              mb: 2 
+            }} 
+          />
+        </Box>
+        
+        <Typography 
+          variant="h5" 
+          component="h2" 
+          gutterBottom
+          sx={{ fontWeight: 'bold', color: 'text.primary' }}
+        >
+          {title}
+        </Typography>
+        
+        <Typography 
+          variant="body1" 
+          color="text.secondary"
+          sx={{ mb: 2 }}
+        >
+          {message}
+        </Typography>
+      </DialogContent>
+      
+      <DialogActions sx={{ justifyContent: 'center', pb: 2 }}>
+        <Button
+          onClick={onClose}
+          variant="contained"
+          color="primary"
+          size="large"
+          sx={{ 
+            minWidth: 120,
+            borderRadius: 2,
+          }}
+        >
+          {buttonText}
+        </Button>
+      </DialogActions>
+>>>>>>> 67bdb0d036734245ba7170169a0011cfbb70c7fe
     </Dialog>
   );
 };

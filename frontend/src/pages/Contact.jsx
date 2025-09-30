@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Container,
@@ -10,100 +10,27 @@ import {
   CardContent,
   Snackbar,
   Alert,
-  CircularProgress,
 } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
-import { submitToHubSpotAPI, initializeHubSpot } from '../utils/hubspot';
-import SuccessMessage from '../components/SuccessMessage';
 
 function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    message: '',
-  });
-
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: '',
     severity: 'success',
   });
 
-  const [successDialog, setSuccessDialog] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Initialize HubSpot when component mounts
-  useEffect(() => {
-    initializeHubSpot();
-  }, []);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      // Submit to HubSpot first
-      await submitToHubSpotAPI('contact', formData);
-
-      // Also submit to our existing API endpoint (optional - remove if not needed)
-      try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
-
-        if (!response.ok) {
-          console.warn('Internal API submission failed, but HubSpot submission succeeded');
-        }
-      } catch (apiError) {
-        console.warn('Internal API submission failed:', apiError);
-        // Don't throw here since HubSpot submission succeeded
-      }
-
-      // Show success dialog
-      setSuccessDialog(true);
-
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        message: '',
-      });
-
-    } catch (error) {
-      console.error('Form submission error:', error);
-      setSnackbar({
-        open: true,
-        message: 'Erro ao enviar mensagem. Por favor, tente novamente.',
-        severity: 'error',
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   const handleCloseSnackbar = () => {
     setSnackbar((prev) => ({
       ...prev,
       open: false,
     }));
+  };
+
+  const handleRedirectToTypeform = () => {
+    window.open('https://form.typeform.com/to/a0d9de95', '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -127,17 +54,17 @@ function Contact() {
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                     <LocationOnIcon sx={{ mr: 1 }} />
                     <Typography>
-                      Av. Principal, 1000<br />
+                      Rua Vigário Barreto 28<br />
                       Recife, PE
                     </Typography>
                   </Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                     <PhoneIcon sx={{ mr: 1 }} />
-                    <Typography>(81) 9999-9999</Typography>
+                    <Typography>(81) 997038863</Typography>
                   </Box>
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <EmailIcon sx={{ mr: 1 }} />
-                    <Typography>contato@necorium.com.br</Typography>
+                    <Typography>contato@necotium.com.br</Typography>
                   </Box>
                 </Box>
               </CardContent>
@@ -148,83 +75,34 @@ function Contact() {
             <Card>
               <CardContent>
                 <Typography variant="h5" gutterBottom>
-                  Envie sua Mensagem
+                  Entre em Contato Conosco
                 </Typography>
-                <form onSubmit={handleSubmit}>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        fullWidth
-                        label="Nome"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        fullWidth
-                        label="Email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        fullWidth
-                        label="Telefone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        fullWidth
-                        label="Empresa"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        required
-                        fullWidth
-                        multiline
-                        rows={4}
-                        label="Mensagem"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        size="large"
-                        fullWidth
-                        disabled={isSubmitting}
-                        startIcon={isSubmitting ? <CircularProgress size={20} color="inherit" /> : null}
-                      >
-                        {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </form>
+                <Typography variant="body1" color="text.secondary" paragraph>
+                  Para melhor atendê-lo, redirecionamos você para nosso formulário de contato otimizado.
+                </Typography>
+                <Box sx={{ textAlign: 'center', mt: 4 }}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    onClick={handleRedirectToTypeform}
+                    sx={{
+                      px: 6,
+                      py: 2,
+                      fontSize: '1.2rem',
+                      fontWeight: 600,
+                    }}
+                  >
+                    Acessar Formulário de Contato
+                  </Button>
+                </Box>
               </CardContent>
             </Card>
           </Grid>
         </Grid>
 
         <Snackbar
-          open={snackbar.open && snackbar.severity === 'error'}
+          open={snackbar.open}
           autoHideDuration={6000}
           onClose={handleCloseSnackbar}
           anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
@@ -237,16 +115,9 @@ function Contact() {
             {snackbar.message}
           </Alert>
         </Snackbar>
-
-        <SuccessMessage
-          open={successDialog}
-          onClose={() => setSuccessDialog(false)}
-          title="Mensagem enviada com sucesso!"
-          message="Recebemos sua mensagem e entraremos em contato em breve. Obrigado pelo interesse em nossos serviços!"
-        />
       </Container>
     </Box>
   );
 }
 
-export default Contact; 
+export default Contact;

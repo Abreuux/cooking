@@ -125,7 +125,7 @@ const DataIntelligence = () => {
               <Button 
                 variant="contained" 
                 size="large"
-                href="/contact"
+                onClick={() => window.open("https://form.typeform.com/to/a0d9de95", "_blank", "noopener,noreferrer")}
                 sx={{ 
                   bgcolor: '#C4D600',
                   color: '#2B3990',
@@ -139,7 +139,7 @@ const DataIntelligence = () => {
               <Button 
                 variant="outlined" 
                 size="large"
-                href="/demo"
+                onClick={() => window.open("https://form.typeform.com/to/a0d9de95", "_blank", "noopener,noreferrer")}
                 sx={{ 
                   borderColor: '#C4D600',
                   color: '#2B3990',
@@ -303,7 +303,7 @@ const DataIntelligence = () => {
           <Button 
             variant="contained"
             size="large"
-            href="/contact"
+            onClick={() => window.open("https://form.typeform.com/to/a0d9de95", "_blank", "noopener,noreferrer")}
             sx={{ 
               bgcolor: '#C4D600',
               color: '#2B3990',
@@ -317,7 +317,7 @@ const DataIntelligence = () => {
           <Button 
             variant="outlined"
             size="large"
-            href="/demo"
+            onClick={() => window.open("https://form.typeform.com/to/a0d9de95", "_blank", "noopener,noreferrer")}
             sx={{ 
               borderColor: '#C4D600',
               color: '#2B3990',
