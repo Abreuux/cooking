@@ -2,20 +2,20 @@ import React from 'react';
 import { Box, Container, Grid, Typography, Button, Paper, Card, CardContent, Avatar, Chip } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import PageBanner from '../../components/PageBanner';
-import SecurityIcon from '@mui/icons-material/Security';
-import GavelIcon from '@mui/icons-material/Gavel';
-import SpeedIcon from '@mui/icons-material/Speed';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
+import PipelineIcon from '@mui/icons-material/Pipeline';
+import DataObjectIcon from '@mui/icons-material/DataObject';
+import StorageIcon from '@mui/icons-material/Storage';
 
-const DataProtect = () => {
+const DataIntegration = () => {
   const theme = useTheme();
 
   return (
     <Box>
       <PageBanner
-        title="DataProtect"
-        subtitle="Proteção de dados com governança lean e conformidade automatizada"
-        image="/images/products/dataprotect-banner.jpg"
+        title="Data Integration"
+        subtitle="Integração e engenharia de dados com pipelines automatizados"
+        image="/images/products/integration-banner.jpg"
         buttonText="Agende uma Demo"
         buttonLink="/demo"
       />
@@ -24,23 +24,23 @@ const DataProtect = () => {
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
             <Typography variant="h4" component="h2" gutterBottom color="primary">
-              Governança Lean de Dados
+              Integração e Engenharia de Dados
             </Typography>
             <Typography variant="body1" paragraph>
-              O DataProtect revoluciona a proteção de dados com uma abordagem de 
-              governança lean, automatizando processos de conformidade e garantindo 
-              segurança eficiente sem burocracias desnecessárias.
+              O Data Integration oferece uma solução completa para integração de dados,
+              engenharia de pipelines e transformação de dados, permitindo que sua 
+              organização conecte múltiplas fontes de dados de forma eficiente e automatizada.
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
               <Chip 
-                icon={<GavelIcon />} 
-                label="Governança Lean" 
+                icon={<PipelineIcon />} 
+                label="Pipelines Automatizados" 
                 color="primary" 
                 variant="outlined" 
               />
               <Chip 
-                icon={<SpeedIcon />} 
-                label="Conformidade Rápida" 
+                icon={<IntegrationInstructionsIcon />} 
+                label="Integração de Dados" 
                 color="secondary" 
                 variant="outlined" 
               />
@@ -68,7 +68,7 @@ const DataProtect = () => {
           <Grid item xs={12} md={6}>
             <Card sx={{ height: '100%', position: 'relative', overflow: 'hidden' }}>
               <CardContent sx={{ p: 0 }}>
-                {/* Governance Header */}
+                {/* Pipeline Header */}
                 <Box sx={{ 
                   bgcolor: 'primary.main', 
                   color: 'white', 
@@ -78,50 +78,41 @@ const DataProtect = () => {
                   gap: 1 
                 }}>
                   <Avatar sx={{ bgcolor: 'secondary.main', width: 32, height: 32 }}>
-                    <GavelIcon />
+                    <PipelineIcon />
                   </Avatar>
-                  <Typography variant="h6">Governança Lean Dashboard</Typography>
+                  <Typography variant="h6">Data Pipeline Monitor</Typography>
                 </Box>
                 
-                {/* Compliance Status */}
+                {/* Pipeline Flow */}
                 <Box sx={{ p: 3 }}>
                   <Grid container spacing={2} sx={{ mb: 3 }}>
                     <Grid item xs={4}>
                       <Box sx={{ textAlign: 'center', p: 2, bgcolor: 'grey.50', borderRadius: 1 }}>
-                        <CheckCircleIcon sx={{ fontSize: 32, color: 'success.main', mb: 1 }} />
+                        <DataObjectIcon sx={{ fontSize: 32, color: 'primary.main', mb: 1 }} />
                         <Typography variant="body2" color="text.secondary">
-                          LGPD
-                        </Typography>
-                        <Typography variant="h6" color="success.main" fontWeight="bold">
-                          100%
+                          Fonte de Dados
                         </Typography>
                       </Box>
                     </Grid>
                     <Grid item xs={4}>
                       <Box sx={{ textAlign: 'center', p: 2, bgcolor: 'grey.50', borderRadius: 1 }}>
-                        <SecurityIcon sx={{ fontSize: 32, color: 'primary.main', mb: 1 }} />
+                        <PipelineIcon sx={{ fontSize: 32, color: 'secondary.main', mb: 1 }} />
                         <Typography variant="body2" color="text.secondary">
-                          Segurança
-                        </Typography>
-                        <Typography variant="h6" color="primary.main" fontWeight="bold">
-                          99.9%
+                          Pipeline ETL
                         </Typography>
                       </Box>
                     </Grid>
                     <Grid item xs={4}>
                       <Box sx={{ textAlign: 'center', p: 2, bgcolor: 'grey.50', borderRadius: 1 }}>
-                        <SpeedIcon sx={{ fontSize: 32, color: 'secondary.main', mb: 1 }} />
+                        <StorageIcon sx={{ fontSize: 32, color: 'success.main', mb: 1 }} />
                         <Typography variant="body2" color="text.secondary">
-                          Eficiência
-                        </Typography>
-                        <Typography variant="h6" color="secondary.main" fontWeight="bold">
-                          85%
+                          Data Warehouse
                         </Typography>
                       </Box>
                     </Grid>
                   </Grid>
                   
-                  {/* Governance Flow */}
+                  {/* Pipeline Status */}
                   <Box sx={{ 
                     height: 120, 
                     bgcolor: 'grey.100', 
@@ -133,18 +124,18 @@ const DataProtect = () => {
                     borderColor: 'grey.300'
                   }}>
                     <Box sx={{ textAlign: 'center' }}>
-                      <GavelIcon sx={{ fontSize: 48, color: 'grey.400', mb: 1 }} />
+                      <PipelineIcon sx={{ fontSize: 48, color: 'grey.400', mb: 1 }} />
                       <Typography variant="body2" color="text.secondary">
-                        Processo Lean Ativo
+                        Pipeline em Execução
                       </Typography>
                     </Box>
                   </Box>
                   
-                  {/* Compliance Indicators */}
+                  {/* Status Indicators */}
                   <Box sx={{ display: 'flex', gap: 1, mt: 2, justifyContent: 'center' }}>
-                    <Chip size="small" label="LGPD" color="success" />
-                    <Chip size="small" label="ISO 27001" color="primary" />
-                    <Chip size="small" label="Lean" color="secondary" />
+                    <Chip size="small" label="Ativo" color="success" />
+                    <Chip size="small" label="99.9% Uptime" color="primary" />
+                    <Chip size="small" label="Real-time" color="secondary" />
                   </Box>
                 </Box>
               </CardContent>
@@ -159,20 +150,20 @@ const DataProtect = () => {
           <Grid container spacing={4} sx={{ mt: 2 }}>
             {[
               {
-                title: 'Governança Lean Automatizada',
-                description: 'Processos de governança simplificados e automatizados para máxima eficiência.'
+                title: 'Pipelines ETL Automatizados',
+                description: 'Crie e gerencie pipelines de extração, transformação e carregamento de dados automatizados.'
               },
               {
-                title: 'Conformidade LGPD Instantânea',
-                description: 'Atendimento automático aos requisitos da LGPD com processos lean.'
+                title: 'Integração de Múltiplas Fontes',
+                description: 'Conecte APIs, bancos de dados, arquivos e sistemas legados em uma única plataforma.'
               },
               {
-                title: 'Proteção Inteligente',
-                description: 'Segurança avançada com IA para detecção proativa de ameaças.'
+                title: 'Engenharia de Dados',
+                description: 'Ferramentas avançadas para limpeza, transformação e modelagem de dados.'
               },
               {
-                title: 'Auditoria Simplificada',
-                description: 'Relatórios de auditoria automatizados e processos de compliance lean.'
+                title: 'Monitoramento em Tempo Real',
+                description: 'Acompanhe o status e performance dos pipelines com alertas e métricas em tempo real.'
               }
             ].map((feature, index) => (
               <Grid item xs={12} sm={6} md={3} key={index}>
@@ -198,56 +189,9 @@ const DataProtect = () => {
             ))}
           </Grid>
         </Box>
-
-        <Box sx={{ mt: 8 }}>
-          <Typography variant="h4" component="h2" gutterBottom align="center" color="primary">
-            Benefícios
-          </Typography>
-          <Grid container spacing={4} sx={{ mt: 2 }}>
-            {[
-              {
-                title: 'Proteção Total',
-                description: 'Segurança abrangente para todos os seus dados empresariais.'
-              },
-              {
-                title: 'Conformidade Garantida',
-                description: 'Atenda a requisitos regulatórios de proteção de dados.'
-              },
-              {
-                title: 'Produtividade Segura',
-                description: 'Mantenha a eficiência sem comprometer a segurança.'
-              },
-              {
-                title: 'Riscos Minimizados',
-                description: 'Reduza riscos de vazamentos e violações de dados.'
-              }
-            ].map((benefit, index) => (
-              <Grid item xs={12} sm={6} key={index}>
-                <Paper
-                  elevation={2}
-                  sx={{
-                    p: 3,
-                    height: '100%',
-                    transition: 'transform 0.2s',
-                    '&:hover': {
-                      transform: 'translateY(-4px)'
-                    }
-                  }}
-                >
-                  <Typography variant="h6" gutterBottom color="primary">
-                    {benefit.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {benefit.description}
-                  </Typography>
-                </Paper>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
       </Container>
     </Box>
   );
 };
 
-export default DataProtect; 
+export default DataIntegration; 

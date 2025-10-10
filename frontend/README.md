@@ -23,7 +23,7 @@ O Necotium é um site institucional desenvolvido com React e Material UI, focado
 ## Estrutura do Projeto
 
 ```
-sitenecorium/
+sitenecotium/
 ├── frontend/                # Código fonte do frontend
 │   ├── public/              # Arquivos estáticos
 │   │   ├── images/          # Imagens do site

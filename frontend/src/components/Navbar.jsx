@@ -47,9 +47,11 @@ const menuItems = [
         title: 'Produtos',
         description: 'Produtos especializados para o setor empresarial',
         items: [
-          { title: 'DataInsights', path: '/produtos/datainsights', description: 'Análise preditiva e insights de negócio' },
-          { title: 'PerformanceAnalytics', path: '/produtos/performanceanalytics', description: 'Métricas e análise de desempenho' },
-          { title: 'ProcessAutomation', path: '/produtos/processautomation', description: 'Automação de processos empresariais' }
+          { title: 'DataInsights', path: '/produtos/datainsights', description: 'Assistente de IA com insights inteligentes' },
+          { title: 'DataProtect', path: '/produtos/dataprotect', description: 'Proteção de dados com governança lean' },
+          { title: 'Data Visualization', path: '/produtos/data-visualization', description: 'Dashboards e visualizações avançadas' },
+          { title: 'Data Integration', path: '/produtos/data-integration', description: 'Integração e engenharia de dados' },
+          { title: 'Data Science', path: '/produtos/data-science', description: 'Modelos e GenIA em larga escala' }
         ]
       }
     ]
@@ -86,11 +88,11 @@ const menuItems = [
         title: 'Empresas',
         description: 'Produtos para o setor empresarial',
         items: [
-          { title: 'SmartWorkflow', path: '/produtos/smartworkflow', description: 'Gestão de fluxos de trabalho' },
-          { title: 'DataProtect', path: '/produtos/dataprotect', description: 'Proteção de dados corporativos' },
-          { title: 'DataInsights', path: '/produtos/datainsights', description: 'Análise preditiva e insights de negócio' },
-          { title: 'PerformanceAnalytics', path: '/produtos/performanceanalytics', description: 'Métricas e análise de desempenho' },
-          { title: 'ProcessAutomation', path: '/produtos/processautomation', description: 'Automação de processos empresariais' }
+          { title: 'DataInsights', path: '/produtos/datainsights', description: 'Assistente de IA com insights inteligentes' },
+          { title: 'DataProtect', path: '/produtos/dataprotect', description: 'Proteção de dados com governança lean' },
+          { title: 'Data Visualization', path: '/produtos/data-visualization', description: 'Dashboards e visualizações avançadas' },
+          { title: 'Data Integration', path: '/produtos/data-integration', description: 'Integração e engenharia de dados' },
+          { title: 'Data Science', path: '/produtos/data-science', description: 'Modelos e GenIA em larga escala' }
         ]
       },
       {

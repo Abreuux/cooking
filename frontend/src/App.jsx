@@ -45,9 +45,9 @@ const GovSecurity = lazy(() => import(/* webpackChunkName: "gov-security" */ './
 const CityDataHub = lazy(() => import(/* webpackChunkName: "city-data-hub" */ './pages/produtos/CityDataHub'));
 const CityPredict = lazy(() => import(/* webpackChunkName: "city-predict" */ './pages/produtos/CityPredict'));
 const DataInsights = lazy(() => import(/* webpackChunkName: "data-insights" */ './pages/produtos/DataInsights'));
-const PerformanceAnalytics = lazy(() => import(/* webpackChunkName: "performance-analytics" */ './pages/produtos/PerformanceAnalytics'));
-const ProcessAutomation = lazy(() => import(/* webpackChunkName: "process-automation" */ './pages/produtos/ProcessAutomation'));
-const SmartWorkflow = lazy(() => import(/* webpackChunkName: "smart-workflow" */ './pages/produtos/SmartWorkflow'));
+const DataIntegration = lazy(() => import(/* webpackChunkName: "data-integration" */ './pages/produtos/DataIntegration'));
+const DataVisualization = lazy(() => import(/* webpackChunkName: "data-visualization" */ './pages/produtos/DataVisualization'));
+const DataScience = lazy(() => import(/* webpackChunkName: "data-science" */ './pages/produtos/DataScience'));
 const GovInsights = lazy(() => import(/* webpackChunkName: "gov-insights" */ './pages/produtos/GovInsights'));
 const CityServices = lazy(() => import(/* webpackChunkName: "city-services" */ './pages/produtos/CityServices'));
 const SecureGov = lazy(() => import(/* webpackChunkName: "secure-gov" */ './pages/produtos/SecureGov'));
@@ -327,9 +327,9 @@ function App() {
                 <Route path="/produtos/citydatahub" element={<CityDataHub />} />
                 <Route path="/produtos/citypredict" element={<CityPredict />} />
                 <Route path="/produtos/datainsights" element={<DataInsights />} />
-                <Route path="/produtos/performanceanalytics" element={<PerformanceAnalytics />} />
-                <Route path="/produtos/processautomation" element={<ProcessAutomation />} />
-                <Route path="/produtos/smartworkflow" element={<SmartWorkflow />} />
+                <Route path="/produtos/data-integration" element={<DataIntegration />} />
+                <Route path="/produtos/data-visualization" element={<DataVisualization />} />
+                <Route path="/produtos/data-science" element={<DataScience />} />
                 <Route path="/produtos/govinsights" element={<GovInsights />} />
                 <Route path="/produtos/cityservices" element={<CityServices />} />
                 <Route path="/produtos/securegov" element={<SecureGov />} />
