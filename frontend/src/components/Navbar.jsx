@@ -283,7 +283,7 @@ const Navbar = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const location = useLocation();
-    const isActive = location.pathname.startsWith(item.path);
+    const isActive = location.pathname === item.path;
     const timeoutRef = React.useRef(null);
 
     const handleMouseEnter = (event) => {
