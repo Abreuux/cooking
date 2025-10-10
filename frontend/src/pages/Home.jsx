@@ -15,14 +15,10 @@ import {
   Divider,
   Stack,
 } from '@mui/material';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import StorageIcon from '@mui/icons-material/Storage';
 import SettingsIcon from '@mui/icons-material/Settings';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import SpeedIcon from '@mui/icons-material/Speed';
 import SecurityIcon from '@mui/icons-material/Security';
-import TimelineIcon from '@mui/icons-material/Timeline';
-import PeopleIcon from '@mui/icons-material/People';
 import '../styles/Banner.css';
 import Banner from '../components/Banner';
 import Solutions from '../components/Solutions';
@@ -82,12 +78,6 @@ function Home() {
     }
   ];
 
-  const statistics = [
-    { value: '45%', label: 'Redução de Custos', icon: <TrendingUpIcon /> },
-    { value: '98%', label: 'Satisfação dos Clientes', icon: <PeopleIcon /> },
-    { value: '2x', label: 'Aumento de Eficiência', icon: <SpeedIcon /> },
-    { value: '24/7', label: 'Monitoramento', icon: <TimelineIcon /> },
-  ];
 
   const technologies = [
     { name: 'Machine Learning', description: 'Algoritmos avançados de aprendizado' },
@@ -124,39 +114,6 @@ function Home() {
     <Box>
       <Banner banners={banners} />
       
-      {/* Estatísticas */}
-      <Box sx={{ bgcolor: 'background.default', py: 6 }}>
-        <Container maxWidth="lg">
-          <Grid container spacing={3}>
-            {statistics.map((stat, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
-                <Card 
-                  sx={{ 
-                    height: '100%',
-                    textAlign: 'center',
-                    transition: 'transform 0.3s ease',
-                    '&:hover': {
-                      transform: 'translateY(-8px)',
-                    },
-                  }}
-                >
-                  <CardContent>
-                    <Box sx={{ color: 'primary.main', mb: 2 }}>
-                      {stat.icon}
-                    </Box>
-                    <Typography variant="h3" component="div" gutterBottom color="primary">
-                      {stat.value}
-                    </Typography>
-                    <Typography variant="subtitle1" color="text.secondary">
-                      {stat.label}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
 
       {/* Brand Carousel */}
       <Box sx={{ py: 4 }}>
