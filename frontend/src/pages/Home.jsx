@@ -84,6 +84,10 @@ function Home() {
     { name: 'Big Data', description: 'Processamento de grandes volumes de dados' },
     { name: 'Cloud Computing', description: 'Infraestrutura escalável e segura' },
     { name: 'IoT', description: 'Conectividade e automação inteligente' },
+    { name: 'Inteligência Artificial', description: 'IA generativa e modelos preditivos' },
+    { name: 'ETL & Data Pipelines', description: 'Integração e transformação de dados' },
+    { name: 'Data Streaming', description: 'Processamento de dados em tempo real' },
+    { name: 'Data Quality', description: 'Governança e qualidade de dados em larga escala' },
   ];
 
   const testimonials = [
@@ -180,11 +184,15 @@ function Home() {
         <Solutions features={features} />
       </Container>
 
-      {/* Statistics Section */}
+      {/* Data-Driven Management Section */}
       <Box sx={{ bgcolor: 'primary.main', color: 'white', py: 8 }}>
         <Container maxWidth="lg">
-          <Typography variant="h4" align="center" gutterBottom sx={{ mb: 6, fontWeight: 700 }}>
-            Resultados Comprovados
+          <Typography variant="h4" align="center" gutterBottom sx={{ mb: 2, fontWeight: 700 }}>
+            Gestão Empresarial Orientada por Dados
+          </Typography>
+          <Typography variant="h6" align="center" sx={{ mb: 6, opacity: 0.9, maxWidth: '800px', mx: 'auto' }}>
+            Transformamos organizações através da integração inteligente de todas as nossas soluções: 
+            DataInsights, DataProtect, Data Visualization, Data Integration e Data Science
           </Typography>
           <Grid container spacing={4}>
             <Grid item xs={6} md={3}>
