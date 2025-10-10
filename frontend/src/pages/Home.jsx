@@ -194,44 +194,88 @@ function Home() {
             Transformamos organizações através da integração inteligente de todas as nossas soluções: 
             DataInsights, DataProtect, Data Visualization, Data Integration e Data Science
           </Typography>
-          <Grid container spacing={4}>
-            <Grid item xs={6} md={3}>
-              <Box sx={{ textAlign: 'center' }}>
-                <Typography variant="h2" sx={{ fontWeight: 800, color: 'secondary.main', mb: 1 }}>
-                  150+
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={6} md={3}>
+              <Box sx={{ 
+                textAlign: 'center', 
+                p: 3, 
+                borderRadius: 2,
+                bgcolor: 'rgba(255, 255, 255, 0.05)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  bgcolor: 'rgba(255, 255, 255, 0.1)',
+                  transform: 'translateY(-2px)',
+                }
+              }}>
+                <Typography variant="h6" sx={{ fontWeight: 600, mb: 1, color: 'secondary.main' }}>
+                  Vantagem Competitiva
                 </Typography>
-                <Typography variant="h6" sx={{ opacity: 0.9 }}>
-                  Empresas Transformadas
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={6} md={3}>
-              <Box sx={{ textAlign: 'center' }}>
-                <Typography variant="h2" sx={{ fontWeight: 800, color: 'secondary.main', mb: 1 }}>
-                  340%
-                </Typography>
-                <Typography variant="h6" sx={{ opacity: 0.9 }}>
-                  ROI Médio em 12 meses
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={6} md={3}>
-              <Box sx={{ textAlign: 'center' }}>
-                <Typography variant="h2" sx={{ fontWeight: 800, color: 'secondary.main', mb: 1 }}>
-                  75%
-                </Typography>
-                <Typography variant="h6" sx={{ opacity: 0.9 }}>
-                  Redução em Tempo de Análise
+                <Typography variant="body2" sx={{ opacity: 0.9, lineHeight: 1.4 }}>
+                  Transforme dados em insights estratégicos que impulsionam o crescimento e diferenciam sua empresa no mercado
                 </Typography>
               </Box>
             </Grid>
-            <Grid item xs={6} md={3}>
-              <Box sx={{ textAlign: 'center' }}>
-                <Typography variant="h2" sx={{ fontWeight: 800, color: 'secondary.main', mb: 1 }}>
-                  38%
+            <Grid item xs={12} sm={6} md={3}>
+              <Box sx={{ 
+                textAlign: 'center', 
+                p: 3, 
+                borderRadius: 2,
+                bgcolor: 'rgba(255, 255, 255, 0.05)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  bgcolor: 'rgba(255, 255, 255, 0.1)',
+                  transform: 'translateY(-2px)',
+                }
+              }}>
+                <Typography variant="h6" sx={{ fontWeight: 600, mb: 1, color: 'secondary.main' }}>
+                  Eficiência Operacional
                 </Typography>
-                <Typography variant="h6" sx={{ opacity: 0.9 }}>
-                  Melhoria em Tomada de Decisão
+                <Typography variant="body2" sx={{ opacity: 0.9, lineHeight: 1.4 }}>
+                  Automatize processos e otimize operações com inteligência artificial e análise preditiva em tempo real
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <Box sx={{ 
+                textAlign: 'center', 
+                p: 3, 
+                borderRadius: 2,
+                bgcolor: 'rgba(255, 255, 255, 0.05)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  bgcolor: 'rgba(255, 255, 255, 0.1)',
+                  transform: 'translateY(-2px)',
+                }
+              }}>
+                <Typography variant="h6" sx={{ fontWeight: 600, mb: 1, color: 'secondary.main' }}>
+                  Tomada de Decisão
+                </Typography>
+                <Typography variant="body2" sx={{ opacity: 0.9, lineHeight: 1.4 }}>
+                  Decisões baseadas em dados concretos com dashboards executivos e relatórios inteligentes automatizados
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <Box sx={{ 
+                textAlign: 'center', 
+                p: 3, 
+                borderRadius: 2,
+                bgcolor: 'rgba(255, 255, 255, 0.05)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  bgcolor: 'rgba(255, 255, 255, 0.1)',
+                  transform: 'translateY(-2px)',
+                }
+              }}>
+                <Typography variant="h6" sx={{ fontWeight: 600, mb: 1, color: 'secondary.main' }}>
+                  Por Onde Começar
+                </Typography>
+                <Typography variant="body2" sx={{ opacity: 0.9, lineHeight: 1.4 }}>
+                  Diagnóstico gratuito para identificar oportunidades e criar um roadmap personalizado de transformação digital
                 </Typography>
               </Box>
             </Grid>
