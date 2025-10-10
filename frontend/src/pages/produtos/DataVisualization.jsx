@@ -14,7 +14,7 @@ const DataVisualization = () => {
     <Box>
       <PageBanner
         title="Data Visualization"
-        subtitle="Dashboards e visualizações avançadas para análise de dados"
+        subtitle="Plataforma enterprise de visualização de dados para tomada de decisões estratégicas"
         image="/images/products/visualization-banner.jpg"
         buttonText="Agende uma Demo"
         buttonLink="/demo"
@@ -24,23 +24,30 @@ const DataVisualization = () => {
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
             <Typography variant="h4" component="h2" gutterBottom color="primary">
-              Dashboards Completos e Interativos
+              Visualização de Dados Enterprise
             </Typography>
             <Typography variant="body1" paragraph>
-              O Data Visualization oferece uma plataforma completa de criação de dashboards 
-              e visualizações avançadas, permitindo transformar dados complexos em insights 
-              visuais claros e acionáveis para sua organização.
+              Nossa plataforma de Data Visualization transforma dados complexos em narrativas 
+              visuais poderosas, capacitando executivos e analistas a identificar padrões, 
+              tendências e oportunidades de negócio através de dashboards executivos de 
+              classe mundial e visualizações interativas de alta fidelidade.
+            </Typography>
+            <Typography variant="body1" paragraph>
+              Desenvolvida para organizações que demandam precisão, escalabilidade e insights 
+              acionáveis, nossa solução integra-se perfeitamente aos ecossistemas de dados 
+              existentes, oferecendo capacidades de visualização que aceleram a tomada de 
+              decisões estratégicas e operacionais.
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
               <Chip 
                 icon={<BarChartIcon />} 
-                label="Dashboards Interativos" 
+                label="Enterprise Grade" 
                 color="primary" 
                 variant="outlined" 
               />
               <Chip 
                 icon={<ShowChartIcon />} 
-                label="Visualizações Avançadas" 
+                label="Real-time Analytics" 
                 color="secondary" 
                 variant="outlined" 
               />
@@ -80,7 +87,7 @@ const DataVisualization = () => {
                   <Avatar sx={{ bgcolor: 'secondary.main', width: 32, height: 32 }}>
                     <BarChartIcon />
                   </Avatar>
-                  <Typography variant="h6">Executive Dashboard</Typography>
+                  <Typography variant="h6">C-Suite Analytics Dashboard</Typography>
                 </Box>
                 
                 {/* Dashboard Content */}
@@ -89,30 +96,30 @@ const DataVisualization = () => {
                     <Grid item xs={4}>
                       <Box sx={{ textAlign: 'center', p: 2, bgcolor: 'grey.50', borderRadius: 1 }}>
                         <Typography variant="h5" color="primary" fontWeight="bold">
-                          R$ 2.4M
+                          $47.2M
                         </Typography>
                         <Typography variant="caption" color="text.secondary">
-                          Receita Total
+                          Revenue Growth
                         </Typography>
                       </Box>
                     </Grid>
                     <Grid item xs={4}>
                       <Box sx={{ textAlign: 'center', p: 2, bgcolor: 'grey.50', borderRadius: 1 }}>
                         <Typography variant="h5" color="success.main" fontWeight="bold">
-                          +18%
+                          23.4%
                         </Typography>
                         <Typography variant="caption" color="text.secondary">
-                          Crescimento
+                          YoY Growth
                         </Typography>
                       </Box>
                     </Grid>
                     <Grid item xs={4}>
                       <Box sx={{ textAlign: 'center', p: 2, bgcolor: 'grey.50', borderRadius: 1 }}>
                         <Typography variant="h5" color="secondary.main" fontWeight="bold">
-                          1,247
+                          94.7%
                         </Typography>
                         <Typography variant="caption" color="text.secondary">
-                          Clientes
+                          Customer NPS
                         </Typography>
                       </Box>
                     </Grid>
@@ -132,16 +139,16 @@ const DataVisualization = () => {
                     <Box sx={{ textAlign: 'center' }}>
                       <ShowChartIcon sx={{ fontSize: 48, color: 'grey.400', mb: 1 }} />
                       <Typography variant="body2" color="text.secondary">
-                        Gráfico Interativo
+                        Advanced Analytics Visualization
                       </Typography>
                     </Box>
                   </Box>
                   
                   {/* Chart Types */}
                   <Box sx={{ display: 'flex', gap: 1, mt: 2, justifyContent: 'center' }}>
-                    <Chip size="small" icon={<BarChartIcon />} label="Barras" />
-                    <Chip size="small" icon={<PieChartIcon />} label="Pizza" />
-                    <Chip size="small" icon={<TimelineIcon />} label="Linha" />
+                    <Chip size="small" icon={<BarChartIcon />} label="Bar Charts" />
+                    <Chip size="small" icon={<PieChartIcon />} label="Pie Charts" />
+                    <Chip size="small" icon={<TimelineIcon />} label="Time Series" />
                   </Box>
                 </Box>
               </CardContent>
@@ -151,25 +158,25 @@ const DataVisualization = () => {
 
         <Box sx={{ mt: 8 }}>
           <Typography variant="h4" component="h2" gutterBottom align="center" color="primary">
-            Principais Funcionalidades
+            Capacidades Enterprise
           </Typography>
           <Grid container spacing={4} sx={{ mt: 2 }}>
             {[
               {
-                title: 'Dashboards Personalizáveis',
-                description: 'Crie dashboards totalmente customizáveis com drag-and-drop e widgets interativos.'
+                title: 'Dashboards Executivos',
+                description: 'Plataforma de criação de dashboards C-level com personalização granular, widgets interativos e métricas de negócio em tempo real.'
               },
               {
                 title: 'Visualizações Avançadas',
-                description: 'Mais de 50 tipos de gráficos e visualizações para diferentes tipos de dados.'
+                description: 'Biblioteca completa com mais de 50 tipos de visualizações profissionais, incluindo heatmaps, treemaps, scatter plots e gráficos de correlação.'
               },
               {
-                title: 'Tempo Real',
-                description: 'Atualizações automáticas em tempo real com dados sempre atualizados.'
+                title: 'Analytics em Tempo Real',
+                description: 'Processamento de streaming de dados com atualizações automáticas, alertas inteligentes e monitoramento de KPIs críticos.'
               },
               {
-                title: 'Exportação e Compartilhamento',
-                description: 'Exporte dashboards em múltiplos formatos e compartilhe com stakeholders.'
+                title: 'Governança e Segurança',
+                description: 'Controle de acesso baseado em roles, auditoria completa, conformidade com regulamentações e exportação segura para stakeholders.'
               }
             ].map((feature, index) => (
               <Grid item xs={12} sm={6} md={3} key={index}>
@@ -199,28 +206,28 @@ const DataVisualization = () => {
         {/* Dashboard Showcase */}
         <Box sx={{ mt: 8 }}>
           <Typography variant="h4" component="h2" gutterBottom align="center" color="primary">
-            Tipos de Visualizações Disponíveis
+            Tipos de Visualizações Profissionais
           </Typography>
           <Grid container spacing={4} sx={{ mt: 2 }}>
             {[
               {
-                title: 'Gráficos de Barras',
-                description: 'Comparação de valores categóricos',
+                title: 'Business Intelligence Charts',
+                description: 'Gráficos de barras, colunas e histogramas para análise comparativa de métricas de negócio',
                 icon: <BarChartIcon sx={{ fontSize: 40, color: 'primary.main' }} />
               },
               {
-                title: 'Gráficos de Pizza',
-                description: 'Distribuição percentual de dados',
+                title: 'Market Share Analysis',
+                description: 'Gráficos de pizza, donut e treemap para análise de participação de mercado e distribuição',
                 icon: <PieChartIcon sx={{ fontSize: 40, color: 'secondary.main' }} />
               },
               {
-                title: 'Gráficos de Linha',
-                description: 'Tendências temporais e evolução',
+                title: 'Financial Trend Analysis',
+                description: 'Gráficos de linha, área e candlestick para análise de tendências financeiras e temporais',
                 icon: <ShowChartIcon sx={{ fontSize: 40, color: 'success.main' }} />
               },
               {
-                title: 'Timeline',
-                description: 'Eventos e marcos temporais',
+                title: 'Project Timeline & Milestones',
+                description: 'Timelines interativas, Gantt charts e roadmaps para gestão de projetos e marcos',
                 icon: <TimelineIcon sx={{ fontSize: 40, color: 'warning.main' }} />
               }
             ].map((chart, index) => (
@@ -249,6 +256,63 @@ const DataVisualization = () => {
                     </Typography>
                   </CardContent>
                 </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+
+        {/* Enterprise Use Cases */}
+        <Box sx={{ mt: 8, bgcolor: 'grey.50', p: 6, borderRadius: 2 }}>
+          <Typography variant="h4" component="h2" gutterBottom align="center" color="primary">
+            Casos de Uso Empresariais
+          </Typography>
+          <Grid container spacing={4} sx={{ mt: 2 }}>
+            {[
+              {
+                title: 'Financial Performance Dashboards',
+                description: 'Dashboards executivos para CFOs com métricas financeiras, P&L, cash flow e indicadores de performance em tempo real'
+              },
+              {
+                title: 'Sales & Revenue Analytics',
+                description: 'Visualizações de pipeline de vendas, análise de territórios, performance de produtos e previsões de receita'
+              },
+              {
+                title: 'Operational Excellence',
+                description: 'Monitoramento de KPIs operacionais, eficiência de processos, qualidade e métricas de produtividade'
+              },
+              {
+                title: 'Customer Intelligence',
+                description: 'Análise de comportamento do cliente, segmentação, lifetime value e métricas de satisfação e retenção'
+              },
+              {
+                title: 'Supply Chain Visibility',
+                description: 'Visualizações de cadeia de suprimentos, rastreamento de inventário, lead times e otimização de custos'
+              },
+              {
+                title: 'Risk Management',
+                description: 'Dashboards de gestão de riscos, compliance, auditoria e monitoramento de indicadores de segurança'
+              }
+            ].map((useCase, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <Box sx={{ 
+                  bgcolor: 'white', 
+                  p: 3, 
+                  borderRadius: 2, 
+                  boxShadow: 1,
+                  height: '100%',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    transform: 'translateY(-4px)',
+                    boxShadow: 3,
+                  }
+                }}>
+                  <Typography variant="h6" gutterBottom color="primary" sx={{ fontWeight: 600 }}>
+                    {useCase.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
+                    {useCase.description}
+                  </Typography>
+                </Box>
               </Grid>
             ))}
           </Grid>
