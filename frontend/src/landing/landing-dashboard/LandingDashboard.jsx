@@ -12,10 +12,17 @@ import FinalCTASection from './components/FinalCTASection';
 
 const LandingDashboard = () => {
   return (
-    <Box sx={{ overflow: 'hidden', minHeight: '100vh', backgroundColor: '#f5f5f5' }}>
+    <Box sx={{ overflow: 'hidden' }}>
       <DiagnosticBanner />
       <Box sx={{ mt: '124px' }}>
         <HeroSection />
+        <AccessAnywhereSection />
+        <AIInsightsSection />
+        <ProblemsSection />
+        <SolutionSection />
+        <RiskReducersSection />
+        <FAQSection />
+        <FinalCTASection />
       </Box>
     </Box>
   );
