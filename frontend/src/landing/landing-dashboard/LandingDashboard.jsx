@@ -11,6 +11,7 @@ import FAQSection from './components/FAQSection';
 import FinalCTASection from './components/FinalCTASection';
 
 const LandingDashboard = () => {
+  console.log('LandingDashboard component loaded');
   return (
     <Box sx={{ overflow: 'hidden' }}>
       <DiagnosticBanner />
