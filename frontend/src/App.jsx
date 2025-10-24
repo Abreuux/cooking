@@ -336,7 +336,7 @@ function App() {
                 <Route path="/produtos/dataprotect" element={<DataProtect />} />
 
                 {/* Landing Pages */}
-                <Route path="/landing" element={<LandingDashboard />} />
+                <Route path="/diagnostico-estrategico" element={<LandingDashboard />} />
 
                 {/* Utility Routes */}
                 <Route path="/sitemap" element={<Sitemap />} />
