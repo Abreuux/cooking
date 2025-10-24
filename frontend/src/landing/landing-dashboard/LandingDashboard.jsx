@@ -11,19 +11,11 @@ import FAQSection from './components/FAQSection';
 import FinalCTASection from './components/FinalCTASection';
 
 const LandingDashboard = () => {
-  console.log('LandingDashboard component loaded');
   return (
-    <Box sx={{ overflow: 'hidden' }}>
+    <Box sx={{ overflow: 'hidden', minHeight: '100vh', backgroundColor: '#f5f5f5' }}>
       <DiagnosticBanner />
       <Box sx={{ mt: '124px' }}>
         <HeroSection />
-        <AccessAnywhereSection />
-        <AIInsightsSection />
-        <ProblemsSection />
-        <SolutionSection />
-        <RiskReducersSection />
-        <FAQSection />
-        <FinalCTASection />
       </Box>
     </Box>
   );
