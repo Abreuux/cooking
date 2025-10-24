@@ -48,7 +48,7 @@ const AccessAnywhereSection = () => {
     },
     {
       icon: <SpeedIcon sx={{ fontSize: 20 }} />,
-      title: 'Tempo Real',
+      title: 'Respostas Rápidas',
       description: 'Dados sempre atualizados',
       color: theme.palette.primary.light,
     },
@@ -87,7 +87,7 @@ const AccessAnywhereSection = () => {
       ref={ref}
       sx={{
         py: { xs: 4, md: 12 },
-        background: `linear-gradient(180deg, ${theme.palette.grey[50]} 0%, #ffffff 100%)`,
+        background: '#ffffff',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -100,8 +100,7 @@ const AccessAnywhereSection = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundImage: `radial-gradient(circle at 80% 20%, ${theme.palette.primary.main}05 0%, transparent 50%),
-                           radial-gradient(circle at 20% 80%, ${theme.palette.secondary.main}05 0%, transparent 50%)`,
+          backgroundImage: 'none',
           zIndex: 0,
         }}
       />
@@ -232,7 +231,7 @@ const AccessAnywhereSection = () => {
               sx={{
                 mt: 8,
                 p: 4,
-                background: `linear-gradient(135deg, ${theme.palette.primary.main}10, ${theme.palette.secondary.main}10)`,
+                background: theme.palette.grey[50],
                 borderRadius: 3,
                 border: `1px solid ${theme.palette.primary.main}20`,
                 textAlign: 'center',
@@ -255,11 +254,31 @@ const AccessAnywhereSection = () => {
                   maxWidth: '800px',
                   mx: 'auto',
                   lineHeight: 1.6,
+                  mb: 3,
                 }}
               >
-                Seus dados são sincronizados em tempo real entre todos os dispositivos. 
+                Seus dados são sincronizados rapidamente entre todos os dispositivos. 
                 Comece uma análise no computador e continue no celular, sem perder nenhuma informação.
               </Typography>
+              <Button
+                component="a"
+                href="https://form.typeform.com/to/a0d9de95"
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="outlined"
+                sx={{
+                  borderColor: theme.palette.primary.main,
+                  color: theme.palette.primary.main,
+                  fontWeight: 600,
+                  textTransform: 'none',
+                  '&:hover': {
+                    backgroundColor: `${theme.palette.primary.main}10`,
+                    borderColor: theme.palette.primary.main,
+                  },
+                }}
+              >
+                Teste Agora
+              </Button>
             </Box>
           </motion.div>
         </motion.div>

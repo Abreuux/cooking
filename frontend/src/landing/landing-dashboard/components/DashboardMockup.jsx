@@ -221,7 +221,7 @@ const DashboardMockup = () => {
               Dashboard Executivo
             </Typography>
             <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-              Dados em tempo real • Atualizado agora
+              Dados com respostas rápidas • Atualizado agora
             </Typography>
           </Box>
 
@@ -251,7 +251,7 @@ const DashboardMockup = () => {
               suffix=""
               trend={8.7}
               icon={<PieChartIcon sx={{ fontSize: 16 }} />}
-              color={theme.palette.accent.main}
+              color={theme.palette.primary.light}
               delay={0.6}
             />
             <MetricCard

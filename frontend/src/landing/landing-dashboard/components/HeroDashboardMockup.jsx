@@ -135,7 +135,7 @@ const HeroDashboardMockup = () => {
                   Dashboard Executivo
                 </Typography>
                 <Typography variant="caption" sx={{ color: theme.palette.text.secondary }}>
-                  Tempo real • Atualizado agora
+                  Respostas rápidas • Atualizado agora
                 </Typography>
               </Box>
             </Box>

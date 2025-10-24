@@ -56,9 +56,9 @@ const RiskReducersSection = () => {
     },
     {
       icon: <SupportAgentIcon sx={{ fontSize: 32 }} />,
-      title: 'Suporte 24/7',
-      description: 'Equipe especializada sempre disponível',
-      color: theme.palette.accent.main,
+      title: 'Suporte Rápido',
+      description: 'Equipe especializada com resposta em até 2 horas',
+      color: theme.palette.primary.light,
     },
     {
       icon: <SecurityIcon sx={{ fontSize: 32 }} />,
@@ -129,7 +129,7 @@ const RiskReducersSection = () => {
       ref={ref}
       sx={{
         py: { xs: 8, md: 12 },
-        background: `linear-gradient(135deg, ${theme.palette.primary.main}05 0%, ${theme.palette.secondary.main}05 100%)`,
+        background: theme.palette.grey[50],
         position: 'relative',
       }}
     >
@@ -155,9 +155,7 @@ const RiskReducersSection = () => {
                 <Box
                   component="span"
                   sx={{
-                    background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.accent.main})`,
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
+                    color: theme.palette.primary.main,
                   }}
                 >
                   Certificações

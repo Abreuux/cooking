@@ -48,10 +48,10 @@ const FAQSection = () => {
       color: theme.palette.secondary.main,
     },
     {
-      icon: <IntegrationInstructionsIcon sx={{ fontSize: 24, color: theme.palette.accent.main }} />,
+      icon: <IntegrationInstructionsIcon sx={{ fontSize: 24, color: theme.palette.primary.light }} />,
       question: 'E se nossos sistemas forem muito antigos?',
       answer: 'Integramos qualquer sistema, por mais legado que seja. Nossa equipe tem experiência com sistemas de todas as idades e tecnologias. Criamos conectores personalizados quando necessário.',
-      color: theme.palette.accent.main,
+      color: theme.palette.primary.light,
     },
     {
       icon: <AttachMoneyIcon sx={{ fontSize: 24, color: '#4CAF50' }} />,
@@ -98,7 +98,7 @@ const FAQSection = () => {
       ref={ref}
       sx={{
         py: { xs: 8, md: 12 },
-        background: `linear-gradient(180deg, #ffffff 0%, ${theme.palette.grey[50]} 100%)`,
+        background: '#ffffff',
         position: 'relative',
       }}
     >
@@ -124,9 +124,7 @@ const FAQSection = () => {
                 <Box
                   component="span"
                   sx={{
-                    background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.accent.main})`,
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
+                    color: theme.palette.primary.main,
                   }}
                 >
                   Mais Frequentes
@@ -301,13 +299,13 @@ const FAQSection = () => {
                 <Typography
                   variant="body2"
                   sx={{
-                    color: theme.palette.accent.main,
+                    color: theme.palette.primary.light,
                     fontWeight: 600,
                     display: 'flex',
                     alignItems: 'center',
                   }}
                 >
-                  📧 E-mail 24/7
+                  📧 E-mail com resposta em até 2 horas
                 </Typography>
               </Box>
             </Box>

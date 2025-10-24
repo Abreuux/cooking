@@ -88,7 +88,7 @@ const AIInsightsSection = () => {
       type: 'Análise',
       insight: 'Campanha digital pode ser otimizada para +25% ROI',
       confidence: 89,
-      color: theme.palette.accent.main,
+      color: theme.palette.primary.light,
       trend: '+25%',
     },
   ];
@@ -120,7 +120,7 @@ const AIInsightsSection = () => {
       ref={ref}
       sx={{
         py: { xs: 4, md: 12 },
-        background: `linear-gradient(135deg, ${theme.palette.primary.main}08 0%, ${theme.palette.accent.main}08 100%)`,
+        background: '#ffffff',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -133,8 +133,7 @@ const AIInsightsSection = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundImage: `radial-gradient(circle at 30% 70%, ${theme.palette.secondary.main}05 0%, transparent 50%),
-                           radial-gradient(circle at 70% 30%, ${theme.palette.primary.main}05 0%, transparent 50%)`,
+          backgroundImage: 'none',
           zIndex: 0,
         }}
       />
@@ -161,7 +160,7 @@ const AIInsightsSection = () => {
                 <Box
                   component="span"
                   sx={{
-                    background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.accent.main})`,
+                    background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                   }}
@@ -181,7 +180,7 @@ const AIInsightsSection = () => {
                   lineHeight: 1.4,
                 }}
               >
-                Nossa IA analisa seus dados 24/7 e entrega recomendações precisas para maximizar seus resultados
+                Nossa IA analisa seus dados com respostas rápidas e entrega recomendações precisas para maximizar seus resultados
               </Typography>
             </motion.div>
           </Box>
@@ -205,7 +204,7 @@ const AIInsightsSection = () => {
                   left: 0,
                   right: 0,
                   height: '4px',
-                  background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main}, ${theme.palette.accent.main})`,
+                  background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main}, ${theme.palette.primary.light})`,
                 },
               }}
             >
@@ -471,7 +470,7 @@ const AIInsightsSection = () => {
                 mt: { xs: 4, md: 8 },
                 p: { xs: 3, md: 6 },
                 textAlign: 'center',
-                background: `linear-gradient(135deg, ${theme.palette.primary.main}10, ${theme.palette.secondary.main}10)`,
+                background: theme.palette.grey[50],
                 borderRadius: 3,
                 border: `1px solid ${theme.palette.primary.main}20`,
               }}
@@ -506,11 +505,32 @@ const AIInsightsSection = () => {
                   maxWidth: '600px',
                   mx: 'auto',
                   lineHeight: 1.6,
+                  mb: 3,
                 }}
               >
                 Nossa inteligência artificial aprende com os padrões únicos do seu negócio, 
                 gerando insights cada vez mais precisos e recomendações personalizadas para sua realidade.
               </Typography>
+              <Button
+                component="a"
+                href="https://form.typeform.com/to/a0d9de95"
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="contained"
+                sx={{
+                  backgroundColor: theme.palette.primary.main,
+                  color: 'white',
+                  fontWeight: 600,
+                  textTransform: 'none',
+                  px: 4,
+                  py: 2,
+                  '&:hover': {
+                    backgroundColor: theme.palette.primary.dark,
+                  },
+                }}
+              >
+                Experimentar IA
+              </Button>
             </Box>
           </motion.div>
         </motion.div>

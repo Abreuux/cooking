@@ -101,7 +101,7 @@ const SolutionSection = () => {
       title: 'Dashboards Executivos',
       features: [
         'Visualização personalizada por cargo',
-        'Acesso móvel e em tempo real',
+        'Acesso móvel com respostas rápidas',
         'Interatividade completa',
       ],
       result: 'Tomada de decisão rápida e precisa',
@@ -136,7 +136,7 @@ const SolutionSection = () => {
       ref={ref}
       sx={{
         py: { xs: 8, md: 12 },
-        background: `linear-gradient(135deg, ${theme.palette.primary.main}05 0%, ${theme.palette.secondary.main}05 100%)`,
+        background: '#ffffff',
         position: 'relative',
       }}
     >
@@ -162,9 +162,7 @@ const SolutionSection = () => {
                 <Box
                   component="span"
                   sx={{
-                    background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.accent.main})`,
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
+                    color: theme.palette.primary.main,
                   }}
                 >
                   Inteligência de Dados

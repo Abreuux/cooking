@@ -135,7 +135,7 @@ const FinalCTASection = () => {
       ref={ref}
       sx={{
         py: { xs: 8, md: 12 },
-        background: `linear-gradient(135deg, ${theme.palette.primary.main}15 0%, ${theme.palette.secondary.main}15 100%)`,
+        background: theme.palette.grey[50],
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -148,8 +148,7 @@ const FinalCTASection = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundImage: `radial-gradient(circle at 20% 80%, ${theme.palette.primary.main}08 0%, transparent 50%),
-                           radial-gradient(circle at 80% 20%, ${theme.palette.secondary.main}08 0%, transparent 50%)`,
+          backgroundImage: 'none',
           zIndex: 0,
         }}
       />

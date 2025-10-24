@@ -61,7 +61,7 @@ const ProblemsSection = () => {
       icon: <TargetIcon sx={{ fontSize: 48 }} />,
       title: 'Acompanhamento de Metas Ineficiente',
       situation: 'Descobrir se as metas foram atingidas só no final do mês',
-      impact: 'Impossibilidade de correção de rota em tempo real',
+      impact: 'Impossibilidade de correção de rota com respostas rápidas',
       cost: 'Metas perdidas, frustração da equipe',
       color: theme.palette.secondary.light,
     },
@@ -94,7 +94,7 @@ const ProblemsSection = () => {
       ref={ref}
       sx={{
         py: { xs: 8, md: 12 },
-        background: `linear-gradient(180deg, #ffffff 0%, ${theme.palette.grey[50]} 100%)`,
+        background: theme.palette.grey[50],
         position: 'relative',
       }}
     >
@@ -120,9 +120,7 @@ const ProblemsSection = () => {
                 <Box
                   component="span"
                   sx={{
-                    background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.accent.main})`,
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
+                    color: theme.palette.primary.main,
                   }}
                 >
                   no escuro?
@@ -300,7 +298,7 @@ const ProblemsSection = () => {
                   fontStyle: 'italic',
                 }}
               >
-                Imagine transformar essa realidade. Ter dados confiáveis, decisões rápidas e metas acompanhadas em tempo real. 
+                Imagine transformar essa realidade. Ter dados confiáveis, decisões rápidas e metas acompanhadas com respostas rápidas. 
                 Sua empresa operando com a precisão de uma máquina bem calibrada.
               </Typography>
 

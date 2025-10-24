@@ -215,7 +215,7 @@ const ComputerMockup = () => {
                   <CircleIcon sx={{ fontSize: 8, color: '#4CAF50' }} />
                 </motion.div>
                 <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                  Dados em tempo real • Atualizado agora
+                  Dados com respostas rápidas • Atualizado agora
                 </Typography>
               </Box>
             </Box>
@@ -248,7 +248,7 @@ const ComputerMockup = () => {
                 suffix=""
                 trend={8.7}
                 icon={<PieChartIcon sx={{ fontSize: 16 }} />}
-                color={theme.palette.accent.main}
+                color={theme.palette.primary.light}
                 delay={0.6}
                 tooltip="Base de clientes ativos com crescimento de 8.7%"
               />

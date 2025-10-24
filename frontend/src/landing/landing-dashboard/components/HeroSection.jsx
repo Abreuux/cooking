@@ -86,7 +86,7 @@ const HeroSection = () => {
       ref={ref}
       sx={{
         minHeight: '100vh',
-        background: `linear-gradient(135deg, ${theme.palette.primary.main}15 0%, ${theme.palette.secondary.main}10 100%)`,
+        background: theme.palette.grey[50],
         position: 'relative',
         overflow: 'hidden',
         pt: { xs: 8, md: 12 },
@@ -101,8 +101,7 @@ const HeroSection = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundImage: `radial-gradient(circle at 20% 80%, ${theme.palette.primary.main}08 0%, transparent 50%),
-                           radial-gradient(circle at 80% 20%, ${theme.palette.secondary.main}08 0%, transparent 50%)`,
+          backgroundImage: 'none',
           zIndex: 0,
         }}
       />
@@ -288,10 +287,29 @@ const HeroSection = () => {
                             sx={{
                               color: theme.palette.text.secondary,
                               lineHeight: 1.5,
+                              mb: 2,
                             }}
                           >
                             {benefit.description}
                           </Typography>
+                          <Button
+                            component="a"
+                            href="https://form.typeform.com/to/a0d9de95"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            variant="text"
+                            size="small"
+                            sx={{
+                              color: benefit.color,
+                              fontWeight: 600,
+                              textTransform: 'none',
+                              '&:hover': {
+                                backgroundColor: `${benefit.color}10`,
+                              },
+                            }}
+                          >
+                            Saiba Mais
+                          </Button>
                         </CardContent>
                       </Card>
                     </Zoom>

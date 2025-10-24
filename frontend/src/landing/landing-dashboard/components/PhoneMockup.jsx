@@ -199,7 +199,7 @@ const PhoneMockup = () => {
                         fontSize: '0.7rem',
                       }}
                     >
-                      Tempo real
+                      Respostas Rápidas
                     </Typography>
                   </Box>
                 </Box>
@@ -219,7 +219,7 @@ const PhoneMockup = () => {
                             right: -4,
                             width: 16,
                             height: 16,
-                            background: theme.palette.accent.main,
+                            background: theme.palette.primary.light,
                             borderRadius: '50%',
                             display: 'flex',
                             alignItems: 'center',
@@ -321,7 +321,7 @@ const PhoneMockup = () => {
                     <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                       <BarChartIcon
                         sx={{
-                          color: theme.palette.accent.main,
+                          color: theme.palette.primary.light,
                           fontSize: 16,
                           mr: 1,
                         }}
